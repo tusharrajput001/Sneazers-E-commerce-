@@ -8,6 +8,7 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loginFeedback, setLoginFeedback] = useState("");
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -17,7 +18,10 @@ function Login() {
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {
-          navigate("/home");
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/home");
+          }, 1000);
         } else if (result.data === "Failed") {
           setLoginFeedback("Incorrect Password");
         } else {
@@ -74,6 +78,11 @@ function Login() {
               <div className="d-flex justify-content-end align-items-right mb-2 ">
                 <a href="#!">Forgot password?</a>
               </div>
+              {success && (
+                      <div className="alert alert-success mb-4" role="alert">
+                        Successfully Login. Redirecting to Home page...
+                      </div>
+              )}
 
               {/* SignUp */}
               <div className="form-check d-flex justify-content-center mb-5">
