@@ -9,10 +9,15 @@ function Login() {
   const [password, setPassword] = useState();
   const [loginFeedback, setLoginFeedback] = useState("");
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      setError("Fill all fields to Login");
+      return;
+    }
     axios
       .post("http://localhost:3000/login", { email, password })
       .then((result) => {
@@ -78,10 +83,18 @@ function Login() {
               <div className="d-flex justify-content-end align-items-right mb-2 ">
                 <a href="#!">Forgot password?</a>
               </div>
+
+              {/* LOGIN ERROR */}
+              {error && (
+                <div className="alert alert-danger mb-4" role="alert">
+                  {error}
+                </div>
+              )}
+              {/* LOGIN SUCCESS */}
               {success && (
-                      <div className="alert alert-success mb-4" role="alert">
-                        Successfully Login. Redirecting to Home page...
-                      </div>
+                <div className="alert alert-success mb-4" role="alert">
+                  Successfully Login. Redirecting to Home page...
+                </div>
               )}
 
               {/* SignUp */}
