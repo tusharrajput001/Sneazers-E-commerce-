@@ -7,6 +7,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -22,7 +23,10 @@ function Signup() {
           setError("Fill the Form to register");
         } else {
           console.log(result);
-          navigate("/login");
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
         }
       })
       .catch((err) => console.log(err));
@@ -47,7 +51,17 @@ function Signup() {
                       Sign up
                     </p>
 
+                    {error && (
+                      <div className="alert alert-danger mb-4" role="alert">
+                        {error}
+                      </div>
+                    )}
 
+                    {success && (
+                      <div className="alert alert-success mb-4" role="alert">
+                        Successfully registered. Redirecting to login...
+                      </div>
+                    )}
 
                     <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                       <div className="d-flex flex-row align-items-center mb-4">
@@ -100,11 +114,7 @@ function Signup() {
                           />
                         </div>
                       </div>
-                      {error && (
-                      <div className="alert alert-danger mb-4" role="alert">
-                        {error}
-                      </div>
-                    )}
+
                       <div className="form-check d-flex justify-content-center mb-5">
                         <label
                           className="form-check-label"
