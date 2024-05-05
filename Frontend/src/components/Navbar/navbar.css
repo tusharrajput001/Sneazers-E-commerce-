@@ -1,68 +1,74 @@
-/* Navbar container */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+  background-color: #eeeeee;
+}
+
+.navbar-heading {
+  font-size: 3rem;
+  font-family: "waltograph42";
+}
+
+.navbar-options ul,
+.navbar-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-options li,
+.navbar-icons li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.navbar-options li a {
+  color: rgb(9, 9, 9);
+  text-decoration: none;
+  font-size: larger;
+  margin: 0.7vw;
+}
+
+.black-icon {
+  color: black;
+}
+
+/* Hamburger Icon */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+}
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  .navbar-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
     background-color: #333;
-    color: #fff;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
   }
-  
-  /* Navbar heading */
-  .navbar-heading {
-    font-size: 24px;
-    font-weight: bold;
+
+  .navbar-options.open {
+    display: block;
   }
-  
-  /* Navbar options */
-  .navbar-options ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+  .hamburger-menu {
+    display: block;
   }
-  
-  .navbar-options ul li {
-    display: inline;
-    margin-right: 20px;
+
+  .navbar-brand {
+    display: none;
   }
-  
-  .navbar-options ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
+  .navbar-options li a {
+    color: rgb(248, 245, 245);
   }
-  
-  /* Navbar icons */
-  .navbar-icons ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navbar-icons ul li {
-    display: inline;
-    margin-left: 20px;
-  }
-  
-  .navbar-icons ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  /* Responsive */
-  @media screen and (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-options {
-      margin-top: 10px;
-    }
-  
-    .navbar-icons {
-      margin-top: 10px;
-    }
-  }
-  
+}
