@@ -3,6 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
+import Navbar from "./components/Navbar/navbar";
+
+// Font Awesome 
+import '@fortawesome/fontawesome-free/css/all.css';
 
 
 function App() {
@@ -10,6 +14,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar/>
       <Routes>
         <Route path="/register" element={<Signup/>}></Route>
         <Route path="/login" element={<Login/>}></Route>

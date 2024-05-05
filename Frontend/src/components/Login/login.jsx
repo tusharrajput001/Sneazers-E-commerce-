@@ -25,7 +25,7 @@ function Login() {
         if (result.data === "Success") {
           setSuccess(true);
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 1000);
         } else if (result.data === "Failed") {
           setLoginFeedback("Incorrect Password");
