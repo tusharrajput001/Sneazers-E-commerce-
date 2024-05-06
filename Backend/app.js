@@ -1,36 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const RegisterModel = require("./Models/Register.model");
+const dotenv = require("dotenv");
 
+const userRoute = require("./Routes/usersRoutes");
 const app = express();
 app.use(cors());
+dotenv.config();
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/Sneazers");
+const DB = process.env.URI;
 
-app.post("/register", (req, res) => {
-  RegisterModel.create(req.body)
-    .then((registers) => res.json(registers))
-    .catch((err) => res.json(err));
-});
+mongoose
+  .connect(DB, {})
+  .then(() => {
+    console.log("connected successfully");
+    app.listen(process.env.PORT || 8000, (err) => {
+      if (err) console.log(err);
+      console.log("running successfully at", process.env.PORT);
+    });
+  })
 
-app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  RegisterModel.findOne({ email: email }).then((user) => {
-    if (user) {
-      if (user.password === password) {
-        res.json("Success");
-      } else {
-        res.json("Failed");
-      }
-    }
-    else{
-        res.json("Not registered")
-    }
-  });
-});
+  .catch((err) => console.log(err));
 
-app.listen(3000, () => {
-  console.log("server running....");
-});
+app.use(usersRoutes);
