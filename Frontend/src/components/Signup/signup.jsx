@@ -17,7 +17,7 @@ function Signup() {
       return;
     }
     axios
-      .post("http://localhost:3000/register", { name, email, password })
+      .post("http://localhost:3000/", { name, email, password })
       .then((result) => {
         if (result.data.email === "") {
           setError("Fill the Form to register");

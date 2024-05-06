@@ -8,13 +8,6 @@ app.use(cors());
 dotenv.config();
 app.use(express.json());
 
-// Route to fetch all data
-app.get("/", (req, res) => {
-  RegisterModel.find({})
-    .then((registers) => res.json(registers))
-    .catch((err) => res.json(err));
-});
-
 
 
 app.post("/", (req, res) => {
@@ -22,6 +15,14 @@ app.post("/", (req, res) => {
     .then((registers) => res.json(registers))
     .catch((err) => res.json(err));
 });
+
+// Route to fetch all data
+app.get("/", (req, res) => {
+  RegisterModel.find({})
+    .then((registers) => res.json(registers))
+    .catch((err) => res.json(err));
+});
+
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -37,5 +38,8 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
+
+
 
 module.exports = app;
