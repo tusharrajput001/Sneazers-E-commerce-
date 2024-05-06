@@ -1,12 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const RegisterModel = require("./Models/Register.model");
+const RegisterModel = require("../Models/Register.model");
 
 const app = express();
 app.use(cors());
 dotenv.config();
 app.use(express.json());
+
+// Route to fetch all data
+app.get("/", (req, res) => {
+  RegisterModel.find({})
+    .then((registers) => res.json(registers))
+    .catch((err) => res.json(err));
+});
+
+
 
 app.post("/", (req, res) => {
   RegisterModel.create(req.body)

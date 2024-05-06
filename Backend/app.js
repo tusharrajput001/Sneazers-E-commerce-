@@ -23,4 +23,4 @@ mongoose
 
   .catch((err) => console.log(err));
 
-app.use(usersRoutes);
+app.use(userRoute);
