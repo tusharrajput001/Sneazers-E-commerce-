@@ -8,10 +8,9 @@ const app = express();
 dotenv.config();
 app.use(cors());        
 app.use(express.json());
-const DB = "mongodb+srv://devoptushar:sneazerspass@cluster0.xqxgo0w.mongodb.net/sneazers?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
-  .connect(DB, {}) 
+  .connect(process.env.URI, {}) 
   .then(() => {
     console.log("connected successfully");
     app.listen(process.env.PORT || 8000, (err) => {
