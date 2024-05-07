@@ -1,4 +1,5 @@
 const express = require("express");
+//Model import
 const RegisterModel = require("../Models/Register.model");
 // Router Import
 const router = express.Router();

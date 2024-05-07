@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-const usersRoutes = require("./routes/usersRoutes");
+const userRoute = require("./routes/userRoute");
 const app = express();
 dotenv.config();
 app.use(cors());        
@@ -27,4 +27,4 @@ mongoose
     process.exit(1); // Exiting the process if unable to connect to the database
   });
 
-app.use(usersRoutes);
+app.use(userRoute);
