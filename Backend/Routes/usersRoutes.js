@@ -1,15 +1,10 @@
 const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
 const RegisterModel = require("../Models/Register.model");
-
-const app = express();
-app.use(cors());
-dotenv.config();
-app.use(express.json());
+// Router Import
+const router = express.Router();
 
 // registration data
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const register = await RegisterModel.create(req.body);
     res.json(register);
@@ -19,7 +14,7 @@ app.post("/", async (req, res) => {
 });
 
 // Route to fetch all data
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const registers = await RegisterModel.find({});
     res.json(registers);
@@ -29,7 +24,7 @@ app.get("/", async (req, res) => {
 });
 
 // login
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await RegisterModel.findOne({ email: email });
@@ -47,4 +42,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-module.exports = app;
+module.exports = router;
