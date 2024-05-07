@@ -17,7 +17,7 @@ function Signup() {
       return;
     }
     axios
-      .post("https://sneazers-e-commerce-nc8hilz8v-tusharrajput001s-projects.vercel.app/", { name, email, password })
+      .post("http://localhost:3000/", { name, email, password })
       .then((result) => {
         if (result.data.email === "") {
           setError("Fill the Form to register");

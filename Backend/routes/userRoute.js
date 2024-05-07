@@ -2,7 +2,10 @@ const express = require("express");
 //Model import
 const RegisterModel = require("../Models/Register.model");
 // Router Import
+const cors = require("cors");
 const router = express.Router();
+
+router.use(cors()); 
 
 // registration data
 router.post("/", async (req, res) => {
