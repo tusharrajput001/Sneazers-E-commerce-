@@ -8,8 +8,7 @@
   app.use(cors());
   dotenv.config();
   app.use(express.json());
-
-  const DB = process.env.URI;
+  const DB = "mongodb+srv://devoptushar:sneazerspass@cluster0.xqxgo0w.mongodb.net/sneazers?retryWrites=true&w=majority&appName=Cluster0";
 
   mongoose
     .connect(DB, {})
