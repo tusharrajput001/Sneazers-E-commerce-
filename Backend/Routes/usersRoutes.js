@@ -9,7 +9,7 @@ dotenv.config();
 app.use(express.json());
 
 
-
+// registration data
 app.post("/", (req, res) => {
   RegisterModel.create(req.body)
     .then((registers) => res.json(registers))
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-
+// login 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   RegisterModel.findOne({ email: email }).then((user) => {
