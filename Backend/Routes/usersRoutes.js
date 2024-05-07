@@ -5,34 +5,34 @@ const RegisterModel = require("../Models/Register.model");
 
 const app = express();
 app.use(cors());
-dotenv.config();
+dotenv.config();  
 app.use(express.json());
 
 
 // registration data
-app.post("/", (req, res) => {
-  RegisterModel.create(req.body)
+app.post("/",  async(req, res) => {
+  await RegisterModel.create(req.body)
     .then((registers) => res.json(registers))
     .catch((err) => res.json(err));
 });
 
 // Route to fetch all data
-app.get("/", (req, res) => {
-  RegisterModel.find({})
+app.get("/", async(req, res) => {
+  await RegisterModel.find({})
     .then((registers) => res.json(registers))
     .catch((err) => res.json(err));
 });
 
 // login 
-app.post("/login", (req, res) => {
+app.post("/login", async(req, res) => {
   const { email, password } = req.body;
-  RegisterModel.findOne({ email: email }).then((user) => {
+  await RegisterModel.findOne({ email: email }).then((user) => {
     if (user) {
       if (user.password === password) {
         res.json("Success");
       } else {
         res.json("Failed");
-      }
+      } 
     } else {
       res.json("Not registered");
     }

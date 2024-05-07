@@ -5,8 +5,8 @@ const dotenv = require("dotenv");
 
 const userRoute = require("./Routes/usersRoutes");
 const app = express();
-app.use(cors());
 dotenv.config();
+app.use(cors());        
 app.use(express.json());
 const DB = "mongodb+srv://devoptushar:sneazerspass@cluster0.xqxgo0w.mongodb.net/sneazers?retryWrites=true&w=majority&appName=Cluster0";
 
