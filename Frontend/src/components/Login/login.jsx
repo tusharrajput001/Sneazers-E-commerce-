@@ -19,7 +19,7 @@ function Login() {
       return;
     }
     axios
-      .post("https://sneazers-e-commerce-g74gu8xg1-tusharrajput001s-projects.vercel.app/login", { email, password })
+      .post("https://sneazers-e-commerce.onrender.com/login", { email, password })
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {
