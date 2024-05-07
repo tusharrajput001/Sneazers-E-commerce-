@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     if (!email || !password) {
       setError("Fill all fields to Login");
       return;
