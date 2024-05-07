@@ -18,15 +18,15 @@ function Navbar() {
   return (
     <>
       <nav className="navbar">
+        {/* Hamburger Icon */}
+        <div className="hamburger-menu" onClick={toggleMenu}>
+          <i className={`fas ${isOpen ? "fa-times" : "fa-bars"}`}></i>
+        </div>
+        
         <div className="navbar-brand">
           <Link to="/" className="navbar-heading">
             Sneazers
           </Link>
-        </div>
-
-        {/* Hamburger Icon */}
-        <div className="hamburger-menu" onClick={toggleMenu}>
-          <i className={`fas ${isOpen ? "fa-times" : "fa-bars"}`}></i>
         </div>
 
         {/* Navigation Options */}
@@ -72,7 +72,7 @@ function Navbar() {
         </div>
       </nav>
       {/* Search Bar */}
-      <div className={`search-bar ${isSearchOpen ? 'active' : ''}`}>
+      <div className={`search-bar ${isSearchOpen ? "active" : ""}`}>
         <input type="text" placeholder="Search..." />
         {/* Close Button */}
         <button className="close-btn" onClick={toggleSearch}>
