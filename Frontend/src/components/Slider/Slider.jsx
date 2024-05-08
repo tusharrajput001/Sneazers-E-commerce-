@@ -17,7 +17,7 @@ function Slider() {
   };
 
   return (
-    <div className="container-fluid">
+
       <div className="row text-center">
         <div className="col-12">
           <div
@@ -67,7 +67,7 @@ function Slider() {
           </div>
         </div>
       </div>
-    </div>
+ 
   );
 }
 
