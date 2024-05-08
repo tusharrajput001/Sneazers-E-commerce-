@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Slider1 from "../../Images/slider1.png";
 import Slider2 from "../../Images/slider2.png";
+import Slider3 from "../../Images/Slider3.webp";
 
-const images = [Slider1, Slider2];
+
+const images = [Slider1, Slider2, Slider3];
 
 function Slider() {
   const [curr, setCurr] = useState(0);
@@ -15,9 +17,9 @@ function Slider() {
   };
 
   return (
-    <div classNameName="container my-5">
-      <div classNameName="row text-center">
-        <div classNameName="col-6">
+    <div className="container-fluid">
+      <div className="row text-center">
+        <div className="col-12">
           <div
             id="carouselExampleControls"
             className="carousel slide"
@@ -31,7 +33,7 @@ function Slider() {
                       <img
                         className="d-block w-100"
                         src={value}
-                        alt="First slide"
+                        alt={`Slide ${index + 1}`}
                       />
                     </div>
                   </div>
