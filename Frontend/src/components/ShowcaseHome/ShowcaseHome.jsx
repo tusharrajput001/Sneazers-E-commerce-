@@ -1,6 +1,6 @@
 import React from "react";
 import "./HtopHome.css";
-import ProductCard from "../../ProductCard/productCard";
+import ProductCard from "../ProductCard/productCard";
 
 function ShowcaseHome(props) {
   return (

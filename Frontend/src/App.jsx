@@ -10,7 +10,7 @@ import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Navbar from "./components/Navbar/navbar";
 import Slider from "./components/Slider/Slider";
-import ShowcaseHome from "./components/HighTop/ShowcaseHome/ShowcaseHome";
+import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
 
 
 
