@@ -15,9 +15,17 @@ h2 {
   flex-wrap: wrap;
 }
 .heading-container {
+  display: flex;
+  flex-direction: column;
   width: 90%;
   margin: auto;
 }
+.heading-container div{
+  font-size: large;
+  text-align: end;
+}
+
+
 
 .heading-container h1 {
   width: 95%;

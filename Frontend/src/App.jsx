@@ -26,9 +26,9 @@ function App() {
           element={
             <>
               <Slider />
-              <ShowcaseHome name="High-top"/>
-              <ShowcaseHome name="Mid-top"/>
-              <ShowcaseHome name="Low-top"/>
+              <ShowcaseHome name="High-top Sneakers"/>
+              <ShowcaseHome name="Mid-top Sneakers"/>
+              <ShowcaseHome name="Low-top Sneakers"/>
               <ShowcaseHome name="Slip-ons"/>
             </>
           }
