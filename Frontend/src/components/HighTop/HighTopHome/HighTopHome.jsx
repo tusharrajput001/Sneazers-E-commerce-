@@ -1,5 +1,6 @@
 import React from "react";
 import "./HtopHome.css";
+import ProductCard from "../../ProductCard/productCard";
 
 function HighTopHome() {
   return (
@@ -8,8 +9,12 @@ function HighTopHome() {
       <div className="heading-container">
         <h1>High-Top Sneakers</h1>
       </div>
-      <div>
-        {/* card */}
+      <div className="products-container">
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
       </div>
       
     </div>

@@ -5,8 +5,15 @@ h2 {
 .HtopContainer {
   height: 70vh;
   margin: 4% 0px;
+  
 }
-
+.products-container{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .heading-container {
   width: 90%;
   margin: auto;
