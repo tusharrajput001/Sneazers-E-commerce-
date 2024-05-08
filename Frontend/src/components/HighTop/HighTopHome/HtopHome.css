@@ -1,0 +1,18 @@
+h2 {
+  font-family: "Anek Latin", sans-serif;
+}
+
+.HtopContainer {
+  height: 70vh;
+  margin: 4% 0px;
+}
+
+.heading-container {
+  width: 90%;
+  margin: auto;
+}
+
+.heading-container h1 {
+  width: 95%;
+  margin: auto;
+}
