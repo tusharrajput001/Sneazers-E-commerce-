@@ -2,12 +2,12 @@ import React from "react";
 import "./HtopHome.css";
 import ProductCard from "../../ProductCard/productCard";
 
-function HighTopHome() {
+function ShowcaseHome(props) {
   return (
     <div className="HtopContainer">
 
       <div className="heading-container">
-        <h1>High-Top Sneakers</h1>
+        <h1>{props.name} Sneakers</h1>
       </div>
       <div className="products-container">
         <ProductCard/>
@@ -21,4 +21,4 @@ function HighTopHome() {
   );
 }
 
-export default HighTopHome;
+export default ShowcaseHome;

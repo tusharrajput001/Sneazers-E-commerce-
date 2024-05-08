@@ -10,7 +10,7 @@ import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Navbar from "./components/Navbar/navbar";
 import Slider from "./components/Slider/Slider";
-import HighTopHome from "./components/HighTop/HighTopHome/HighTopHome";
+import ShowcaseHome from "./components/HighTop/ShowcaseHome/ShowcaseHome";
 
 
 
@@ -26,7 +26,10 @@ function App() {
           element={
             <>
               <Slider />
-              <HighTopHome/>
+              <ShowcaseHome name="High-top"/>
+              <ShowcaseHome name="Mid-top"/>
+              <ShowcaseHome name="Low-top"/>
+              <ShowcaseHome name="Slip-ons"/>
             </>
           }
         ></Route>
