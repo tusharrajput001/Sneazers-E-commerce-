@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
-
+import { useAuth } from "../../Contexts/AuthContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // state for hamburger menu
   const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search bar visibility
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

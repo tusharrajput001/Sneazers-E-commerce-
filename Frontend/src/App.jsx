@@ -12,13 +12,17 @@ import Navbar from "./components/Navbar/navbar";
 import Slider from "./components/Slider/Slider";
 import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
 
+//context
+import { AuthProvider } from "./Contexts/AuthContext";
+
 
 
 function App() {
-  const [count, setCount] = useState(0);
+
 
   return (
     <Router>
+      <AuthProvider>
       <Navbar />
       <Routes>
         <Route
@@ -36,6 +40,7 @@ function App() {
         <Route path="/register" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>
+      </AuthProvider>
     </Router>
   );
 }
