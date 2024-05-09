@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
 
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // state for hamburger menu
   const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search bar visibility
