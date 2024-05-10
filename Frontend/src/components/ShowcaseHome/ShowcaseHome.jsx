@@ -1,9 +1,11 @@
 import React from "react";
-import "./HtopHome.css";
+import "./ShowcaseHome.css";
 import ProductCard from "../ProductCard/productCard";
 
 function ShowcaseHome(props) {
   return (
+    <section className="HPageProducts">
+      <div className="HPageContainer">
     <div className="HtopContainer">
       <div className="heading-container">
         <h1>
@@ -19,9 +21,10 @@ function ShowcaseHome(props) {
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        <ProductCard />
       </div>
     </div>
+    </div>
+    </section>
   );
 }
 

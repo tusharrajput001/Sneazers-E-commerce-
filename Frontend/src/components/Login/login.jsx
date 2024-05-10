@@ -21,7 +21,7 @@ function Login() {
       return;
     }
     axios
-      .post("https://sneazers-e-commerce.onrender.com/login", { email, password })
+      .post("https://sneazers-e-commerce-1.onrender.com/login", { email, password })
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {
