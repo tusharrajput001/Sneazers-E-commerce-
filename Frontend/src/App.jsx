@@ -11,6 +11,7 @@ import Signup from "./components/Signup/signup";
 import Navbar from "./components/Navbar/navbar";
 import Slider from "./components/Slider/Slider";
 import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
+import Account from "./components/Account/account";
 
 //context
 import { AuthProvider } from "./Contexts/AuthContext";
@@ -39,6 +40,7 @@ function App() {
         ></Route>
         <Route path="/register" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/account" element={<Account/>}></Route>
       </Routes>
       </AuthProvider>
     </Router>

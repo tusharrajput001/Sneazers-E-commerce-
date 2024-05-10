@@ -1,0 +1,22 @@
+.AccSection {
+    height: auto;
+    padding: 0 7vw;
+  }
+  
+
+.parent-container {
+    height: 100vh;
+    width: 90%; 
+    max-width: 120em; 
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+
+.accountContainer{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(203, 51, 21);
+}
