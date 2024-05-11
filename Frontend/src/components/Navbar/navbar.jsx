@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
-import { useAuth } from "../../Contexts/AuthContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // state for hamburger menu
   const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search bar visibility
-  const { isLoggedIn } = useAuth();
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setHasToken(!!token); // Set hasToken to true if token exists, false otherwise
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -66,8 +70,8 @@ function Navbar() {
               </a>
             </li>
 
-            {/* Check is logged in  */}
-            {isLoggedIn ? (
+            {/* Check if token exists */}
+            {hasToken ? (
               <>
                 <li className="user-logo">
                   <Link to="/account">

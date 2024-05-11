@@ -2,12 +2,19 @@ const express = require("express");
 //Model import
 const RegisterModel = require("../Models/Register.model");
 // Router Import
-const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
-router.use(cors()); 
+router.post("/register", async (req, res) => {
+  try {
+    const register = await RegisterModel.create(req.body);
+    res.json(register);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-// registration data
+// registration data (SignUp)
 router.post("/", async (req, res) => {
   try {
     const register = await RegisterModel.create(req.body);
@@ -32,14 +39,13 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await RegisterModel.findOne({ email: email });
-    if (user) {
-      if (user.password === password) {
-        res.json("Success");
-      } else {
-        res.json("Failed");
-      }
+    if (user && user.password === password) {
+      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+      res.json({ token });
     } else {
-      res.json("Not registered");
+      res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

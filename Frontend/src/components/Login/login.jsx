@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
@@ -14,6 +14,14 @@ function Login() {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuth();
 
+  useEffect(() => {
+    // Check if token exists in localStorage
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault(); 
     if (!email || !password) {
@@ -27,6 +35,8 @@ function Login() {
         if (result.data === "Success") {
           setSuccess(true);
           setIsLoggedIn(true);
+           // Store token in localStorage
+           localStorage.setItem("token", result.data.token);
           setTimeout(() => {
             navigate("/");
           }, 1000);
