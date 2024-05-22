@@ -5,12 +5,16 @@ const RegisterModel = require("../Models/Register.model");
 const cors = require("cors");
 const router = express.Router();
 
+const bcrypt = require("bcrypt");
+
 router.use(cors()); 
 
 // registration data
 router.post("/", async (req, res) => {
   try {
-    const register = await RegisterModel.create(req.body);
+    const {name, email, password} = req.body;
+    const hash = await bcrypt.hash(password,10)
+    const register = await RegisterModel.create({ name, email, password: hash });
     res.json(register);
   } catch (error) {
     res.status(500).json({ error: error.message });
