@@ -27,6 +27,7 @@ function Login() {
         if (result.data === "Success") {
           setSuccess(true);
           setIsLoggedIn(true);
+          localStorage.setItem('isLoggedIn', 'true'); // Storing login status in localStorage
           setTimeout(() => {
             navigate("/");
           }, 1000);
@@ -38,6 +39,7 @@ function Login() {
       })
       .catch((err) => console.log(err));
   };
+  
 
   return (
     <section className="vh-100">
