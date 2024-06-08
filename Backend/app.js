@@ -6,12 +6,11 @@ const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const app = express();
 dotenv.config();
-
-app.use(cors());
+app.use(cors());        
 app.use(express.json());
 
 mongoose
-  .connect(process.env.URI, {})
+  .connect(process.env.URI, {}) 
   .then(() => {
     console.log("connected successfully");
     app.listen(process.env.PORT || 8000, (err) => {
@@ -27,4 +26,4 @@ mongoose
     process.exit(1); // Exiting the process if unable to connect to the database
   });
 
-app.use("/", userRoute);
+app.use(userRoute);

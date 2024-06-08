@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 import { useAuth } from "../../Contexts/AuthContext";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [loginFeedback, setLoginFeedback] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -14,16 +15,15 @@ function Login() {
   const { setIsLoggedIn } = useAuth();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     if (!email || !password) {
       setError("Fill all fields to Login");
       return;
     }
-
     axios
-      .post("https://sneazers-e-commerce-1.onrender.com/login", { email, password })
+      .post("http://localhost:3000/login", { email, password })
       .then((result) => {
-        console.log("Response from server:", result);
+        console.log(result);
         if (result.data === "Success") {
           setSuccess(true);
           setIsLoggedIn(true);
@@ -36,10 +36,7 @@ function Login() {
           setLoginFeedback("Email not registered");
         }
       })
-      .catch((err) => {
-        console.error("Error during login request:", err);
-        setLoginFeedback("An error occurred. Please try again.");
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -59,25 +56,23 @@ function Login() {
             </p>
             <form onSubmit={handleSubmit}>
               {/* Email input */}
-              <div className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-4">
                 <input
                   type="email"
                   id="form1Example13"
                   className="form-control form-control-lg"
                   placeholder="Email"
-                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
               {/* Password input */}
-              <div className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-4">
                 <input
                   type="password"
                   id="form1Example23"
                   className="form-control form-control-lg"
                   placeholder="Password"
-                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
@@ -101,7 +96,7 @@ function Login() {
               {/* LOGIN SUCCESS */}
               {success && (
                 <div className="alert alert-success mb-4" role="alert">
-                  Successfully Logged In. Redirecting to Home page...
+                  Successfully Login. Redirecting to Home page...
                 </div>
               )}
 
@@ -133,7 +128,7 @@ function Login() {
               {/* Continue with Twitter */}
               <a
                 className="btn btn-primary btn-lg btn-block"
-                style={{ backgroundColor: "#55acee" }}
+                style={{ backgroundColor: " #55acee" }}
                 href="#!"
                 role="button"
               >
