@@ -4,17 +4,22 @@ const RegisterModel = require("../Models/Register.model");
 // Router Import
 const cors = require("cors");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 
-router.use(cors()); 
+router.use(cors());
 
 // registration data
-router.post("/", async (req, res) => {
-  try {
-    const register = await RegisterModel.create(req.body);
-    res.json(register);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+router.post("/", (req, res) => {
+  const { name, email, password } = req.body;
+  bcrypt
+    .hash(password, 10)
+    .then((hash) => {
+      const register = RegisterModel.create({ name, email, password: hash });
+      res.json(register);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 });
 
 // Route to fetch all data
@@ -28,22 +33,23 @@ router.get("/", async (req, res) => {
 });
 
 // login
-router.post("/login", async (req, res) => {
+router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  try {
-    const user = await RegisterModel.findOne({ email: email });
+  RegisterModel.findOne({ email: email })
+  .then((user) => {
     if (user) {
-      if (user.password === password) {
-        res.json("Success");
-      } else {
-        res.json("Failed");
-      }
+      bcrypt.compare(password, user.password, (err, response) => {
+        if (err) {
+          res.json("the password is incorrect");
+        }
+        if (response) {
+          res.json("Success");
+        }
+      });
     } else {
-      res.json("Not registered");
+      res.json("No record existed");
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  });
 });
 
 module.exports = router;
