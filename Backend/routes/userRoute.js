@@ -1,20 +1,17 @@
 const express = require("express");
-//Model import
-const RegisterModel = require("../Models/Register.model");
-// Router Import
 const cors = require("cors");
 const router = express.Router();
+const RegisterModel = require("../models/Register.model");
 
-const bcrypt = require("bcrypt");
+router.use(cors());
 
-router.use(cors()); 
-
-// registration data
+// Registration route
 router.post("/", async (req, res) => {
   try {
-    const {name, email, password} = req.body;
-    const hash = await bcrypt.hash(password,10)
-    const register = await RegisterModel.create({ name, email, password: hash });
+    const { name, email, password } = req.body;
+    console.log("Password during registration:", password); // Debug log
+    const register = await RegisterModel.create({ name, email, password });
+    console.log("Saved user:", register); // Debug log
     res.json(register);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -31,13 +28,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-// login
+// Login route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await RegisterModel.findOne({ email: email });
     if (user) {
-      if (user.password === password) {
+      console.log("User found:", user); // Debug log
+      console.log("Password entered by user:", password); // Debug log
+      console.log("Password stored in database:", user.password); // Debug log
+
+      if (password === user.password) {
         res.json("Success");
       } else {
         res.json("Failed");

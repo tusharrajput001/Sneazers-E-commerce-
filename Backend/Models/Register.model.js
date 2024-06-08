@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 //Schema
 
 const RegisterSchema = new mongoose.Schema({
@@ -9,8 +8,6 @@ const RegisterSchema = new mongoose.Schema({
   password: String,
 });
 
-
 // Model
 
-
-module.exports = mongoose.model("registers",RegisterSchema);
+module.exports = mongoose.model("registers", RegisterSchema);
