@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
-function Dashboard({ addProduct }) {
+function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     image: '',
@@ -10,8 +10,14 @@ function Dashboard({ addProduct }) {
     name: '',
     price: ''
   });
+  const [products, setProducts] = useState([]);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProducts().then(setProducts);
+  }, [fetchProducts]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +26,30 @@ function Dashboard({ addProduct }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProduct(newProduct);
+    if (editingProduct) {
+      updateProduct(editingProduct._id, newProduct).then(updatedProduct => {
+        setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product));
+      });
+    } else {
+      addProduct(newProduct).then(addedProduct => {
+        setProducts([...products, addedProduct]);
+      });
+    }
     setNewProduct({ image: '', brand: '', name: '', price: '' });
     setIsFormOpen(false);
-    navigate('/allproducts');
+    setEditingProduct(null);
+  };
+
+  const handleEdit = (product) => {
+    setEditingProduct(product);
+    setNewProduct(product);
+    setIsFormOpen(true);
+  };
+
+  const handleDelete = (productId) => {
+    deleteProduct(productId).then(() => {
+      setProducts(products.filter(product => product._id !== productId));
+    });
   };
 
   return (
@@ -43,7 +69,7 @@ function Dashboard({ addProduct }) {
       {isFormOpen && (
         <div className="form-popup">
           <form className="form-container" onSubmit={handleSubmit}>
-            <h2>Add Product</h2>
+            <h2>{editingProduct ? "Edit Product" : "Add Product"}</h2>
             <input
               type="text"
               name="image"
@@ -76,11 +102,40 @@ function Dashboard({ addProduct }) {
               placeholder="Enter price"
               required
             />
-            <button type="submit" className="btn">Add Product</button>
-            <button type="button" className="btn cancel" onClick={() => setIsFormOpen(false)}>Close</button>
+            <button type="submit" className="btn">{editingProduct ? "Update Product" : "Add Product"}</button>
+            <button type="button" className="btn cancel" onClick={() => { setIsFormOpen(false); setEditingProduct(null); }}>Close</button>
           </form>
         </div>
       )}
+
+      <div className="productsList">
+        <h2>Products List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Brand</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(product => (
+              <tr key={product._id}>
+                <td><img src={product.image} alt={product.name} width="50" /></td>
+                <td>{product.brand}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>
+                  <button onClick={() => handleEdit(product)}>Edit</button>
+                  <button onClick={() => handleDelete(product._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

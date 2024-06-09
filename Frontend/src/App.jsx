@@ -19,14 +19,17 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error("Error fetching products:", error));
+    fetchProducts().then(setProducts);
   }, []);
 
+  const fetchProducts = () => {
+    return fetch("http://localhost:3000/products")
+      .then(response => response.json())
+      .catch(error => console.error("Error fetching products:", error));
+  };
+
   const addProduct = (product) => {
-    fetch("http://localhost:3000/addProduct", {
+    return fetch("http://localhost:3000/addProduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,10 +37,27 @@ function App() {
       body: JSON.stringify(product),
     })
       .then(response => response.json())
-      .then(newProduct => {
-        setProducts([...products, newProduct]);
-      })
       .catch(error => console.error("Error adding product:", error));
+  };
+
+  const deleteProduct = (productId) => {
+    return fetch(`http://localhost:3000/deleteProduct/${productId}`, {
+      method: "DELETE",
+    })
+      .then(response => response.json())
+      .catch(error => console.error("Error deleting product:", error));
+  };
+
+  const updateProduct = (productId, updatedProduct) => {
+    return fetch(`http://localhost:3000/updateProduct/${productId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProduct),
+    })
+      .then(response => response.json())
+      .catch(error => console.error("Error updating product:", error));
   };
 
   return (
@@ -58,7 +78,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route
             path="/dashboard"
-            element={<Dashboard addProduct={addProduct} />}
+            element={<Dashboard addProduct={addProduct} fetchProducts={fetchProducts} deleteProduct={deleteProduct} updateProduct={updateProduct} />}
           />
           <Route
             path="/allproducts"
