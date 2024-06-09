@@ -1,0 +1,24 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the products horizontally */
+  }
+  
+  .product-card {
+    width: calc(25% - 20px); /* Adjust as needed */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 768px) {
+    .product-card {
+      width: calc(50% - 20px); /* Adjust as needed */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-card {
+      width: 90%; /* Adjust as needed */
+    }
+  }
+  
