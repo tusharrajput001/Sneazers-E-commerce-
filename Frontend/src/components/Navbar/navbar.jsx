@@ -44,7 +44,7 @@ function Navbar() {
               <a href="#">Low-top</a>
             </li>
             <li>
-              <a href="#">Slip-ons</a>
+              <a href="/allproducts">All Products</a>
             </li>
           </ul>
         </div>
@@ -77,6 +77,13 @@ function Navbar() {
                 <li className="user-name">
                   <span>Name</span>
                 </li>
+                <li className="user-logo">
+                  <Link to="/dashboard">
+                    <i className="fas fa-user blue-icon"></i>
+                
+                  </Link>
+                </li>
+                
               </>
             ) : (
               <li>

@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const app = express();
 dotenv.config();
-app.use(cors());        
+app.use(cors());          
 app.use(express.json());
 
 mongoose
