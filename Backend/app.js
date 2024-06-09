@@ -4,26 +4,28 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 const userRoute = require("./routes/userRoute");
+const productRoute = require("./routes/productRoute");
 const app = express();
 dotenv.config();
-app.use(cors());          
+app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(process.env.URI, {}) 
+  .connect(process.env.URI, {})
   .then(() => {
     console.log("connected successfully");
     app.listen(process.env.PORT || 8000, (err) => {
       if (err) {
         console.log(err);
-        process.exit(1); // Exiting the process if unable to listen on port
+        process.exit(1);
       }
       console.log("running successfully at", process.env.PORT || 8000);
     });
   })
   .catch((err) => {
     console.log(err);
-    process.exit(1); // Exiting the process if unable to connect to the database
+    process.exit(1);
   });
 
 app.use(userRoute);
+app.use(productRoute);
