@@ -1,13 +1,26 @@
-import React from 'react'
-import ShowcaseHome from '../../ShowcaseHome/ShowcaseHome'
-import ProductCard from '../../ProductCard/productCard'
+import React from 'react';
+import ProductCard from '../../ProductCard/productCard';
 
-function Allproducts() {
+function Allproducts({ products }) {
   return (
     <>
-        <ProductCard/>
+      {products.length > 0 ? (
+        <div className="product-list">
+          {products.map((product, index) => (
+            <ProductCard
+              key={index}
+              image={product.image}
+              brand={product.brand}
+              name={product.name}
+              price={product.price}
+            />
+          ))}
+        </div>
+      ) : (
+        <p>No products available</p>
+      )}
     </>
-  )
+  );
 }
 
-export default Allproducts
+export default Allproducts;

@@ -18,34 +18,42 @@ import { AuthProvider } from "./Contexts/AuthContext";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
 
-
-
 function App() {
+  const [products, setProducts] = useState([]);
 
+  const addProduct = (product) => {
+    setProducts([...products, product]);
+  };
 
   return (
     <Router>
       <AuthProvider>
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Slider />
-              {/* <ShowcaseHome name="High-top Sneakers"/>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Slider />
+                {/* <ShowcaseHome name="High-top Sneakers"/>
               <ShowcaseHome name="Mid-top Sneakers"/>
               <ShowcaseHome name="Low-top Sneakers"/>
               <ShowcaseHome name="Slip-ons"/> */}
-            </>
-          }
-        ></Route>
-        <Route path="/register" element={<Signup />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/account" element={<Account/>}></Route>
-        <Route path="/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/allproducts" element={<Allproducts/>}></Route>
-      </Routes>
+              </>
+            }
+          ></Route>
+          <Route path="/register" element={<Signup />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/account" element={<Account />}></Route>
+          <Route
+            path="/dashboard"
+            element={<Dashboard addProduct={addProduct} />}
+          />
+          <Route
+            path="/allproducts"
+            element={<Allproducts products={products} />}
+          />
+        </Routes>
       </AuthProvider>
     </Router>
   );
