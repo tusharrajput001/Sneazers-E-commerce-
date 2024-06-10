@@ -62,18 +62,28 @@ function Navbar() {
 
             {isLoggedIn ? (
               <>
-                <li className="user-logo">
-                  <Link to="/account">
-                    <i className="fas fa-user black-icon"></i>
-                  </Link>
-                </li>
-                <li className="user-name">
-                  <span>Name</span>
-                </li>
+                {userEmail !== "tusharr0491@gmail.com" && (
+                  <>
+                    <li className="user-logo">
+                      <Link to="/account">
+                        <i className="fas fa-user black-icon"></i>
+                      </Link>
+                    </li>
+                    <li className="user-name">
+                      <span>Name</span>
+                    </li>
+                  </>
+                )}
                 {userEmail === "tusharr0491@gmail.com" && (
                   <li className="user-logo">
                     <Link to="/dashboard">
-                      <i className="fas fa-user blue-icon"></i>
+                      <i className="fas fa-user black-icon mr-3"></i>
+                      
+                    </Link>
+                    <Link to="/dashboard">
+                    <li className="user-name">
+                      <span> Admin</span>
+                    </li>
                     </Link>
                   </li>
                 )}
