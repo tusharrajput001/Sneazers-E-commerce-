@@ -64,11 +64,9 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-tr:hover {
-  background-color: #ddd;
-}
 
-button {
+
+.EditBtn {
   padding: 5px 10px;
   cursor: pointer;
   border: none;
@@ -76,9 +74,23 @@ button {
   color: white;
 }
 
-button:hover {
-  background-color: #45a049;
+.DelBtn {
+  margin-left: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #ca1010;
+  color: white;
 }
+
+.EditBtn:hover {
+  background-color: #127517;
+}
+
+.DelBtn:hover {
+  background-color: #94240bea;
+}
+
 
 
 

@@ -27,7 +27,7 @@ function Account() {
               <h6>abcd@gmail.com</h6>
             </div>
             <div>
-              <button onClick={handleLogout}>Logout</button>{" "}
+              <button onClick={handleLogout}>Logout</button>
               {/* Attach event handler */}
             </div>
           </div>

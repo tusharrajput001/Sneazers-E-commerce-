@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
 import { useAuth } from "../../Contexts/AuthContext";
 
 function Navbar() {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { isLoggedIn, userEmail } = useAuth();
@@ -13,7 +14,13 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
-  const toggleSearch = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+    window.location.reload();
+  };
+
+  const toggleSearch = () => {s
     setIsSearchOpen(!isSearchOpen);
   };
 
@@ -85,6 +92,7 @@ function Navbar() {
                       <span> Admin</span>
                     </li>
                     </Link>
+                    <button onClick={handleLogout}>Logout</button>
                   </li>
                 )}
               </>
