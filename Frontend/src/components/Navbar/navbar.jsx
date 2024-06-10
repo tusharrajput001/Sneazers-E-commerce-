@@ -21,8 +21,16 @@ function Navbar() {
   };
 
   const toggleSearch = () => {
-    s;
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  // Function to extract name from email
+  const getUserName = (email) => {
+    const atIndex = email.indexOf("@");
+    if (atIndex !== -1) {
+      return email.substring(0, atIndex);
+    }
+    return email;
   };
 
   return (
@@ -70,18 +78,20 @@ function Navbar() {
               <>
                 {userEmail !== "tusharr0491@gmail.com" && (
                   <>
+                    <li>
+                      <a href="/cart">
+                        <i className="fas fa-shopping-cart black-icon"></i>
+                      </a>
+                    </li>
                     <li className="user-logo">
                       <Link to="/account">
                         <i className="fas fa-user black-icon"></i>
                       </Link>
                     </li>
                     <li className="user-name">
-                      <span>Name</span>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="fas fa-shopping-cart black-icon"></i>
-                      </a>
+                      <Link to="/account" style={{ textDecoration: 'none', color:'black' }}>
+                        <span>{getUserName(userEmail)}</span>
+                      </Link>
                     </li>
                   </>
                 )}
