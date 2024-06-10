@@ -1,57 +1,101 @@
 .form-popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-  }
-  
-  .form-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-container input {
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  .form-container .btn {
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  .form-container .cancel {
-    background-color: red;
-    color: white;
-  }
-  
-  /* Dashboard.css */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-container .btn {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.buttonsContainer{
+  display: flex;  
+  flex-direction: row;
+  justify-content: center;
+  width: 90%;
+  margin: auto; 
+
+}
+
+
+.buttonsContainer .button1, .button2, .button3{
+  margin: 20px;
+  padding: 15px;
+  border: none;
+  background-color: gray;
+  color: white;
+  text-decoration: none;
+  width: 20rem;
+}
+
+.addProduct{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  margin: auto;
+}
+
+.addProduct button{
+  background-color:#2ab12f;
+  padding: .5rem;
+}
+
+
+.form-container .cancel {
+  background-color: red;
+  color: white;
+}
+
 
 .productsList {
-  margin: 20px;
+  margin: 8%;
+
+  
 }
+
+.productsList h2{
+  text-align: center; 
+  padding: 20px;
+}
+
+
 
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
   padding: 8px;
   text-align: left;
 }
@@ -64,13 +108,11 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-
-
 .EditBtn {
   padding: 5px 10px;
   cursor: pointer;
   border: none;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -91,9 +133,6 @@ tr:nth-child(even) {
   background-color: #94240bea;
 }
 
-
-
-
 .cancel {
   background-color: #f44336;
 }
@@ -105,4 +144,3 @@ tr:nth-child(even) {
 .btn {
   margin-right: 10px;
 }
-

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css';
 
 function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) {
@@ -54,12 +54,12 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
 
   return (
     <>
-      <h1 style={{ display: 'flex', justifyContent: 'center' }}>Welcome Admin</h1>
+      <h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin Panel</h1>
 
       <div className='buttonsContainer' style={{ textAlign: 'center', padding: '20px' }}>
-        <button className="button1">Products</button>
-        <button className="button2">Orders</button>
-        <button className="button3">Users</button>
+        <Link to='/'><p className="button1">Products</p></Link>
+        <Link to='/'><p className="button2">Orders</p></Link>
+        <Link to='/'><p className="button3">Users</p></Link>
       </div>
 
       <div className="addProduct">
