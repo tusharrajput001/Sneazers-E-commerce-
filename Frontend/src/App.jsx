@@ -20,6 +20,7 @@ import Lowtop from "./components/Pages/LowTop/Lowtop";
 import Midtop from "./components/Pages/MidTop/Midtop";
 import HighTop from "./components/Pages/HighTop/Hightop";
 import Sports from "./components/Pages/Sports/Sports";
+import LatestProducts from "./components/LatestProducts/LatestProducts";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -76,21 +77,21 @@ function App() {
             element={
               <>
                 <Slider />
-                
+                <LatestProducts products={products} />
               </>
             }
           />
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/lowtop" element={<Lowtop products={products}  />} />
-          <Route path="/midtop" element={<Midtop products={products}  />} />
+          <Route path="/lowtop" element={<Lowtop products={products} />} />
+          <Route path="/midtop" element={<Midtop products={products} />} />
           <Route path="/hightop" element={<HighTop products={products} />} />
-          <Route path="/sports" element={<Sports products={products}  />} />
+          <Route path="/sports" element={<Sports products={products} />} />
           <Route
             path="/dashboard/*"
             element={
-              <ProtectedRoute>  
+              <ProtectedRoute>
                 <Dashboard
                   addProduct={addProduct}
                   fetchProducts={fetchProducts}
@@ -104,7 +105,6 @@ function App() {
             path="/allproducts"
             element={<Allproducts products={products} />}
           />
-          
         </Routes>
       </AuthProvider>
     </Router>
