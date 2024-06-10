@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 
+// Context
+import { AuthProvider } from "./Contexts/AuthContext";
+
 // Components Import
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
@@ -13,9 +16,13 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
+import Lowtop from "./components/Pages/LowTop/Lowtop";
+import Midtop from "./components/Pages/MidTop/Midtop";
+import Hightop from "./components/Pages/HighTop/Hightop";
+import Sports from "./components/Pages/Sports/Sports";
 
-// Context
-import { AuthProvider } from "./Contexts/AuthContext";
+
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -79,6 +86,10 @@ function App() {
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/lowtop" element={<Lowtop />} />
+          <Route path="/midtop" element={<Midtop />} />
+          <Route path="/hightop" element={<Hightop />} />
+          <Route path="/sports" element={<Sports />} />
           <Route
             path="/dashboard/*"
             element={

@@ -41,13 +41,16 @@ function Navbar() {
         <div className={`navbar-options ${isOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <a href="#">High-top</a>
+              <a href="/hightop">High-top</a>
             </li>
             <li>
-              <a href="#">Mid-top</a>
+              <a href="/midtop">Mid-top</a>
             </li>
             <li>
-              <a href="#">Low-top</a>
+              <a href="/lowtop">Low-top</a>
+            </li>
+            <li>
+              <a href="/sports">Sports</a>
             </li>
             <li>
               <a href="/allproducts">All Products</a>
