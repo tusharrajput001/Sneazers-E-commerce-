@@ -76,17 +76,17 @@ function App() {
             element={
               <>
                 <Slider />
-                <ShowcaseHome name="hightop" />
+                
               </>
             }
           />
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/lowtop" element={<Lowtop />} />
-          <Route path="/midtop" element={<Midtop />} />
+          <Route path="/lowtop" element={<Lowtop products={products}  />} />
+          <Route path="/midtop" element={<Midtop products={products}  />} />
           <Route path="/hightop" element={<HighTop products={products} />} />
-          <Route path="/sports" element={<Sports />} />
+          <Route path="/sports" element={<Sports products={products}  />} />
           <Route
             path="/dashboard/*"
             element={
