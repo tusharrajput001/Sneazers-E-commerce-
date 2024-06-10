@@ -18,11 +18,8 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
 import Lowtop from "./components/Pages/LowTop/Lowtop";
 import Midtop from "./components/Pages/MidTop/Midtop";
-import Hightop from "./components/Pages/HighTop/Hightop";
+import HighTop from "./components/Pages/HighTop/Hightop";
 import Sports from "./components/Pages/Sports/Sports";
-
-
-
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -33,8 +30,8 @@ function App() {
 
   const fetchProducts = () => {
     return fetch("http://localhost:3000/products")
-      .then(response => response.json())
-      .catch(error => console.error("Error fetching products:", error));
+      .then((response) => response.json())
+      .catch((error) => console.error("Error fetching products:", error));
   };
 
   const addProduct = (product) => {
@@ -45,16 +42,16 @@ function App() {
       },
       body: JSON.stringify(product),
     })
-      .then(response => response.json())
-      .catch(error => console.error("Error adding product:", error));
+      .then((response) => response.json())
+      .catch((error) => console.error("Error adding product:", error));
   };
 
   const deleteProduct = (productId) => {
     return fetch(`http://localhost:3000/deleteProduct/${productId}`, {
       method: "DELETE",
     })
-      .then(response => response.json())
-      .catch(error => console.error("Error deleting product:", error));
+      .then((response) => response.json())
+      .catch((error) => console.error("Error deleting product:", error));
   };
 
   const updateProduct = (productId, updatedProduct) => {
@@ -65,8 +62,8 @@ function App() {
       },
       body: JSON.stringify(updatedProduct),
     })
-      .then(response => response.json())
-      .catch(error => console.error("Error updating product:", error));
+      .then((response) => response.json())
+      .catch((error) => console.error("Error updating product:", error));
   };
 
   return (
@@ -79,7 +76,7 @@ function App() {
             element={
               <>
                 <Slider />
-                <ShowcaseHome name="hightop"/>
+                <ShowcaseHome name="hightop" />
               </>
             }
           />
@@ -88,20 +85,26 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/lowtop" element={<Lowtop />} />
           <Route path="/midtop" element={<Midtop />} />
-          <Route path="/hightop" element={<Hightop />} />
+          <Route path="/hightop" element={<HighTop products={products} />} />
           <Route path="/sports" element={<Sports />} />
           <Route
             path="/dashboard/*"
             element={
-              <ProtectedRoute>
-                <Dashboard addProduct={addProduct} fetchProducts={fetchProducts} deleteProduct={deleteProduct} updateProduct={updateProduct} />
+              <ProtectedRoute>  
+                <Dashboard
+                  addProduct={addProduct}
+                  fetchProducts={fetchProducts}
+                  deleteProduct={deleteProduct}
+                  updateProduct={updateProduct}
+                />
               </ProtectedRoute>
             }
           />
-          <Route  
+          <Route
             path="/allproducts"
             element={<Allproducts products={products} />}
           />
+          
         </Routes>
       </AuthProvider>
     </Router>
