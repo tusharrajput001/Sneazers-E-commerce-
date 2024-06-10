@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Routes, Route, Navigate } from 'react-router-dom';
 import './Dashboard.css';
+import ProductDetails from './ProductDetails';
+import OrderDetails from './OrderDetails';
+import UserDetails from './UserDetails';
 
 function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -57,9 +60,9 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin Panel</h1>
 
       <div className='buttonsContainer' style={{ textAlign: 'center', padding: '20px' }}>
-        <Link to='/'><p className="button1">Products</p></Link>
-        <Link to='/'><p className="button2">Orders</p></Link>
-        <Link to='/'><p className="button3">Users</p></Link>
+        <Link to='products'><p className="button1">Products</p></Link>
+        <Link to='orders'><p className="button2">Orders</p></Link>
+        <Link to='users'><p className="button3">Users</p></Link>
       </div>
 
       <div className="addProduct">
@@ -108,34 +111,12 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         </div>
       )}
 
-      <div className="productsList">
-        <h2>Products List</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Brand</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map(product => (
-              <tr key={product._id}>
-                <td><img src={product.image} alt={product.name} width="50" /></td>
-                <td>{product.brand}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>
-                  <button className="EditBtn" onClick={() => handleEdit(product)}>Edit</button>
-                  <button className="DelBtn" onClick={() => handleDelete(product._id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Routes>
+        <Route path="products" element={<ProductDetails products={products} handleEdit={handleEdit} handleDelete={handleDelete} />} />
+        <Route path="orders" element={<OrderDetails />} />
+        <Route path="users" element={<UserDetails />} />
+        <Route path="/" element={<Navigate to="products" />} /> {/* Redirect to products */}
+      </Routes>
     </>
   );
 }
