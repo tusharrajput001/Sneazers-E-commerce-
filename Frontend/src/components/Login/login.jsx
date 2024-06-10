@@ -1,18 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 import { useAuth } from "../../Contexts/AuthContext";
 
 function Login() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loginFeedback, setLoginFeedback] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn, setUserEmail } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
@@ -24,14 +23,16 @@ function Login() {
       .post("http://localhost:3000/login", { email, password })
       .then((result) => {
         console.log(result);
-        if (result.data === "Success") {
+        if (result.data.message === "Success") {
           setSuccess(true);
           setIsLoggedIn(true);
+          setUserEmail(result.data.email);
           localStorage.setItem('isLoggedIn', 'true'); // Storing login status in localStorage
+          localStorage.setItem('userEmail', result.data.email); // Storing user email in localStorage
           setTimeout(() => {
             navigate("/");
           }, 1000);
-        } else if (result.data === "Failed") {
+        } else if (result.data === "The password is incorrect") {
           setLoginFeedback("Incorrect Password");
         } else {
           setLoginFeedback("Email not registered");
@@ -39,7 +40,6 @@ function Login() {
       })
       .catch((err) => console.log(err));
   };
-  
 
   return (
     <section className="vh-100">

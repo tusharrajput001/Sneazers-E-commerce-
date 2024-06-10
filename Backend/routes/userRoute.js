@@ -33,23 +33,28 @@ router.get("/", async (req, res) => {
 });
 
 // login
+// login
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   RegisterModel.findOne({ email: email })
-  .then((user) => {
-    if (user) {
-      bcrypt.compare(password, user.password, (err, response) => {
-        if (err) {
-          res.json("the password is incorrect");
-        }
-        if (response) {
-          res.json("Success");
-        }
-      });
-    } else {
-      res.json("No record existed");
-    }
-  });
+    .then((user) => {
+      if (user) {
+        bcrypt.compare(password, user.password, (err, response) => {
+          if (err) {
+            res.json("The password is incorrect");
+          }
+          if (response) {
+            res.json({ message: "Success", email: user.email });
+          } else {
+            res.json("The password is incorrect");
+          }
+        });
+      } else {
+        res.json("No record existed");
+      }
+    })
+    .catch((err) => res.status(500).json({ error: err.message }));
 });
+
 
 module.exports = router;

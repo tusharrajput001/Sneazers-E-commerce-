@@ -5,9 +5,9 @@ import "../../fonts/fonts.css";
 import { useAuth } from "../../Contexts/AuthContext";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // state for hamburger menu
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search bar visibility
-  const { isLoggedIn } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { isLoggedIn, userEmail } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -20,7 +20,6 @@ function Navbar() {
   return (
     <>
       <nav className="navbar">
-        {/* Hamburger Icon */}
         <div className="hamburger-menu" onClick={toggleMenu}>
           <i className={`fas ${isOpen ? "fa-times" : "fa-bars"}`}></i>
         </div>
@@ -31,7 +30,6 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Navigation Options */}
         <div className={`navbar-options ${isOpen ? "open" : ""}`}>
           <ul>
             <li>
@@ -49,24 +47,19 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Icons */}
         <div className="navbar-icons">
           <ul>
-            {/* Search Icon */}
             <li>
               <a href="#" onClick={toggleSearch}>
                 <i className="fas fa-search black-icon"></i>
               </a>
             </li>
-
-            {/* Cart Icon */}
             <li>
               <a href="#">
                 <i className="fas fa-shopping-cart black-icon"></i>
               </a>
             </li>
 
-            {/* Check is logged in  */}
             {isLoggedIn ? (
               <>
                 <li className="user-logo">
@@ -77,13 +70,13 @@ function Navbar() {
                 <li className="user-name">
                   <span>Name</span>
                 </li>
-                <li className="user-logo">
-                  <Link to="/dashboard">
-                    <i className="fas fa-user blue-icon"></i>
-                
-                  </Link>
-                </li>
-                
+                {userEmail === "tusharr0491@gmail.com" && (
+                  <li className="user-logo">
+                    <Link to="/dashboard">
+                      <i className="fas fa-user blue-icon"></i>
+                    </Link>
+                  </li>
+                )}
               </>
             ) : (
               <li>
@@ -98,10 +91,9 @@ function Navbar() {
           </ul>
         </div>
       </nav>
-      {/* Search Bar */}
+
       <div className={`search-bar ${isSearchOpen ? "active" : ""}`}>
         <input type="text" placeholder="Search..." />
-        {/* Close Button */}
         <button className="close-btn" onClick={toggleSearch}>
           <i className="fas fa-times"></i>
         </button>
