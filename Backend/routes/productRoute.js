@@ -4,9 +4,9 @@ const router = express.Router();
 
 // Route to add a new product
 router.post("/addProduct", async (req, res) => {
-  const { image, brand, name, price } = req.body;
+  const { image, brand, name, price, category } = req.body; // Add category
   try {
-    const product = new ProductModel({ image, brand, name, price });
+    const product = new ProductModel({ image, brand, name, price, category }); // Include category
     await product.save();
     res.status(201).json(product);
   } catch (error) {

@@ -11,7 +11,8 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
     image: '',
     brand: '',
     name: '',
-    price: ''
+    price: '',
+    category: '' // Include category field
   });
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -38,7 +39,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         setProducts([...products, addedProduct]);
       });
     }
-    setNewProduct({ image: '', brand: '', name: '', price: '' });
+    setNewProduct({ image: '', brand: '', name: '', price: '', category: '' }); // Include category field
     setIsFormOpen(false);
     setEditingProduct(null);
   };
@@ -103,6 +104,14 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
               value={newProduct.price}
               onChange={handleInputChange}
               placeholder="Enter price"
+              required
+            />
+            <input
+              type="text"
+              name="category" // Include category input field
+              value={newProduct.category}
+              onChange={handleInputChange}
+              placeholder="Enter category"
               required
             />
             <button type="submit" className="btn">{editingProduct ? "Update Product" : "Add Product"}</button>

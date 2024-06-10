@@ -1,5 +1,5 @@
 import React from 'react';
-// import './Products.css';
+
 
 function ProductDetails({ products, handleEdit, handleDelete }) {
   return (
@@ -12,6 +12,7 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
             <th>Brand</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Category</th> {/* Add category column */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -22,6 +23,7 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
               <td>{product.brand}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
+              <td>{product.category}</td> {/* Display category */}
               <td>
                 <button className="EditBtn" onClick={() => handleEdit(product)}>Edit</button>
                 <button className="DelBtn" onClick={() => handleDelete(product._id)}>Delete</button>
@@ -33,5 +35,6 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
     </div>
   );
 }
+
 
 export default ProductDetails;
