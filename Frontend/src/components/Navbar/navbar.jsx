@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -20,7 +20,8 @@ function Navbar() {
     window.location.reload();
   };
 
-  const toggleSearch = () => {s
+  const toggleSearch = () => {
+    s;
     setIsSearchOpen(!isSearchOpen);
   };
 
@@ -61,11 +62,6 @@ function Navbar() {
                 <i className="fas fa-search black-icon"></i>
               </a>
             </li>
-            <li>
-              <a href="#">
-                <i className="fas fa-shopping-cart black-icon"></i>
-              </a>
-            </li>
 
             {isLoggedIn ? (
               <>
@@ -79,18 +75,22 @@ function Navbar() {
                     <li className="user-name">
                       <span>Name</span>
                     </li>
+                    <li>
+                      <a href="#">
+                        <i className="fas fa-shopping-cart black-icon"></i>
+                      </a>
+                    </li>
                   </>
                 )}
                 {userEmail === "tusharr0491@gmail.com" && (
                   <li className="user-logo">
                     <Link to="/dashboard">
                       <i className="fas fa-user black-icon mr-3"></i>
-                      
                     </Link>
                     <Link to="/dashboard">
-                    <li className="user-name">
-                      <span> Admin</span>
-                    </li>
+                      <li className="user-name">
+                        <span> Admin</span>
+                      </li>
                     </Link>
                     <button onClick={handleLogout}>Logout</button>
                   </li>

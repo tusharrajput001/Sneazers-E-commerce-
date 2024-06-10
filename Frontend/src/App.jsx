@@ -14,6 +14,7 @@ import Account from "./components/Account/account";
 import { AuthProvider } from "./Contexts/AuthContext";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"; // Import the ProtectedRoute component
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -78,7 +79,11 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route
             path="/dashboard"
-            element={<Dashboard addProduct={addProduct} fetchProducts={fetchProducts} deleteProduct={deleteProduct} updateProduct={updateProduct} />}
+            element={
+              <ProtectedRoute>
+                <Dashboard addProduct={addProduct} fetchProducts={fetchProducts} deleteProduct={deleteProduct} updateProduct={updateProduct} />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/allproducts"
