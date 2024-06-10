@@ -2,7 +2,7 @@
 .card-container {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 250px;
     /* border: 1px solid #ccc;
     border-radius: 5px; */
     overflow: hidden;

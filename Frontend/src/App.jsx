@@ -15,6 +15,7 @@ import { AuthProvider } from "./Contexts/AuthContext";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"; // Import the ProtectedRoute component
+import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -71,6 +72,7 @@ function App() {
             element={
               <>
                 <Slider />
+                <ShowcaseHome name="hightop"/>
               </>
             }
           />
