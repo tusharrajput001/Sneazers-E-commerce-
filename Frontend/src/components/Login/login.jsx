@@ -14,7 +14,7 @@ function Login() {
   const { setIsLoggedIn, setUserEmail } = useAuth();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!email || !password) {
       setError("Fill all fields to Login");
       return;
@@ -29,6 +29,8 @@ function Login() {
           setUserEmail(result.data.email);
           localStorage.setItem('isLoggedIn', 'true'); // Storing login status in localStorage
           localStorage.setItem('userEmail', result.data.email); // Storing user email in localStorage
+          localStorage.setItem('userName', result.data.name); // Storing user name in localStorage
+
           setTimeout(() => {
             navigate("/");
           }, 1000);

@@ -23,18 +23,15 @@ function ProductDetailPage() {
   };
 
   const handleAddToCart = () => {
-    // Handle adding product to cart
     alert(`${product.name} added to cart`);
   };
 
   const handleBuyNow = () => {
-    // Handle buy now action
     alert(`Proceeding to buy ${product.name}`);
   };
 
   const handleFeedbackSubmit = (e) => {
     e.preventDefault();
-    // Handle submitting feedback
     setFeedbackList([...feedbackList, feedback]);
     setFeedback('');
   };
@@ -42,33 +39,38 @@ function ProductDetailPage() {
   if (!product) return <div>Loading...</div>;
 
   return (
-    <div className="product-detail">
-      <img src={product.image} alt={product.name} className="product-image" />
-      <div className="product-info">
-        <h1>{product.name}</h1>
-        <h2>{product.brand}</h2>
-        <p>₹ {product.price}</p>
-        <p>Category: {product.category}</p>
-        <div className="buttons">
-          <button onClick={handleAddToCart} className="btn add-to-cart">Add to Cart</button>
-          <button onClick={handleBuyNow} className="btn buy-now">Buy Now</button>
+    <div className="product-detail-page">
+      <div className="product-main">
+        <div className="product-images">
+          <img src={product.image} alt={product.name} className="product-image-main" />
+          {/* Add thumbnails if available */}
         </div>
-        <div className="feedback-section">
-          <h3>Feedback</h3>
-          <form onSubmit={handleFeedbackSubmit}>
-            <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder="Leave your feedback here"
-              required
-            ></textarea>
-            <button type="submit" className="btn submit-feedback">Submit Feedback</button>
-          </form>
-          <div className="feedback-list">
-            {feedbackList.map((fb, index) => (
-              <p key={index}>{fb}</p>
-            ))}
+        <div className="product-info">
+          <h1>{product.name}</h1>
+          <h2>{product.brand}</h2>
+          <p className="product-price">₹ {product.price}</p>
+          <p className="product-category">Category: {product.category}</p>
+          <div className="buttons">
+            <button onClick={handleAddToCart} className="btn add-to-cart">Add to Cart</button>
+            <button onClick={handleBuyNow} className="btn buy-now">Buy Now</button>
           </div>
+        </div>
+      </div>
+      <div className="product-feedback">
+        <h3>Feedback</h3>
+        <form onSubmit={handleFeedbackSubmit}>
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            placeholder="Leave your feedback here"
+            required
+          ></textarea>
+          <button type="submit" className="btn submit-feedback">Submit Feedback</button>
+        </form>
+        <div className="feedback-list">
+          {feedbackList.map((fb, index) => (
+            <p key={index}>{fb}</p>
+          ))}
         </div>
       </div>
     </div>

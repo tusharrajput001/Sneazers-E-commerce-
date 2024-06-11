@@ -33,7 +33,6 @@ router.get("/", async (req, res) => {
 });
 
 // login
-// login
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   RegisterModel.findOne({ email: email })
@@ -44,7 +43,7 @@ router.post("/login", (req, res) => {
             res.json("The password is incorrect");
           }
           if (response) {
-            res.json({ message: "Success", email: user.email });
+            res.json({ message: "Success", email: user.email, name: user.name });
           } else {
             res.json("The password is incorrect");
           }
@@ -55,6 +54,7 @@ router.post("/login", (req, res) => {
     })
     .catch((err) => res.status(500).json({ error: err.message }));
 });
+
 
 
 module.exports = router;
