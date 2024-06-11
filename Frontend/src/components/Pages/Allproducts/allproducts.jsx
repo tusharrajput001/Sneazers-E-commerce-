@@ -18,10 +18,12 @@ function Allproducts({ products }) {
                 {products.map((product, index) => (
                   <div key={index} className="product-card">
                     <ProductCard
+                      key={product._id}
+                      id={product._id}
                       image={product.image}
                       brand={product.brand}
                       name={product.name}
-                      price={product.price}
+                      price={product.price} 
                     />
                   </div>
                 ))}

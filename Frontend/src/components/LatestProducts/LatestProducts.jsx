@@ -24,12 +24,14 @@ function LatestProducts({ products }) {
           <div className="product-grid">
             {sortedProducts.map((product, index) => (
               <div key={index} className="product-card">
-                <ProductCard
-                  image={product.image}
-                  brand={product.brand}
-                  name={product.name}
-                  price={product.price}
-                />
+                    <ProductCard
+                      key={product._id}
+                      id={product._id}
+                      image={product.image}
+                      brand={product.brand}
+                      name={product.name}
+                      price={product.price}
+                    />
               </div>
             ))}
           </div>

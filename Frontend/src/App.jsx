@@ -21,6 +21,7 @@ import Midtop from "./components/Pages/MidTop/Midtop";
 import HighTop from "./components/Pages/HighTop/Hightop";
 import Sports from "./components/Pages/Sports/Sports";
 import LatestProducts from "./components/LatestProducts/LatestProducts";
+import ProductDetailPage from "./components/ProductDetail/ProductDetailPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -105,6 +106,7 @@ function App() {
             path="/allproducts"
             element={<Allproducts products={products} />}
           />
+         <Route path="/product/:id" element={<ProductDetailPage />} />
         </Routes>
       </AuthProvider>
     </Router>
