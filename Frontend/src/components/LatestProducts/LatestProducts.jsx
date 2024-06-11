@@ -4,25 +4,28 @@ import './LatestProducts.css';
 import { Link } from 'react-router-dom';
 
 function LatestProducts({ products }) {
-    // Sort products by date (assuming there's a date property in each product)
-    const sortedProducts = products
-      .slice() // Create a copy of the products array to avoid mutating the original array
-      .sort((a, b) => {
-        console.log("Date A:", new Date(a.date));
-        console.log("Date B:", new Date(b.date));
-        return new Date(b.date) - new Date(a.date);
-      }) // Sort by date in descending order
-      .slice(0, 12); // Take the first 12 products after sorting
-  
-    console.log("Sorted Products:", sortedProducts);
-  
+    // Separate products with and without orderAddedDate
+    const productsWithDate = products.filter(product => product.orderAddedDate);
+    const productsWithoutDate = products.filter(product => !product.orderAddedDate);
+
+    // Sort products with orderAddedDate by descending order
+    const sortedProducts = productsWithDate
+      .slice()
+      .sort((a, b) => new Date(b.orderAddedDate) - new Date(a.orderAddedDate));
+
+    // Take the first 8 sorted products with orderAddedDate
+    const displayedProducts = sortedProducts.slice(0, 8);
+
+    // Concatenate products without orderAddedDate after the sorted ones
+    const allDisplayedProducts = [...displayedProducts, ...productsWithoutDate];
+
     return (
       <section className="LatestProducts">
         <div className="container">
           <h2 className="section-title">Latest Products</h2>
           <Link style={{display:'flex', justifyContent:"end", marginRight:'20px'}} to='/allproducts'>View all</Link>
           <div className="product-grid">
-            {sortedProducts.map((product, index) => (
+            {allDisplayedProducts.map((product, index) => (
               <div key={index} className="product-card">
                     <ProductCard
                       key={product._id}
@@ -38,8 +41,6 @@ function LatestProducts({ products }) {
         </div>
       </section>
     );
-  }
-  
-
+}
 
 export default LatestProducts;
