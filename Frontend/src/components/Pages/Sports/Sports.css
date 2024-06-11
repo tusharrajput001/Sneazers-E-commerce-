@@ -1,77 +1,70 @@
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the products horizontally */
-  }
-  
-  .product-card {
-    width: calc(25% - 20px); /* Adjust as needed */
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
+.sports-page-products {
+  margin: 3% 0;
+  padding: 0 7vw;
+}
 
-  h2 {
-    font-family: "Anek Latin", sans-serif;
+.sports-page-container {
+  width: 95%;
+  max-width: 90em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sports-top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100em;
+}
+
+.sports-heading-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.sports-heading-container h1 {
+  font-family: "Anek Latin", sans-serif;
+  width: 95%;
+  margin: auto;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.sports-products-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sports-product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sports-product-card {
+  width: calc(25% - 0px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .sports-product-card {
+    width: calc(50% - 20px);
   }
-  
-  .HtopContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    max-width: 100em;  
-  }
-  .HPageContainer {
-    /* height: 50vh; */
-    width: 95%; 
-    max-width: 90em; 
-    margin: 0 auto; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .HPageProducts {
-    margin: 3% 0;
-    height: auto;
-    padding: 0 7vw;
-  }
-  
-  .products-container {
+}
+
+@media (max-width: 480px) {
+  .sports-product-card {
     width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
   }
-  .heading-container {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-  }
-  .heading-container div {
-    font-size: large;
-    text-align: end;
-  }
-  
-  .heading-container h1 {
-    width: 95%;
-    margin: auto;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .product-card {
-      width: calc(50% - 20px); /* Adjust as needed */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .product-card {
-      width: 90%; /* Adjust as needed */
-    }
-  }
-  
+}

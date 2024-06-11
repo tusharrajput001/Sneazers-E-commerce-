@@ -1,24 +1,23 @@
 import React from 'react';
 import ProductCard from '../../ProductCard/productCard';
 import './Sports.css';
+
 function Sports({ products }) {
   // Filter products by category "Sports"
   const sportsProducts = products.filter(product => product.category === "sports");
 
   return (
-    <section className="SPageProducts">
-      <div className="SPageContainer">
-        <div className="StopContainer">
-          <div className="heading-container">
-            <h1>
-              Sports Products
-            </h1>
+    <section className="sports-page-products">
+      <div className="sports-page-container">
+        <div className="sports-top-container">
+          <div className="sports-heading-container">
+            <h1>Sports Shoes</h1>
           </div>
-          <div className="products-container">
+          <div className="sports-products-container">
             {sportsProducts.length > 0 ? (
-              <div className="product-list">
+              <div className="sports-product-list">
                 {sportsProducts.map((product, index) => (
-                  <div key={index} className="product-card">
+                  <div key={index} className="sports-product-card">
                     <ProductCard
                       key={product._id}
                       id={product._id}

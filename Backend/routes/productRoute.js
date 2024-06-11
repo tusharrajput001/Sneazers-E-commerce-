@@ -39,11 +39,11 @@ router.delete("/deleteProduct/:id", async (req, res) => {
 
 // Route to update a product
 router.put("/updateProduct/:id", async (req, res) => {
-  const { image, brand, name, price } = req.body;
+  const { image, brand, name, price,category } = req.body;
   try {
     const product = await ProductModel.findByIdAndUpdate(
       req.params.id,
-      { image, brand, name, price },
+      { image, brand, name, price, category },
       { new: true }
     );
     if (!product) {

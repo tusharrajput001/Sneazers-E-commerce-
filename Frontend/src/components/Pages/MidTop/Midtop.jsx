@@ -10,7 +10,7 @@ function MidTop({ products }) {
     <section className="mid-top-products">
       <div className="mid-top-container">
         <div className="mid-top-header">
-          <h1>Mid Top Products</h1>
+          <h1>Mid Top Sneakers</h1>
         </div>
         <div className="mid-top-list">
           {midTopProducts.length > 0 ? (

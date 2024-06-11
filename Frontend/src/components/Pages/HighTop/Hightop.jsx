@@ -10,7 +10,7 @@ function HighTop({ products }) {
     <section className="high-top-products">
       <div className="high-top-container">
         <div className="high-top-header">
-          <h1>High Top Products</h1>
+          <h1>High Top Sneakers</h1>
         </div>
         <div className="high-top-list">
           {highTopProducts.length > 0 ? (

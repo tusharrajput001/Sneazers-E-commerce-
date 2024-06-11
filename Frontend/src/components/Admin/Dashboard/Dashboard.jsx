@@ -12,7 +12,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
     brand: '',
     name: '',
     price: '',
-    category: '' // Include category field
+    category: ''
   });
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -39,7 +39,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         setProducts([...products, addedProduct]);
       });
     }
-    setNewProduct({ image: '', brand: '', name: '', price: '', category: '' }); // Include category field
+    setNewProduct({ image: '', brand: '', name: '', price: '', category: '' });
     setIsFormOpen(false);
     setEditingProduct(null);
   };
@@ -108,7 +108,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
             />
             <input
               type="text"
-              name="category" // Include category input field
+              name="category"
               value={newProduct.category}
               onChange={handleInputChange}
               placeholder="Enter category"
