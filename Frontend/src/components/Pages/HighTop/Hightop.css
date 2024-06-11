@@ -43,7 +43,7 @@
 }
 
 .high-top-item {
-  width: calc(25% - 20px);
+  width: calc(25% - 0px);
   margin-bottom: 20px;
   box-sizing: border-box;
   padding: 10px;
