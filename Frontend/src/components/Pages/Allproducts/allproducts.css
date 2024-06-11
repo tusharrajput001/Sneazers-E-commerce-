@@ -1,77 +1,73 @@
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the products horizontally */
-  }
-  
-  .product-card {
-    width: calc(25% - 20px); /* Adjust as needed */
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the products horizontally */
+}
 
-  h2 {
-    font-family: "Anek Latin", sans-serif;
+.product-card {
+  width: calc(25% - 20px); /* Adjust as needed */
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-family: "Anek Latin", sans-serif;
+}
+
+.HtopContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  max-width: 100em;
+}
+.HPageContainer {
+  width: 95%;
+  max-width: 90em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.HPageProducts {
+  margin: 3% 0;
+  height: auto;
+  padding: 0 7vw;
+}
+
+.products-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+.heading-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+}
+.heading-container div {
+  font-size: large;
+  text-align: end;
+}
+
+.heading-container h1 {
+  width: 95%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 20px); /* Adjust as needed */
   }
-  
-  .HtopContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    max-width: 100em;  
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: 90%; /* Adjust as needed */
   }
-  .HPageContainer {
-    /* height: 50vh; */
-    width: 95%; 
-    max-width: 90em; 
-    margin: 0 auto; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .HPageProducts {
-    margin: 3% 0;
-    height: auto;
-    padding: 0 7vw;
-  }
-  
-  .products-container {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
-  }
-  .heading-container {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-  }
-  .heading-container div {
-    font-size: large;
-    text-align: end;
-  }
-  
-  .heading-container h1 {
-    width: 95%;
-    margin: auto;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .product-card {
-      width: calc(50% - 20px); /* Adjust as needed */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .product-card {
-      width: 90%; /* Adjust as needed */
-    }
-  }
-  
+}
