@@ -5,22 +5,35 @@ const router = express.Router();
 
 // Route to add a new product
 router.post("/addProduct", async (req, res) => {
-  const { image, brand, name, price, category, orderAddedDate } = req.body; // Include orderAddedDate
+  const { image, brand, name, price, category, orderAddedDate } = req.body;
   try {
-    const product = new ProductModel({ 
-      image, 
-      brand, 
-      name, 
-      price, 
-      category,
-      orderAddedDate // Save the provided orderAddedDate
-    });
+    let product;
+    if (orderAddedDate) {
+      product = new ProductModel({ 
+        image, 
+        brand, 
+        name, 
+        price, 
+        category,
+        orderAddedDate
+      });
+    } else {
+      product = new ProductModel({ 
+        image, 
+        brand, 
+        name, 
+        price, 
+        category
+      });
+    }
     await product.save();
     res.status(201).json(product);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 
 

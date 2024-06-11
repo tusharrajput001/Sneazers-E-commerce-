@@ -25,7 +25,7 @@ function LatestProducts({ products }) {
           <h2 className="section-title">Latest Products</h2>
           <Link style={{display:'flex', justifyContent:"end", marginRight:'20px'}} to='/allproducts'>View all</Link>
           <div className="product-grid">
-            {allDisplayedProducts.map((product, index) => (
+            {allDisplayedProducts.map((product, index) => ( // Corrected mapping here
               <div key={index} className="product-card">
                     <ProductCard
                       key={product._id}
