@@ -6,6 +6,7 @@ const ProductSchema = new mongoose.Schema({
   name: String,
   price: String,
   category: String,
+  description: String,
   orderAddedDate: {
     type: Date,
   }
@@ -20,7 +21,5 @@ ProductSchema.pre('save', function(next) {
   this.orderAddedDate = new Date();
   next();
 });
-
-
 
 module.exports = mongoose.model("Product", ProductSchema);

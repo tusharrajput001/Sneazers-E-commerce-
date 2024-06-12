@@ -7,12 +7,10 @@ function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [feedbackList, setFeedbackList] = useState([]);
-  const [similarProducts, setSimilarProducts] = useState([]);
-  const [activeTab, setActiveTab] = useState('details'); // New state for managing tabs
+  const [activeTab, setActiveTab] = useState('details');
 
   useEffect(() => {
     fetchProductDetails();
-    fetchSimilarProducts();
   }, [id]);
 
   const fetchProductDetails = () => {
@@ -23,14 +21,6 @@ function ProductDetailPage() {
         setFeedbackList(data.feedback || []);
       })
       .catch(error => console.error('Error fetching product details:', error));
-  };
-
-  const fetchSimilarProducts = () => {
-    // Assuming there's an endpoint for similar products
-    fetch(`http://localhost:3000/products/${id}/similar`)
-      .then(response => response.json())
-      .then(data => setSimilarProducts(data))
-      .catch(error => console.error('Error fetching similar products:', error));
   };
 
   const handleAddToCart = () => {
@@ -49,12 +39,22 @@ function ProductDetailPage() {
 
   if (!product) return <div>Loading...</div>;
 
+  // Render description as list items if comma is detected
+  let descriptionContent;
+  if (product.description.includes(',')) {
+    const descriptionItems = product.description.split(',').map((item, index) => (
+      <li key={index}>{item.trim()}</li>
+    ));
+    descriptionContent = <ul>{descriptionItems}</ul>;
+  } else {
+    descriptionContent = <p>{product.description}</p>;
+  }
+
   return (
     <div className="product-detail-page">
       <div className="product-main">
         <div className="product-images">
           <img src={product.image} alt={product.name} className="product-image-main" />
-          {/* Add thumbnails if available */}
         </div>
         <div className="product-info">
           <h1>{product.name}</h1>
@@ -67,16 +67,33 @@ function ProductDetailPage() {
           </div>
         </div>
       </div>
+
       <div className="product-tabs">
-        <button onClick={() => setActiveTab('details')} className={activeTab === 'details' ? 'active' : ''}>Details</button>
-        <button onClick={() => setActiveTab('reviews')} className={activeTab === 'reviews' ? 'active' : ''}>Reviews</button>
-        <button onClick={() => setActiveTab('similar')} className={activeTab === 'similar' ? 'active' : ''}>Similar Products</button>
+        <button
+          className={activeTab === 'details' ? 'active' : ''}
+          onClick={() => setActiveTab('details')}
+        >
+          Details
+        </button>
+        <button
+          className={activeTab === 'reviews' ? 'active' : ''}
+          onClick={() => setActiveTab('reviews')}
+        >
+          Reviews
+        </button>
+        <button
+          className={activeTab === 'similar' ? 'active' : ''}
+          onClick={() => setActiveTab('similar')}
+        >
+          Similar Products
+        </button>
       </div>
+
       <div className="product-tab-content">
         {activeTab === 'details' && (
           <div className="product-details">
-            <p>{product.description}</p>
-            {/* Add more detailed information if available */}
+            <h3>Product Description</h3>
+            {descriptionContent}
           </div>
         )}
         {activeTab === 'reviews' && (
@@ -101,15 +118,7 @@ function ProductDetailPage() {
         {activeTab === 'similar' && (
           <div className="similar-products">
             <h3>Similar Products</h3>
-            <ul>
-              {similarProducts.map((product, index) => (
-                <li key={index}>
-                  <img src={product.image} alt={product.name} />
-                  <p>{product.name}</p>
-                  <p>₹ {product.price}</p>
-                </li>
-              ))}
-            </ul>
+            {/* Similar products content here */}
           </div>
         )}
       </div>

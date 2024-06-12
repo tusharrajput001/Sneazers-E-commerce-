@@ -14,7 +14,8 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
     brand: '',
     name: '',
     price: '',
-    category: ''
+    category: '',
+    description: ''
   });
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -43,7 +44,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         toast.success('Product added successfully!');
       });
     }
-    setNewProduct({ image: '', brand: '', name: '', price: '', category: '' });
+    setNewProduct({ image: '', brand: '', name: '', price: '', category: '', description: '' });
     setIsFormOpen(false);
     setEditingProduct(null);
   };
@@ -118,6 +119,13 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
               value={newProduct.category}
               onChange={handleInputChange}
               placeholder="Enter category"
+              required
+            />
+            <textarea
+              name="description"
+              value={newProduct.description}
+              onChange={handleInputChange}
+              placeholder="Enter product description"
               required
             />
             <button type="submit" className="btn btn-update">{editingProduct ? "Update Product" : "Add Product"}</button>
