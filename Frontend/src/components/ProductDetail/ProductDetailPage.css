@@ -1,119 +1,206 @@
 .product-detail-page {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  .product-main {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .product-images {
-    flex: 1;
-  }
-  
-  .product-image-main {
-    width: 100%;
-    max-width: 500px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .product-info {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .product-info h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  .product-info h2 {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .product-price {
-    font-size: 24px;
-    color: #B12704;
-    margin-bottom: 10px;
-  }
-  
-  .product-category {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 20px;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .add-to-cart {
-    background-color: #FFA41C;
-    color: white;
-  }
-  
-  .buy-now {
-    background-color: #FF9900;
-    color: white;
-  }
-  
-  .product-feedback {
-    margin-top: 30px;
-  }
-  
-  .product-feedback h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .product-feedback form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .product-feedback textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    resize: none;
-  }
-  
-  .submit-feedback {
-    align-self: flex-end;
-    background-color: #0066c0;
-    color: white;
-  }
-  
-  .feedback-list {
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.product-main {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.product-images {
+  flex: 1;
+}
+
+.product-image-main {
+  width: 100%;
+  max-width: 500px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.product-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-info h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.product-info h2 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 24px;
+  color: #B12704;
+  margin-bottom: 10px;
+}
+
+.product-category {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-to-cart {
+  background-color: #FFA41C;
+  color: white;
+}
+
+.buy-now {
+  background-color: #FF9900;
+  color: white;
+}
+
+/* New styles for tabs */
+.product-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.product-tabs button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.product-tabs button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.product-tab-content {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+/* Details section */
+.product-details {
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+/* Reviews section */
+.product-feedback {
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.product-feedback h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-feedback form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.product-feedback textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+}
+
+.submit-feedback {
+  align-self: flex-end;
+  background-color: #0066c0;
+  color: white;
+}
+
+.feedback-list {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.feedback-list p {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Similar products section */
+.similar-products {
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.similar-products h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.similar-products ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.similar-products li {
+  width: calc(33.333% - 10px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.similar-products img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.similar-products p {
+  margin: 5px 0;
+}
+
+.similar-products p:last-child {
+  color: #B12704;
+  font-size: 18px;
+}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
 import ProductDetails from './ProductDetails';
 import OrderDetails from './OrderDetails';
@@ -33,10 +35,12 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
     if (editingProduct) {
       updateProduct(editingProduct._id, newProduct).then(updatedProduct => {
         setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product));
+        toast.success('Product updated successfully!');
       });
     } else {
       addProduct(newProduct).then(addedProduct => {
         setProducts([...products, addedProduct]);
+        toast.success('Product added successfully!');
       });
     }
     setNewProduct({ image: '', brand: '', name: '', price: '', category: '' });
@@ -53,11 +57,13 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   const handleDelete = (productId) => {
     deleteProduct(productId).then(() => {
       setProducts(products.filter(product => product._id !== productId));
+      toast.success('Product deleted successfully!');
     });
   };
 
   return (
     <>
+      <ToastContainer />
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin Panel</h1>
 
       <div className='buttonsContainer' style={{ textAlign: 'center', padding: '20px' }}>

@@ -7,9 +7,12 @@ function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [feedbackList, setFeedbackList] = useState([]);
+  const [similarProducts, setSimilarProducts] = useState([]);
+  const [activeTab, setActiveTab] = useState('details'); // New state for managing tabs
 
   useEffect(() => {
     fetchProductDetails();
+    fetchSimilarProducts();
   }, [id]);
 
   const fetchProductDetails = () => {
@@ -20,6 +23,14 @@ function ProductDetailPage() {
         setFeedbackList(data.feedback || []);
       })
       .catch(error => console.error('Error fetching product details:', error));
+  };
+
+  const fetchSimilarProducts = () => {
+    // Assuming there's an endpoint for similar products
+    fetch(`http://localhost:3000/products/${id}/similar`)
+      .then(response => response.json())
+      .then(data => setSimilarProducts(data))
+      .catch(error => console.error('Error fetching similar products:', error));
   };
 
   const handleAddToCart = () => {
@@ -56,22 +67,51 @@ function ProductDetailPage() {
           </div>
         </div>
       </div>
-      <div className="product-feedback">
-        <h3>Feedback</h3>
-        <form onSubmit={handleFeedbackSubmit}>
-          <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            placeholder="Leave your feedback here"
-            required
-          ></textarea>
-          <button type="submit" className="btn submit-feedback">Submit Feedback</button>
-        </form>
-        <div className="feedback-list">
-          {feedbackList.map((fb, index) => (
-            <p key={index}>{fb}</p>
-          ))}
-        </div>
+      <div className="product-tabs">
+        <button onClick={() => setActiveTab('details')} className={activeTab === 'details' ? 'active' : ''}>Details</button>
+        <button onClick={() => setActiveTab('reviews')} className={activeTab === 'reviews' ? 'active' : ''}>Reviews</button>
+        <button onClick={() => setActiveTab('similar')} className={activeTab === 'similar' ? 'active' : ''}>Similar Products</button>
+      </div>
+      <div className="product-tab-content">
+        {activeTab === 'details' && (
+          <div className="product-details">
+            <p>{product.description}</p>
+            {/* Add more detailed information if available */}
+          </div>
+        )}
+        {activeTab === 'reviews' && (
+          <div className="product-feedback">
+            <h3>Feedback</h3>
+            <form onSubmit={handleFeedbackSubmit}>
+              <textarea
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Leave your feedback here"
+                required
+              ></textarea>
+              <button type="submit" className="btn submit-feedback">Submit Feedback</button>
+            </form>
+            <div className="feedback-list">
+              {feedbackList.map((fb, index) => (
+                <p key={index}>{fb}</p>
+              ))}
+            </div>
+          </div>
+        )}
+        {activeTab === 'similar' && (
+          <div className="similar-products">
+            <h3>Similar Products</h3>
+            <ul>
+              {similarProducts.map((product, index) => (
+                <li key={index}>
+                  <img src={product.image} alt={product.name} />
+                  <p>{product.name}</p>
+                  <p>₹ {product.price}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
