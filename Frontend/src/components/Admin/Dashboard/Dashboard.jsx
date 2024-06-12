@@ -114,7 +114,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
               placeholder="Enter category"
               required
             />
-            <button type="submit" className="btn">{editingProduct ? "Update Product" : "Add Product"}</button>
+            <button type="submit" className="btn btn-update">{editingProduct ? "Update Product" : "Add Product"}</button>
             <button type="button" className="btn cancel" onClick={() => { setIsFormOpen(false); setEditingProduct(null); }}>Close</button>
           </form>
         </div>
