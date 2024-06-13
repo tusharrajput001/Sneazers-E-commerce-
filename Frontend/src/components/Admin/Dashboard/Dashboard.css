@@ -77,8 +77,7 @@
 
 
 .productsList {
-  margin: 8%;
-
+  margin: 1% 7%;
   
 }
 
@@ -102,7 +101,7 @@ td {
 
 th,
 td {
-  padding: 8px;
+  padding: 20px;
   text-align: left;
 }
 
@@ -120,6 +119,8 @@ tr:nth-child(even) {
   border: none;
   background-color: #4caf50;
   color: white;
+  width: 40%;
+  margin-left: 10px;
 }
 
 .DelBtn {
@@ -129,6 +130,13 @@ tr:nth-child(even) {
   border: none;
   background-color: #ca1010;
   color: white;
+  width: 40%;
+  margin-left: 10px;
+}
+
+
+.actionsData{
+  width: 15%;
 }
 
 .EditBtn:hover {

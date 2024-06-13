@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, Routes, Route, Navigate } from 'react-router-dom';
+import { useNavigate, Link, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
@@ -21,6 +21,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   const [editingProduct, setEditingProduct] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     fetchProducts().then(setProducts);
@@ -73,9 +74,11 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         <Link to='users'><p className="button3">Users</p></Link>
       </div>
 
-      <div className="addProduct">
-        <button onClick={() => setIsFormOpen(true)}>Add Product +</button>
-      </div>
+      {location.pathname === '/dashboard/products' && (
+        <div className="addProduct">
+          <button onClick={() => setIsFormOpen(true)}>Add Product +</button>
+        </div>
+      )}
 
       {isFormOpen && (
         <div className="form-popup">

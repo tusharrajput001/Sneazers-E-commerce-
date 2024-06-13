@@ -24,7 +24,7 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
               <td>{product.name}</td>
               <td>{product.price}</td>
               <td>{product.category}</td> {/* Display category */}
-              <td>
+              <td className='actionsData'>
                 <button className="EditBtn" onClick={() => handleEdit(product)}>Edit</button>
                 <button className="DelBtn" onClick={() => handleDelete(product._id)}>Delete</button>
               </td>
