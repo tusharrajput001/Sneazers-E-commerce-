@@ -204,3 +204,8 @@
   color: #B12704;
   font-size: 18px;
 }
+
+
+.similar-products-list{
+  display: flex;
+}

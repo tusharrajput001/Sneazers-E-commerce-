@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ProductCard from '../ProductCard/productCard'
 import './ProductDetailPage.css';
 
 function ProductDetailPage() {
@@ -8,6 +9,7 @@ function ProductDetailPage() {
   const [feedback, setFeedback] = useState('');
   const [feedbackList, setFeedbackList] = useState([]);
   const [activeTab, setActiveTab] = useState('details');
+  const [similarProducts, setSimilarProducts] = useState([]);
 
   useEffect(() => {
     fetchProductDetails();
@@ -19,8 +21,20 @@ function ProductDetailPage() {
       .then(data => {
         setProduct(data);
         setFeedbackList(data.feedback || []);
+        fetchSimilarProducts(data.category);
       })
       .catch(error => console.error('Error fetching product details:', error));
+  };
+
+  const fetchSimilarProducts = (category) => {
+    fetch(`http://localhost:3000/products/category/${category}`)
+      .then(response => response.json())
+      .then(data => {
+        const similarProducts = data.filter(product => product._id !== id);
+        const shuffled = similarProducts.sort(() => 0.5 - Math.random());
+        setSimilarProducts(shuffled.slice(0, 4));
+      })
+      .catch(error => console.error('Error fetching similar products:', error));
   };
 
   const handleAddToCart = () => {
@@ -41,7 +55,7 @@ function ProductDetailPage() {
 
   // Render description as list items if comma is detected
   let descriptionContent;
-  if (product.description.includes(',')) {
+  if (product.description && product.description.includes(',')) {
     const descriptionItems = product.description.split(',').map((item, index) => (
       <li key={index}>{item.trim()}</li>
     ));
@@ -118,7 +132,18 @@ function ProductDetailPage() {
         {activeTab === 'similar' && (
           <div className="similar-products">
             <h3>Similar Products</h3>
-            {/* Similar products content here */}
+            <div className="similar-products-list">
+              {similarProducts.map(product => (
+                <ProductCard 
+                  key={product._id} 
+                  id={product._id} 
+                  image={product.image} 
+                  brand={product.brand} 
+                  name={product.name} 
+                  price={product.price} 
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>

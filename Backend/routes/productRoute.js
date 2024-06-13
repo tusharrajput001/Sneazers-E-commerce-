@@ -88,4 +88,17 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+
+// Route to fetch products by category
+router.get("/products/category/:category", async (req, res) => {
+  try {
+    const products = await ProductModel.find({ category: req.params.category });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 module.exports = router;
