@@ -169,7 +169,7 @@
 
 .similar-products h3 {
   font-size: 20px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .similar-products ul {
@@ -208,4 +208,10 @@
 
 .similar-products-list{
   display: flex;
+}
+.viewMore{
+  display: flex;
+  justify-content: end;
+  padding-right: 3%;
+  margin-top: 0;
 }

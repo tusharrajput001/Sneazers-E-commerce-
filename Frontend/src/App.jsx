@@ -86,9 +86,9 @@ function App() {
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/lowtop" element={<Lowtop products={products} />} />
-          <Route path="/midtop" element={<Midtop products={products} />} />
-          <Route path="/hightop" element={<HighTop products={products} />} />
+          <Route path="/low-top" element={<Lowtop products={products} />} />
+          <Route path="/mid-top" element={<Midtop products={products} />} />
+          <Route path="/high-top" element={<HighTop products={products} />} />
           <Route path="/sports" element={<Sports products={products} />} />
           <Route
             path="/dashboard/*"
