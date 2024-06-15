@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function ProductDetails({ products, handleEdit, handleDelete }) {
   return (
     <div className="productsList">
@@ -8,11 +7,12 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Image</th>
+            <th>Image1</th>
+            <th>Image2</th> 
             <th>Brand</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Category</th> {/* Add category column */}
+            <th>Category</th> 
             <th>Actions</th>
           </tr>
         </thead>
@@ -20,6 +20,7 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
           {products.map(product => (
             <tr key={product._id}>
               <td><img src={product.image} alt={product.name} width="50" /></td>
+              <td><img src={product.image2} alt={product.name} width="50" /></td> 
               <td>{product.brand}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -35,6 +36,5 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
     </div>
   );
 }
-
 
 export default ProductDetails;

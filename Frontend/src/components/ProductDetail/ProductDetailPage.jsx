@@ -1,4 +1,3 @@
-// src/components/ProductDetail/ProductDetailPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from '../../Contexts/CartContext'; // Import the useCart hook
@@ -63,6 +62,9 @@ function ProductDetailPage() {
       <div className="product-main">
         <div className="product-images">
           <img src={product.image} alt={product.name} className="product-image-main" />
+          {product.image2 && (
+            <img src={product.image2} alt={`${product.name} - additional`} className="product-image-secondary" />
+          )}
         </div>
         <div className="product-info">
           <h1>{product.name}</h1>

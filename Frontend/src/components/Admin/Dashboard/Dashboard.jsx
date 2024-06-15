@@ -11,6 +11,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     image: '',
+    image2: '', // Add this line
     brand: '',
     name: '',
     price: '',
@@ -45,7 +46,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         toast.success('Product added successfully!');
       });
     }
-    setNewProduct({ image: '', brand: '', name: '', price: '', category: '', description: '' });
+    setNewProduct({ image: '', image2: '', brand: '', name: '', price: '', category: '', description: '' }); // Reset both images
     setIsFormOpen(false);
     setEditingProduct(null);
   };
@@ -90,6 +91,14 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
               value={newProduct.image}
               onChange={handleInputChange}
               placeholder="Enter product image URL"
+              required
+            />
+            <input
+              type="text"
+              name="image2"
+              value={newProduct.image2}
+              onChange={handleInputChange}
+              placeholder="Enter second product image URL" // Add this line
               required
             />
             <input

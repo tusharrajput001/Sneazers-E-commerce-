@@ -19,12 +19,13 @@
   flex: 1;
 }
 
-.product-image-main {
+.product-image-main, .product-image-secondary {
   width: 100%;
   max-width: 500px;
   object-fit: cover;
   border: 1px solid #ddd;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .product-info {
@@ -81,85 +82,6 @@
   color: white;
 }
 
-/* New styles for tabs */
-.product-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.product-tabs button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.product-tabs button.active {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.product-tab-content {
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
-}
-
-/* Details section */
-.product-details {
-  padding: 20px;
-  background-color: #fafafa;
-  border-radius: 5px;
-}
-
-/* Reviews section */
-.product-feedback {
-  padding: 20px;
-  background-color: #fafafa;
-  border-radius: 5px;
-}
-
-.product-feedback h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.product-feedback form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.product-feedback textarea {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  resize: none;
-}
-
-.submit-feedback {
-  align-self: flex-end;
-  background-color: #0066c0;
-  color: white;
-}
-
-.feedback-list {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-}
-
-.feedback-list p {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
 /* Similar products section */
 .similar-products {
   padding: 20px;
@@ -169,7 +91,6 @@
 
 .similar-products h3 {
   font-size: 20px;
-  /* margin-bottom: 10px; */
 }
 
 .similar-products ul {
@@ -205,11 +126,11 @@
   font-size: 18px;
 }
 
-
-.similar-products-list{
+.similar-products-list {
   display: flex;
 }
-.viewMore{
+
+.viewMore {
   display: flex;
   justify-content: end;
   padding-right: 3%;

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema({
   image: String,
+  image2: String, // Add this line for the second image
   brand: String, 
   name: String,
   price: String,
