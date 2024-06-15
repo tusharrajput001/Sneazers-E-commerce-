@@ -1,5 +1,7 @@
+// src/components/ProductDetail/ProductDetailPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useCart } from '../../Contexts/CartContext'; // Import the useCart hook
 import ProductCard from '../ProductCard/productCard';
 import './ProductDetailPage.css';
 
@@ -7,6 +9,7 @@ function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
+  const { addToCart } = useCart(); // Get addToCart function from context
 
   useEffect(() => {
     fetchProductDetails();
@@ -34,6 +37,7 @@ function ProductDetailPage() {
   };
 
   const handleAddToCart = () => {
+    addToCart(product);
     alert(`${product.name} added to cart`);
   };
 
@@ -43,7 +47,6 @@ function ProductDetailPage() {
 
   if (!product) return <div>Loading...</div>;
 
-  // Render description as list items if comma is detected
   let descriptionContent;
   if (product.description && product.description.includes(',')) {
     const descriptionItems = product.description.split(',').map((item, index) => (
@@ -77,7 +80,6 @@ function ProductDetailPage() {
         <h3>Similar Products</h3>
         <Link to={`/${product.category.toLowerCase()}`} className="viewMore">More</Link> {/* Use Link for navigation */}
         <div className="similar-products-list">
-        
           {similarProducts.map(product => (
             <ProductCard 
               key={product._id} 

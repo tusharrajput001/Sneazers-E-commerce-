@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 // Context
 import { AuthProvider } from "./Contexts/AuthContext";
+import { CartProvider } from "./Contexts/CartContext";
 
 // Components Import
 import Login from "./components/Login/login";
@@ -15,7 +16,6 @@ import Account from "./components/Account/account";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import ShowcaseHome from "./components/ShowcaseHome/ShowcaseHome";
 import Lowtop from "./components/Pages/LowTop/Lowtop";
 import Midtop from "./components/Pages/MidTop/Midtop";
 import HighTop from "./components/Pages/HighTop/Hightop";
@@ -23,6 +23,7 @@ import Sports from "./components/Pages/Sports/Sports";
 import LatestProducts from "./components/LatestProducts/LatestProducts";
 import ProductDetailPage from "./components/ProductDetail/ProductDetailPage";
 import Footer from "./components/Footer/Footer";
+import Cart from "./components/Cart/cart";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -72,45 +73,48 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Slider />
-                <LatestProducts products={products} />
-              </>
-            }
-          />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/low-top" element={<Lowtop products={products} />} />
-          <Route path="/mid-top" element={<Midtop products={products} />} />
-          <Route path="/high-top" element={<HighTop products={products} />} />
-          <Route path="/sports" element={<Sports products={products} />} />
-          <Route
-            path="/dashboard/*"
-            element={
-              <ProtectedRoute>
-                <Dashboard
-                  addProduct={addProduct}
-                  fetchProducts={fetchProducts}
-                  deleteProduct={deleteProduct}
-                  updateProduct={updateProduct}
-                />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/allproducts"
-            element={<Allproducts products={products} />}
-          />
-         <Route path="/product/:id" element={<ProductDetailPage />} />
-         <Route path="/footer" element={<Footer/>} />
-        </Routes>
-        <Footer/>
+        <CartProvider> {/* Wrap the application in CartProvider */}
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Slider />
+                  <LatestProducts products={products} />
+                </>
+              }
+            />
+            <Route path="/register" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/low-top" element={<Lowtop products={products} />} />
+            <Route path="/mid-top" element={<Midtop products={products} />} />
+            <Route path="/high-top" element={<HighTop products={products} />} />
+            <Route path="/sports" element={<Sports products={products} />} />
+            <Route path="/cart" element={<Cart />} /> {/* Add cart route */}
+            <Route
+              path="/dashboard/*"
+              element={
+                <ProtectedRoute>
+                  <Dashboard
+                    addProduct={addProduct}
+                    fetchProducts={fetchProducts}
+                    deleteProduct={deleteProduct}
+                    updateProduct={updateProduct}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/allproducts"
+              element={<Allproducts products={products} />}
+            />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/footer" element={<Footer />} />
+          </Routes>
+          <Footer />
+        </CartProvider>
       </AuthProvider>
     </Router>
   );
