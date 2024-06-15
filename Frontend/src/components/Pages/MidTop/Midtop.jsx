@@ -21,6 +21,7 @@ function MidTop({ products }) {
                     key={product._id}
                     id={product._id}
                     image={product.image}
+                    image2={product.image2}
                     brand={product.brand}
                     name={product.name}
                     price={product.price}

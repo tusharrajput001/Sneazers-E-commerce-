@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
-function ProductCard({ id, image, brand, name, price }) {
+function ProductCard({ id, image, brand, name, price,image2 }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -12,7 +12,8 @@ function ProductCard({ id, image, brand, name, price }) {
   return (
     <div className="card-container" onClick={handleClick}>
       <div className="card-image">
-        <img src={image} alt={name} />
+        <img src={image} alt={name} className="image-main" />
+        <img src={image2} alt={name} className="image-hover" />
       </div>
       <div className="card-info">
         <div className="brand-name">{brand}</div>

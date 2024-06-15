@@ -1,37 +1,57 @@
-
 .card-container {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    /* border: 1px solid #ccc;
-    border-radius: 5px; */
-    overflow: hidden;
-    margin: 20px;
-    cursor: pointer;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .card-info {
-    padding: 10px;
-  }
-  
-  .brand-name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .product-name {
-    font-size: 18px;
-    margin-top: 5px;
-  }
-  
-  .price {
-    font-size: 16px;
-    margin-top: 5px;
-    color: #007bff; /* blue color */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  overflow: hidden;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.image-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1; /* Ensure the hover image is on top */
+}
+
+.card-container:hover .image-main {
+  opacity: 0;
+}
+
+.card-container:hover .image-hover {
+  opacity: 1;
+}
+
+.card-info {
+  padding: 10px;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-name {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.price {
+  font-size: 16px;
+  margin-top: 5px;
+  color: #007bff; /* blue color */
+}

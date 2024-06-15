@@ -20,6 +20,7 @@ function Allproducts({ products }) {
                     <ProductCard
                       key={product._id}
                       id={product._id}
+                      image2={product.image2}
                       image={product.image}
                       brand={product.brand}
                       name={product.name}
