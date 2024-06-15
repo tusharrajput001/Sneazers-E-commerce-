@@ -24,8 +24,8 @@
   }
   
   .cart-item-image {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     margin-right: 10px;
   }
@@ -82,4 +82,16 @@
     font-weight: bold;
     margin: 0;
   }
-  
+  .checkoutBtn{
+    margin-top: 5%;
+    text-align: center;
+    font-size: larger;
+  }
+
+  .checkoutBtn button{
+    border-radius: 50px;
+    width: 30%;
+    background-color:rgba(11, 185, 11, 0.773);
+    border: none;
+    color: white;
+  }

@@ -53,6 +53,9 @@ function Cart() {
           <h3>Total Amount:</h3>
           <p>₹ {calculateTotalAmount()}</p>
         </div>
+        <div className="checkoutBtn">
+          <button>Checkout</button>
+        </div>
       </div>
     </div>
     </>
