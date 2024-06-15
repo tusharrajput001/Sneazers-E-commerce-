@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from '../../Contexts/CartContext'; // Import the useCart hook
+import { toast } from 'react-toastify'; // Import toast from react-toastify
 import ProductCard from '../ProductCard/productCard';
 import './ProductDetailPage.css';
 
@@ -38,7 +39,7 @@ function ProductDetailPage() {
 
   const handleAddToCart = () => {
     addToCart(product);
-    alert(`${product.name} added to cart`);
+    toast.success(`${product.name} added to cart`);
   };
 
   const handleBuyNow = () => {

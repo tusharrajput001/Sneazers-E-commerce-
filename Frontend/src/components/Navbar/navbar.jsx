@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import "../../fonts/fonts.css";
 import { useAuth } from "../../Contexts/AuthContext";
+import { useCart } from "../../Contexts/CartContext"; // Import the useCart hook
 
 function Navbar() {
   const navigate = useNavigate(); // Initialize useNavigate
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { isLoggedIn, userEmail } = useAuth();
+  const { cart } = useCart(); // Get the cart from context
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -78,10 +80,11 @@ function Navbar() {
               <>
                 {userEmail !== "tusharr0491@gmail.com" && (
                   <>
-                    <li>
-                      <a href="/cart">
+                    <li className="cart-icon-wrapper">
+                      <Link to="/cart">
                         <i className="fas fa-shopping-cart black-icon"></i>
-                      </a>
+                        <span className="cart-count">{cart.length}</span> {/* Display cart count */}
+                      </Link>
                     </li>
                     <li className="user-logo">
                       <Link to="/account">

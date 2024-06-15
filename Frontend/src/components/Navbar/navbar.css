@@ -29,7 +29,7 @@
 .navbar-options li,
 .navbar-icons li {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 
@@ -131,4 +131,19 @@
   .navbar-heading {
     font-size: 2rem;
   }
+}
+
+.navbar-icons .cart-icon-wrapper {
+  position: relative;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 9px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
