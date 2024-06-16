@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Route to add a new product
 router.post('/addProduct', async (req, res) => {
-  const { image, image2, brand, name, price, category, description, orderAddedDate, selectedSize } = req.body;
+  const { image, image2, brand, name, price, category, description, orderAddedDate } = req.body;
   try {
     let product;
     if (orderAddedDate) {
@@ -17,7 +17,6 @@ router.post('/addProduct', async (req, res) => {
         category,
         description,
         orderAddedDate,
-        selectedSize // Include selectedSize in the product creation
       });
     } else {
       product = new ProductModel({ 
@@ -28,7 +27,6 @@ router.post('/addProduct', async (req, res) => {
         price, 
         category,
         description,
-        selectedSize // Include selectedSize in the product creation
       });
     }
     await product.save();
@@ -64,11 +62,11 @@ router.delete("/deleteProduct/:id", async (req, res) => {
 
 // Route to update a product
 router.put('/updateProduct/:id', async (req, res) => {
-  const { image, image2, brand, name, price, category, description, selectedSize } = req.body;
+  const { image, image2, brand, name, price, category, description } = req.body;
   try {
     const product = await ProductModel.findByIdAndUpdate(
       req.params.id,
-      { image, image2, brand, name, price, category, description, selectedSize }, // Include selectedSize in the update
+      { image, image2, brand, name, price, category, description }, 
       { new: true }
     );
     if (!product) {
