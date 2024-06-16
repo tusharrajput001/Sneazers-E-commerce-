@@ -9,6 +9,7 @@ function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(''); // State for selected shoe size
   const { addToCart } = useCart(); // Get addToCart function from context
 
   useEffect(() => {
@@ -37,12 +38,23 @@ function ProductDetailPage() {
   };
 
   const handleAddToCart = () => {
-    addToCart(product);
+    if (!selectedSize) {
+      toast.error('Please select a shoe size.');
+      return;
+    }
+
+    addToCart({ ...product, selectedSize }); // Include selectedSize in addToCart
+
     toast.success(`${product.name} added to cart`);
   };
 
   const handleBuyNow = () => {
-    alert(`Proceeding to buy ${product.name}`);
+    if (!selectedSize) {
+      toast.error('Please select a shoe size.');
+      return;
+    }
+
+    alert(`Proceeding to buy ${product.name} in size ${selectedSize}`);
   };
 
   if (!product) return <div>Loading...</div>;
@@ -72,9 +84,30 @@ function ProductDetailPage() {
           <p className="product-price">₹ {product.price}</p>
           {descriptionContent}
           <p className="product-category">Category: {product.category}</p>
+
+          {/* Select shoe size */}
+          <div className="select-size">
+            <label>Select Size:</label>
+            <div className="size-buttons">
+              {['6', '7', '8', '9', '10', '11', '12'].map(size => (
+                <button
+                  key={size}
+                  className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="buttons">
-            <button onClick={handleAddToCart} className="btn add-to-cart">Add to Cart</button>
-            <button onClick={handleBuyNow} className="btn buy-now">Buy Now</button>
+            <button onClick={handleAddToCart} className="btn add-to-cart" disabled={!selectedSize}>
+              Add to Cart
+            </button>
+            <button onClick={handleBuyNow} className="btn buy-now" disabled={!selectedSize}>
+              Buy Now
+            </button>
           </div>
         </div>
       </div>

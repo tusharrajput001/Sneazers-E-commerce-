@@ -27,7 +27,7 @@ function Cart() {
 
   return (
     <>
-      <h2 style={{textAlign:'center'}}>Your Cart</h2>
+      <h2 style={{ textAlign: 'center' }}>Your Cart</h2>
       <div className="cart-page">
         <div className="cart-items">
           {cart.map((item) => (
@@ -37,6 +37,7 @@ function Cart() {
                 <h3>{item.name}</h3>
                 <p>{item.brand}</p>
                 <p className="cart-item-price">₹ {item.price}</p>
+                <p className="cart-item-size">Size: {item.selectedSize}</p> {/* Display selected size */}
                 <div className="cart-item-quantity">
                   <button onClick={() => handleQuantityChange(item._id, item.quantity - 1)}>-</button>
                   <span>{item.quantity}</span>

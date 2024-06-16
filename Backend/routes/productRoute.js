@@ -3,30 +3,32 @@ const ProductModel = require("../Models/product.model");
 const router = express.Router();
 
 // Route to add a new product
-router.post("/addProduct", async (req, res) => {
-  const { image, image2, brand, name, price, category, description, orderAddedDate } = req.body;
+router.post('/addProduct', async (req, res) => {
+  const { image, image2, brand, name, price, category, description, orderAddedDate, selectedSize } = req.body;
   try {
     let product;
     if (orderAddedDate) {
       product = new ProductModel({ 
         image, 
-        image2, // Add this line
+        image2,
         brand, 
         name, 
         price, 
         category,
         description,
-        orderAddedDate
+        orderAddedDate,
+        selectedSize // Include selectedSize in the product creation
       });
     } else {
       product = new ProductModel({ 
         image, 
-        image2, // Add this line
+        image2,
         brand, 
         name, 
         price, 
         category,
-        description
+        description,
+        selectedSize // Include selectedSize in the product creation
       });
     }
     await product.save();
@@ -35,6 +37,7 @@ router.post("/addProduct", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 // Route to fetch all products
 router.get("/products", async (req, res) => {
@@ -60,16 +63,16 @@ router.delete("/deleteProduct/:id", async (req, res) => {
 });
 
 // Route to update a product
-router.put("/updateProduct/:id", async (req, res) => {
-  const { image, image2, brand, name, price, category, description } = req.body;
+router.put('/updateProduct/:id', async (req, res) => {
+  const { image, image2, brand, name, price, category, description, selectedSize } = req.body;
   try {
     const product = await ProductModel.findByIdAndUpdate(
       req.params.id,
-      { image, image2, brand, name, price, category, description },
+      { image, image2, brand, name, price, category, description, selectedSize }, // Include selectedSize in the update
       { new: true }
     );
     if (!product) {
-      return res.status(404).json({ error: "Product not found" });
+      return res.status(404).json({ error: 'Product not found' });
     }
     res.status(200).json(product);
   } catch (error) {

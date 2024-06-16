@@ -23,6 +23,8 @@ function Account() {
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
+    localStorage.removeItem("cart");
+
     navigate("/login");
     window.location.reload();
   };
