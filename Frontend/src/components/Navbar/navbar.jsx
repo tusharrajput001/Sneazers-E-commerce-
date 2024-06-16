@@ -80,9 +80,9 @@ function Navbar() {
               <>
                 {userEmail !== "tusharr0491@gmail.com" && (
                   <>
-                    <li className="cart-icon-wrapper">
+                    <li className="cart-icon-wrapper">  
                       <Link to="/cart">
-                        <i className="fas fa-shopping-cart black-icon"></i>
+                        <i className="fas fa-bag-shopping black-icon"></i>
                         <span className="cart-count">{cart.length}</span> {/* Display cart count */}
                       </Link>
                     </li>

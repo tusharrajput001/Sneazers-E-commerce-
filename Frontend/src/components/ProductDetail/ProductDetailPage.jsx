@@ -114,7 +114,7 @@ function ProductDetailPage() {
 
       <div className="similar-products">
         <h3>Similar Products</h3>
-        <Link to={`/${product.category.toLowerCase()}`} className="viewMore">More</Link> {/* Use Link for navigation */}
+        <Link to={`/${product.category.toLowerCase()}`} className="viewMore">More</Link>
         <div className="similar-products-list">
           {similarProducts.map(product => (
             <ProductCard 
