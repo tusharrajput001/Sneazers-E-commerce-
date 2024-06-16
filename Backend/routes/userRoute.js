@@ -43,13 +43,13 @@ router.post("/login", (req, res) => {
             res.json("The password is incorrect");
           }
           if (response) {
-            res.json({ message: "Success", email: user.email, name: user.name });
+            res.json({ message: "Success", email: user.email, name: user.name,_id: user._id });
           } else {
             res.json("The password is incorrect");
           }
         });
       } else {
-        res.json("No record existed");
+        res.json("No record existed");  
       }
     })
     .catch((err) => res.status(500).json({ error: err.message }));

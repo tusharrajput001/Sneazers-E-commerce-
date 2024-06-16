@@ -131,9 +131,10 @@ function Navbar() {
         <button className="close-btn" onClick={toggleSearch}>
           <i className="fas fa-times"></i>
         </button>
-      </div>
+      </div>  
     </>
   );
 }
 
 export default Navbar;
+  
