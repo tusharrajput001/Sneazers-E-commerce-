@@ -7,7 +7,7 @@ function Cart() {
   const { cart, removeFromCart, updateQuantity } = useCart();
   const navigate = useNavigate();
 
-  if (cart.length === 0) {  
+  if (cart.length === 0) {
     return <div className="cart-empty">Your cart is empty.</div>;
   }
 
@@ -28,8 +28,10 @@ function Cart() {
   };
 
   const handleCheckout = () => {
-    navigate('/payment', { state: { totalAmount: calculateTotalAmount() } });
+    const totalAmountPaisa = Math.round(calculateTotalAmount() * 100); // Convert to paisa and round
+    navigate('/payment', { state: { totalAmount: totalAmountPaisa } });
   };
+    
 
   return (
     <>

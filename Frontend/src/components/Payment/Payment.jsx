@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import './Payment.css';  
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import "./Payment.css";
 
 function Payment() {
+  const location = useLocation();
+  const totalAmount = location.state?.totalAmount || 0;
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    contact: '',
-    address: '',
+    name: "",
+    email: "",
+    contact: "",
+    address: "",
   });
 
   const handleChange = (e) => {
@@ -18,57 +22,67 @@ function Payment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Call the backend to create an order
-    const response = await fetch('http://localhost:3000/createOrder', {
-      method: 'POST',   
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ amount: 100 }),
-    });
 
-    const order = await response.json();
+    try {
+      // Call the backend to create an order
+      const response = await fetch("http://localhost:3000/createOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: totalAmount }), // Ensure amount is correctly formatted in paisa
+      });
 
-    // Initialize Razorpay
-    const options = {
-      key: "rzp_test_qou4YauYTXCG9k",
-      amount: order.amount,
-      currency: 'INR',
-      name: 'Your Company Name',
-      description: 'Test Transaction',
-      image: 'https://your-logo-url.com',
-      order_id: order.id,
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-        // Handle successful payment here
-      },
-      prefill: {
-        name: formData.name,
-        email: formData.email,
-        contact: formData.contact,
-      },
-      notes: {
-        address: formData.address,
-      },
-      theme: {
-        color: '#3399cc',
-      },
-    };
+      if (!response.ok) {
+        throw new Error("Failed to create order");
+      }
 
-    const rzp1 = new window.Razorpay(options);
-    rzp1.on('payment.failed', function (response) {
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
-    });
+      const order = await response.json();
 
-    rzp1.open();
+      // Initialize Razorpay
+      const options = {
+        key: "rzp_test_qou4YauYTXCG9k",
+        amount: order.amount,
+        currency: "INR",
+        name: "Your Company Name",
+        description: "Test Transaction",
+        image: "https://your-logo-url.com",
+        order_id: order.id,
+        handler: function (response) {
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature);
+          // Handle successful payment here
+        },
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+          contact: formData.contact,
+        },
+        notes: {
+          address: formData.address,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.on("payment.failed", function (response) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      });
+
+      rzp1.open();
+    } catch (error) {
+      console.error("Payment failed:", error);
+      // Handle error appropriately (e.g., show error message to user)
+    }
   };
 
   return (
@@ -77,21 +91,46 @@ function Payment() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label>Contact</label>
-          <input type="tel" name="contact" value={formData.contact} onChange={handleChange} required />
+          <input
+            type="tel"
+            name="contact"
+            value={formData.contact}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label>Address</label>
-          <textarea name="address" value={formData.address} onChange={handleChange} required></textarea>
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          ></textarea>
         </div>
-        <button type="submit" className="btnPay">Proceed to Pay</button>
+        <button type="submit" className="btnPay">
+          Proceed to Pay
+        </button>
       </form>
     </div>
   );
