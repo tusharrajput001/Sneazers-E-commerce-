@@ -62,7 +62,7 @@ function Cart() {
             <p>₹ {calculateTotalAmount()}</p>
           </div>
           <div className="checkoutBtn">
-            <button onClick={handleCheckout}>Checkout</button>
+            <button onClick={handleCheckout}>Proceed to Buy</button>
           </div>
         </div>
       </div>
