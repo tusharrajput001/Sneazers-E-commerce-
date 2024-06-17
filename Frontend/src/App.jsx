@@ -28,6 +28,7 @@ import LatestProducts from './components/LatestProducts/LatestProducts';
 import ProductDetailPage from './components/ProductDetail/ProductDetailPage';
 import Footer from './components/Footer/Footer';
 import Cart from './components/Cart/cart';
+import Payment from './components/Payment/Payment';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -97,6 +98,7 @@ function App() {
             <Route path="/high-top" element={<HighTop products={products} />} />
             <Route path="/sports" element={<Sports products={products} />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/payment" element={<Payment />} />
             <Route
               path="/dashboard/*"
               element={
@@ -106,7 +108,7 @@ function App() {
                     fetchProducts={fetchProducts}
                     deleteProduct={deleteProduct}
                     updateProduct={updateProduct}
-                  />
+                  />  
                 </ProtectedRoute>
               }
             />

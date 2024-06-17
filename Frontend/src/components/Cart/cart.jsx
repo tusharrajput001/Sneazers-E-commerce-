@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../Contexts/CartContext';
 import './cart.css';
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useCart();
+  const navigate = useNavigate();
 
-  if (cart.length === 0) {
+  if (cart.length === 0) {  
     return <div className="cart-empty">Your cart is empty.</div>;
   }
 
@@ -25,58 +27,8 @@ function Cart() {
     }, 0);
   };
 
-  const handleCheckout = async () => {
-    const totalAmount = calculateTotalAmount();
-
-    const response = await fetch('http://localhost:3000/createOrder', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ amount: totalAmount }),
-    });
-
-    const order = await response.json();
-
-    var options = {
-      key: "rzp_test_qou4YauYTXCG9k",
-      amount: order.amount,
-      currency: "INR",
-      name: "Your Company Name",
-      description: "Test Transaction",
-      image: "https://your-logo-url.com",
-      order_id: order.id,
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-        // Here you can call another backend API to verify the payment and complete the order
-      },
-      prefill: {
-        name: "Your Name",
-        email: "your-email@example.com",
-        contact: "9999999999"
-      },
-      notes: {
-        address: "Your Company Address"
-      },
-      theme: {
-        color: "#3399cc"
-      }
-    };
-
-    var rzp1 = new window.Razorpay(options);
-    rzp1.on('payment.failed', function (response){
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
-    });
-
-    rzp1.open();
+  const handleCheckout = () => {
+    navigate('/payment', { state: { totalAmount: calculateTotalAmount() } });
   };
 
   return (
