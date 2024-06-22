@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./account.css";
-import Orders from "../Orders/Orders";
+
 
 function Account() {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function Account() {
               <h4>{user.name}</h4>
               <h6>{user.email}</h6>
             </div>
-            <div className="buttons">
+            <div className="Acbuttons">
               <ol className="numbered-list">
                 <li>
                   <button

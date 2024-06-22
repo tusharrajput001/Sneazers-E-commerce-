@@ -80,19 +80,25 @@ function Navbar() {
               <>
                 {userEmail !== "tusharr0491@gmail.com" && (
                   <>
-                    <li className="cart-icon-wrapper">  
+                    <li className="cart-icon-wrapper">
                       <Link to="/cart">
-                        <i className="fas fa-bag-shopping black-icon"></i>
-                        <span className="cart-count">{cart.length}</span> {/* Display cart count */}
+                        <i className="fas fa-shopping-bag black-icon"></i>
+                        {cart.length > 0 && (
+                          <span className="cart-count">{cart.length}</span>
+                        )}
                       </Link>
                     </li>
+
                     <li className="user-logo">
                       <Link to="/account">
                         <i className="fas fa-user black-icon"></i>
                       </Link>
                     </li>
                     <li className="user-name">
-                      <Link to="/account" style={{ textDecoration: 'none', color:'black' }}>
+                      <Link
+                        to="/account"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
                         <span>{getUserName(userEmail)}</span>
                       </Link>
                     </li>
@@ -131,10 +137,9 @@ function Navbar() {
         <button className="close-btn" onClick={toggleSearch}>
           <i className="fas fa-times"></i>
         </button>
-      </div>  
+      </div>
     </>
   );
 }
 
 export default Navbar;
-  
