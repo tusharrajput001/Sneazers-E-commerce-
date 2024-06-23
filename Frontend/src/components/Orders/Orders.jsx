@@ -58,18 +58,24 @@ function Orders() {
         <div className="orders-list">
           {orders.map((order) => (
             <div key={order._id} className="order-item">
-              <p><strong>Order ID:</strong> {order._id}</p>
-              <p><strong>Total Amount:</strong> ₹ {order.totalAmount / 100}</p>
-              <p><strong>Status:</strong> {order.status}</p>
-              <p><strong>Items:</strong></p>
+              <div className="order-header">
+                <p><strong>Order ID:</strong> {order._id}</p>
+                <p><strong>Total Amount:</strong> ₹{(order.totalAmount / 100).toFixed(2)}</p>
+                <p><strong>Status:</strong> {order.status}</p>
+              </div>
               <ul className="order-items-list">
                 {order.items.map((item) => (
                   <li key={item.productId} className="order-product-item">
                     <img src={item.image} alt={item.name} className="order-product-image" />
                     <div className="order-product-details">
                       <p><strong>Name:</strong> {item.name}</p>
+                      <p><strong>Brand:</strong> {item.brand}</p>
                       <p><strong>Category:</strong> {item.category}</p>
                       <p><strong>Quantity:</strong> {item.quantity}</p>
+              
+                      <p><strong>Size:</strong> {item.size}</p>
+                      {/* <p><strong>Delivered on:</strong> {item.deliveredDate}</p> */}
+                      <p><a href="#" className="rate-review-link">Rate & Review Product</a></p>
                     </div>
                   </li>
                 ))}
