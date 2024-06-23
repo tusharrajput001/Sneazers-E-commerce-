@@ -5,27 +5,49 @@ import "./orders.css";
 function Orders() {
   const { userId } = useParams();
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/orders/${userId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
+        const ordersData = await response.json();
+        const ordersWithProductDetails = await Promise.all(
+          ordersData.map(async (order) => {
+            const itemsWithDetails = await Promise.all(
+              order.items.map(async (item) => {
+                const productResponse = await fetch(`http://localhost:3000/products/${item.productId}`);
+                const productData = await productResponse.json();
+                return {
+                  ...item,
+                  ...productData
+                };
+              })
+            );
+            return {
+              ...order,
+              items: itemsWithDetails
+            };
+          })
+        );
+        setOrders(ordersWithProductDetails);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
     if (userId) {
       fetchOrders();
     }
   }, [userId]);
 
-  const fetchOrders = async () => {
-    try {
-      console.log("Fetching orders for user:", userId);
-      const response = await fetch(`http://localhost:3000/orders/${userId}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch orders");
-      }
-      const data = await response.json();
-      console.log("Orders fetched:", data);
-      setOrders(data);
-    } catch (error) {
-      console.error("Error fetching orders:", error);
-    }
-  };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="orders-page">
@@ -40,10 +62,15 @@ function Orders() {
               <p><strong>Total Amount:</strong> ₹ {order.totalAmount / 100}</p>
               <p><strong>Status:</strong> {order.status}</p>
               <p><strong>Items:</strong></p>
-              <ul>
+              <ul className="order-items-list">
                 {order.items.map((item) => (
-                  <li key={item.productId}>
-                    {item.productId} - Quantity: {item.quantity}
+                  <li key={item.productId} className="order-product-item">
+                    <img src={item.image} alt={item.name} className="order-product-image" />
+                    <div className="order-product-details">
+                      <p><strong>Name:</strong> {item.name}</p>
+                      <p><strong>Category:</strong> {item.category}</p>
+                      <p><strong>Quantity:</strong> {item.quantity}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
