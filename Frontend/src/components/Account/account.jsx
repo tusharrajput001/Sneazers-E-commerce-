@@ -5,6 +5,7 @@ import "./account.css";
 
 function Account() {
   const navigate = useNavigate();
+  const userId = localStorage.getItem("_id");
   const getEmail = localStorage.getItem("userEmail");
   const getUser = localStorage.getItem("userName");
   const [user, setUser] = useState({
@@ -32,7 +33,7 @@ function Account() {
   };
 
   const handleOrdersPage = () => {
-    navigate("/orders ");
+    navigate(`/orders/${userId}`);
   };
 
   const handleWishlistPage = () => {

@@ -14,22 +14,23 @@ export const AuthProvider = ({ children }) => {
     return localStorage.getItem('userEmail') || null;
   });
   const [userId, setUserId] = useState(() => {
-    return localStorage.getItem('_id') || null; // Use _id instead of userId
+    return localStorage.getItem('userId') || null;
   });
 
   useEffect(() => {
+    console.log("AuthContext initialized with userId:", userId);
     if (isLoggedIn) {
       localStorage.setItem('isLoggedIn', 'true');
       if (userEmail) {
         localStorage.setItem('userEmail', userEmail);
       }
       if (userId) {
-        localStorage.setItem('_id', userId); // Store _id in localStorage
+        localStorage.setItem('userId', userId);
       }
     } else {
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('userEmail');
-      localStorage.removeItem('_id');     
+      localStorage.removeItem('userId');
     }
   }, [isLoggedIn, userEmail, userId]);
 

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext"; // Import useAuth to get currentUser
+import { useCart } from "../../Contexts/CartContext";
 import "./Payment.css";
 
 function Payment() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("_id");
+  const { cart, clearCart } = useCart();
+  const { currentUser } = useAuth(); // Get the current user from AuthContext
   const totalAmount = location.state?.totalAmount || 0;
 
   const [formData, setFormData] = useState({
@@ -44,15 +50,15 @@ function Payment() {
         key: "rzp_test_qou4YauYTXCG9k",
         amount: order.amount,
         currency: "INR",
-        name: "Your Company Name",
-        description: "Test Transaction",
-        image: "https://your-logo-url.com",
+        name: "Sneazers Ltd.",
+        description: "Transaction",
+        image: "",
         order_id: order.id,
-        handler: function (response) {
-          alert(response.razorpay_payment_id);
-          alert(response.razorpay_order_id);
-          alert(response.razorpay_signature);
+        handler: async function (response) {
           // Handle successful payment here
+          await createOrderInBackend(order.id); // Pass order.id to backend
+          clearCart(); // Clear cart after successful payment
+          navigate(`/orders/${userId}`);
         },
         prefill: {
           name: formData.name,
@@ -82,6 +88,29 @@ function Payment() {
     } catch (error) {
       console.error("Payment failed:", error);
       // Handle error appropriately (e.g., show error message to user)
+    }
+  };
+
+  const createOrderInBackend = async (orderId) => {
+    try {
+      const response = await fetch("http://localhost:3000/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: localStorage.getItem('_id'), // Use the currentUser ID from context
+          items: cart.map(item => ({ productId: item._id, quantity: item.quantity })),
+          totalAmount,
+          orderId: orderId, // Pass the order ID from Razorpay
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create order in backend");
+      }
+    } catch (error) {
+      console.error("Failed to create order in backend:", error);
     }
   };
 

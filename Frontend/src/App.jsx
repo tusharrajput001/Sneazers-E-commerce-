@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -100,7 +99,7 @@ function App() {
             <Route path="/sports" element={<Sports products={products} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/payment" element={<Payment />} />
-            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:userId" element={<Orders />} /> 
             <Route
               path="/dashboard/*"
               element={
@@ -127,6 +126,6 @@ function App() {
       </AuthProvider>
     </Router>
   );
-}
+}     
 
 export default App;
