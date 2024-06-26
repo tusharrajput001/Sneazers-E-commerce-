@@ -15,25 +15,7 @@ function Orders() {
           throw new Error("Failed to fetch orders");
         }
         const ordersData = await response.json();
-        const ordersWithProductDetails = await Promise.all(
-          ordersData.map(async (order) => {
-            const itemsWithDetails = await Promise.all(
-              order.items.map(async (item) => {
-                const productResponse = await fetch(`http://localhost:3000/products/${item.productId}`);
-                const productData = await productResponse.json();
-                return {
-                  ...item,
-                  ...productData
-                };
-              })
-            );
-            return {
-              ...order,
-              items: itemsWithDetails
-            };
-          })
-        );
-        setOrders(ordersWithProductDetails);
+        setOrders(ordersData);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -52,7 +34,7 @@ function Orders() {
   return (
     <div className="orders-page">
       <h2>My Orders</h2>
-      <strong >My orders : {orders.length}</strong>
+      <strong>My orders: {orders.length}</strong>
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (
@@ -66,16 +48,14 @@ function Orders() {
               </div>
               <ul className="order-items-list">
                 {order.items.map((item) => (
-                  <li key={item.productId} className="order-product-item">
-                    <img src={item.image} alt={item.name} className="order-product-image" />
+                  <li key={item.productId._id} className="order-product-item">
+                    <img src={item.productId.image} alt={item.productId.name} className="order-product-image" />
                     <div className="order-product-details">
-                      <p><strong>Name:</strong> {item.name}</p>
-                      <p><strong>Brand:</strong> {item.brand}</p>
-                      <p><strong>Category:</strong> {item.category}</p>
+                      <p><strong>Name:</strong> {item.productId.name}</p>
+                      <p><strong>Brand:</strong> {item.productId.brand}</p>
+                      <p><strong>Category:</strong> {item.productId.category}</p>
                       <p><strong>Quantity:</strong> {item.quantity}</p>
-              
                       <p><strong>Size:</strong> {item.size}</p>
-                      {/* <p><strong>Delivered on:</strong> {item.deliveredDate}</p> */}
                       <p><a href="#" className="rate-review-link">Rate & Review Product</a></p>
                     </div>
                   </li>

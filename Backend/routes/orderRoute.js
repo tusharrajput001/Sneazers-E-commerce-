@@ -27,7 +27,8 @@ router.get("/orders", async (req, res) => {
 // Get orders for a user
 router.get("/orders/:userId", async (req, res) => {
   try {
-    const orders = await Order.find({ userId: req.params.userId }).populate('items.productId');
+    const orders = await Order.find({ userId: req.params.userId })
+      .populate('items.productId'); // Ensure product details are populated
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
