@@ -7,8 +7,8 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Image1</th>
-            <th>Image2</th> 
+            <th style={{width:'12%'}}>Images</th>
+            {/* <th>Image2</th>  */}
             <th>Brand</th>
             <th>Name</th>
             <th>Price</th>
@@ -19,11 +19,11 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
         <tbody>
           {products.map(product => (
             <tr key={product._id}>
-              <td><img src={product.image} alt={product.name} width="50" /></td>
-              <td><img src={product.image2} alt={product.name} width="50" /></td> 
+              <td><img src={product.image} alt={product.name} width="50" /><img style={{marginLeft:'20px'}} src={product.image2} alt={product.name} width="50" /></td>
+              {/* <td><img src={product.image2} alt={product.name} width="50" /></td>  */}
               <td>{product.brand}</td>
               <td>{product.name}</td>
-              <td>{product.price}</td>
+              <td>₹ {product.price}</td>
               <td>{product.category}</td> {/* Display category */}
               <td className='actionsData'>
                 <button className="EditBtn" onClick={() => handleEdit(product)}>Edit</button>
