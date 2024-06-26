@@ -51,7 +51,8 @@ function Orders() {
 
   return (
     <div className="orders-page">
-      <h2>Your Orders</h2>
+      <h2>My Orders</h2>
+      <strong >My orders : {orders.length}</strong>
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (

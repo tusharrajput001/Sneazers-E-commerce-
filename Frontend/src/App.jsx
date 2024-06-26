@@ -18,6 +18,7 @@ import Slider from "./components/Slider/Slider";
 import Account from "./components/Account/account";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Allproducts from "./components/Pages/Allproducts/allproducts";
+import AdminProtectedRoute from "./components/ProtectedRoute/AdminProtectedRoute";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Lowtop from "./components/Pages/LowTop/Lowtop";
 import Midtop from "./components/Pages/MidTop/Midtop";
@@ -92,25 +93,25 @@ function App() {
             />
             <Route path="/register" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
             <Route path="/low-top" element={<Lowtop products={products} />} />
             <Route path="/mid-top" element={<Midtop products={products} />} />
             <Route path="/high-top" element={<HighTop products={products} />} />
             <Route path="/sports" element={<Sports products={products} />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/orders/:userId" element={<Orders />} /> 
+            <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+            <Route path="/orders/:userId" element={<ProtectedRoute><Orders/></ProtectedRoute>} /> 
             <Route
               path="/dashboard/*"
               element={
-                <ProtectedRoute>
+                <AdminProtectedRoute>
                   <Dashboard
                     addProduct={addProduct}
                     fetchProducts={fetchProducts}
                     deleteProduct={deleteProduct}
                     updateProduct={updateProduct}
                   />
-                </ProtectedRoute>
+                </AdminProtectedRoute>
               }
             />
             <Route
