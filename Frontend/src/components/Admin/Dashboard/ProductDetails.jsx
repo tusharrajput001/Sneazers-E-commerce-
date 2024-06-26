@@ -19,7 +19,7 @@ function ProductDetails({ products, handleEdit, handleDelete }) {
         <tbody>
           {products.map(product => (
             <tr key={product._id}>
-              <td><img src={product.image} alt={product.name} width="50" /><img style={{marginLeft:'20px'}} src={product.image2} alt={product.name} width="50" /></td>
+              <td><img src={product.image} alt={product.name} width="50" /><img style={{marginLeft:'10px'}} src={product.image2} alt={product.name} width="50" /></td>
               {/* <td><img src={product.image2} alt={product.name} width="50" /></td>  */}
               <td>{product.brand}</td>
               <td>{product.name}</td>

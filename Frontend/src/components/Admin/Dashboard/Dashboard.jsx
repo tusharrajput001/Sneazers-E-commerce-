@@ -11,7 +11,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     image: '',
-    image2: '', // Add this line
+    image2: '', 
     brand: '',
     name: '',
     price: '',
@@ -46,7 +46,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         toast.success('Product added successfully!');
       });
     }
-    setNewProduct({ image: '', image2: '', brand: '', name: '', price: '', category: '', description: '' }); // Reset both images
+    setNewProduct({ image: '', image2: '', brand: '', name: '', price: '', category: '', description: '' });
     setIsFormOpen(false);
     setEditingProduct(null);
   };
@@ -98,7 +98,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
               name="image2"
               value={newProduct.image2}
               onChange={handleInputChange}
-              placeholder="Enter second product image URL" // Add this line
+              placeholder="Enter second product image URL"
               required
             />
             <input
@@ -150,7 +150,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
         <Route path="products" element={<ProductDetails products={products} handleEdit={handleEdit} handleDelete={handleDelete} />} />
         <Route path="orders" element={<OrderDetails />} />
         <Route path="users" element={<UserDetails />} />
-        <Route path="/" element={<Navigate to="products" />} /> {/* Redirect to products */}
+        <Route path="/" element={<Navigate to="products" />} />
       </Routes>
     </>
   );

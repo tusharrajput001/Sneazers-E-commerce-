@@ -1,0 +1,31 @@
+/* Orders.css */
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.orderTable th,
+.orderTable td {
+  border: 1px solid #ddd;
+  padding: 18px;
+  text-align: left;
+}
+
+.orderTable th {
+  background-color: #f2f2f2;
+}
+
+.orderTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.orderTable tr:hover {
+  background-color: #ddd;
+}
+
+.orderTable img {
+  display: block;
+  margin: 0 auto;
+}
