@@ -3,9 +3,9 @@ import { useNavigate, Link, Routes, Route, Navigate, useLocation } from 'react-r
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
-import ProductDetails from './ProductDetails';
-import OrderDetails from './OrderDetails';
-import UserDetails from './UserDetails';
+import ProductDetails from './Products/ProductDetails';
+import OrderDetails from './Orders/OrderDetails';
+import UserDetails from './Users/UserDetails';
 
 function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
