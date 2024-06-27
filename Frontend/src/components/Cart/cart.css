@@ -95,3 +95,10 @@
     border: none;
     color: white;
   }
+
+  .cart-empty img{  
+    width: 25rem;
+    height: 25rem;
+    margin-top  : 100px;
+
+  }

@@ -10,9 +10,6 @@ function Orders() {
   const { userId } = useParams();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [reviewText, setReviewText] = useState("");
-  const [rating, setRating] = useState(0); // Corrected to use 'rating'
-  const [selectedProductId, setSelectedProductId] = useState(null); // State to track selected product
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -22,7 +19,16 @@ function Orders() {
           throw new Error("Failed to fetch orders");
         }
         const ordersData = await response.json();
-        setOrders(ordersData);
+        // Initialize each order item with its own rating and review state
+        const ordersWithRating = ordersData.map(order => ({
+          ...order,
+          items: order.items.map(item => ({
+            ...item,
+            rating: 0, // Initial rating state
+            reviewText: "" // Initial review text state
+          }))
+        }));
+        setOrders(ordersWithRating);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -34,7 +40,7 @@ function Orders() {
     }
   }, [userId]);
 
-  const submitReview = async () => {
+  const submitReview = async (productId, reviewText, rating) => {
     if (reviewText.trim() === "" || rating === 0) {
       alert("Please provide a rating and review text.");
       return;
@@ -47,7 +53,7 @@ function Orders() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          productId: selectedProductId,
+          productId,
           userId,
           rating,
           reviewText,
@@ -55,8 +61,21 @@ function Orders() {
       });
 
       if (response.ok) {
-        setReviewText("");
-        setRating(0);
+        // Update the local state to reflect the submitted review
+        const updatedOrders = orders.map(order => ({
+          ...order,
+          items: order.items.map(item => {
+            if (item.productId === productId) {
+              return {
+                ...item,
+                rating,
+                reviewText
+              };
+            }
+            return item;
+          })
+        }));
+        setOrders(updatedOrders);
         alert("Review submitted successfully!");
       } else {
         alert("Failed to submit review");
@@ -120,14 +139,26 @@ function Orders() {
                         <div className="review-section">
                           <h4>Rate & Review Product</h4>
                           <textarea
-                            value={
-                              selectedProductId === item.productId._id
-                                ? reviewText
-                                : ""
-                            }
+                            value={item.reviewText}
                             onChange={(e) => {
-                              setReviewText(e.target.value);
-                              setSelectedProductId(item.productId._id);
+                              const updatedReviewText = e.target.value;
+                              setOrders(prevOrders => prevOrders.map(prevOrder => {
+                                if (prevOrder._id === order._id) {
+                                  return {
+                                    ...prevOrder,
+                                    items: prevOrder.items.map(prevItem => {
+                                      if (prevItem.productId === item.productId) {
+                                        return {
+                                          ...prevItem,
+                                          reviewText: updatedReviewText
+                                        };
+                                      }
+                                      return prevItem;
+                                    })
+                                  };
+                                }
+                                return prevOrder;
+                              }));
                             }}
                             placeholder="Write your review here..."
                           ></textarea>
@@ -136,16 +167,13 @@ function Orders() {
                               <FontAwesomeIcon
                                 key={star}
                                 icon={
-                                  star <= rating // Corrected to use 'rating'
-                                    ? solidStar
-                                    : regularStar
+                                  star <= item.rating ? solidStar : regularStar
                                 }
                                 className="star-icon"
-                                onClick={() => setRating(star)} // Corrected to use 'setRating'
+                                onClick={() => submitReview(item.productId, item.reviewText, star)}
                               />
                             ))}
                           </div>
-                          <button onClick={submitReview}>Submit Review</button>
                         </div>
                       )}
                     </div>
