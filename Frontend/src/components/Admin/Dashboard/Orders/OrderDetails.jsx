@@ -30,7 +30,7 @@ function OrderDetails() {
             <th>Brand</th>
             <th>Category</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th>Qty.</th>
             <th>Total Amount</th>
             <th>Status</th>
             <th>Date of Order</th>

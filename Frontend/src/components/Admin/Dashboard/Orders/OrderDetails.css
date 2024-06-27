@@ -1,31 +1,22 @@
-/* Orders.css */
 
 .orderTable {
-  width: 100%;
+  width: 85%;
+  padding: 20;
+  margin: auto;
   border-collapse: collapse;
-  margin: 20px 0;
 }
 
-.orderTable th,
-.orderTable td {
+.orderTable th, .orderTable td {
   border: 1px solid #ddd;
-  padding: 18px;
-  text-align: left;
+  padding: 8px;
 }
 
 .orderTable th {
   background-color: #f2f2f2;
+  text-align: left;
 }
 
-.orderTable tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.orderTable tr:hover {
-  background-color: #ddd;
-}
-
-.orderTable img {
-  display: block;
-  margin: 0 auto;
+.orderTable td img {
+  max-width: 50px;
+  max-height: 50px;
 }
