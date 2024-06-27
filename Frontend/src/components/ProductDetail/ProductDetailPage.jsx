@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useCart } from '../../Contexts/CartContext';
-import { toast } from 'react-toastify';
-import ProductCard from '../ProductCard/productCard';
-import './ProductDetailPage.css';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useCart } from "../../Contexts/CartContext";
+import { toast } from "react-toastify";
+import ProductCard from "../ProductCard/productCard";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import "./ProductDetailPage.css";
 
 function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
-  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSize, setSelectedSize] = useState("");
   const [reviews, setReviews] = useState([]); // State for reviews
   const { addToCart } = useCart();
 
@@ -20,35 +22,39 @@ function ProductDetailPage() {
 
   const fetchProductDetails = () => {
     fetch(`http://localhost:3000/products/${id}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setProduct(data);
         fetchSimilarProducts(data.category);
       })
-      .catch(error => console.error('Error fetching product details:', error));
+      .catch((error) =>
+        console.error("Error fetching product details:", error)
+      );
   };
 
   const fetchSimilarProducts = (category) => {
     fetch(`http://localhost:3000/products/category/${category}`)
-      .then(response => response.json())
-      .then(data => {
-        const similarProducts = data.filter(product => product._id !== id);
+      .then((response) => response.json())
+      .then((data) => {
+        const similarProducts = data.filter((product) => product._id !== id);
         const shuffled = similarProducts.sort(() => 0.5 - Math.random());
         setSimilarProducts(shuffled.slice(0, 4));
       })
-      .catch(error => console.error('Error fetching similar products:', error));
+      .catch((error) =>
+        console.error("Error fetching similar products:", error)
+      );
   };
 
   const fetchProductReviews = () => {
     fetch(`http://localhost:3000/reviews/${id}`)
-      .then(response => response.json())
-      .then(data => setReviews(data))
-      .catch(error => console.error('Error fetching reviews:', error));
+      .then((response) => response.json())
+      .then((data) => setReviews(data))
+      .catch((error) => console.error("Error fetching reviews:", error));
   };
 
   const handleAddToCart = () => {
     if (!selectedSize) {
-      toast.error('Please select a shoe size.');
+      toast.error("Please select a shoe size.");
       return;
     }
 
@@ -59,7 +65,7 @@ function ProductDetailPage() {
 
   const handleBuyNow = () => {
     if (!selectedSize) {
-      toast.error('Please select a shoe size.');
+      toast.error("Please select a shoe size.");
       return;
     }
 
@@ -69,10 +75,10 @@ function ProductDetailPage() {
   if (!product) return <div>Loading...</div>;
 
   let descriptionContent;
-  if (product.description && product.description.includes(',')) {
-    const descriptionItems = product.description.split(',').map((item, index) => (
-      <li key={index}>{item.trim()}</li>
-    ));
+  if (product.description && product.description.includes(",")) {
+    const descriptionItems = product.description
+      .split(",")
+      .map((item, index) => <li key={index}>{item.trim()}</li>);
     descriptionContent = <ul>{descriptionItems}</ul>;
   } else {
     descriptionContent = <p>{product.description}</p>;
@@ -82,9 +88,17 @@ function ProductDetailPage() {
     <div className="product-detail-page">
       <div className="product-main">
         <div className="product-images">
-          <img src={product.image} alt={product.name} className="product-image-main" />
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-image-main"
+          />
           {product.image2 && (
-            <img src={product.image2} alt={`${product.name} - additional`} className="product-image-secondary" />
+            <img
+              src={product.image2}
+              alt={`${product.name} - additional`}
+              className="product-image-secondary"
+            />
           )}
         </div>
         <div className="product-info">
@@ -97,10 +111,12 @@ function ProductDetailPage() {
           <div className="select-size">
             <label>Select Size:</label>
             <div className="size-buttons">
-              {['6', '7', '8', '9', '10', '11', '12'].map(size => (
+              {["6", "7", "8", "9", "10", "11", "12"].map((size) => (
                 <button
                   key={size}
-                  className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+                  className={`size-button ${
+                    selectedSize === size ? "selected" : ""
+                  }`}
                   onClick={() => setSelectedSize(size)}
                 >
                   {size}
@@ -110,10 +126,18 @@ function ProductDetailPage() {
           </div>
 
           <div className="buttons">
-            <button onClick={handleAddToCart} className="btn add-to-cart" disabled={!selectedSize}>
+            <button
+              onClick={handleAddToCart}
+              className="btn add-to-cart"
+              disabled={!selectedSize}
+            >
               Add to Cart
             </button>
-            <button onClick={handleBuyNow} className="btn buy-now" disabled={!selectedSize}>
+            <button
+              onClick={handleBuyNow}
+              className="btn buy-now"
+              disabled={!selectedSize}
+            >
               Buy Now
             </button>
           </div>
@@ -122,17 +146,19 @@ function ProductDetailPage() {
 
       <div className="similar-products">
         <h3>Similar Products</h3>
-        <Link to={`/${product.category.toLowerCase()}`} className="viewMore">More</Link>
+        <Link to={`/${product.category.toLowerCase()}`} className="viewMore">
+          More
+        </Link>
         <div className="similar-products-list">
-          {similarProducts.map(product => (
-            <ProductCard 
-              key={product._id} 
-              id={product._id} 
-              image={product.image} 
+          {similarProducts.map((product) => (
+            <ProductCard
+              key={product._id}
+              id={product._id}
+              image={product.image}
               image2={product.image2}
-              brand={product.brand} 
-              name={product.name} 
-              price={product.price} 
+              brand={product.brand}
+              name={product.name}
+              price={product.price}
             />
           ))}
         </div>
@@ -144,9 +170,17 @@ function ProductDetailPage() {
           <p>No reviews yet.</p>
         ) : (
           <ul className="reviews-list">
-            {reviews.map(review => (
+            {reviews.map((review) => (
               <li key={review._id} className="review-item">
-                <p><strong>Rating:</strong> {review.rating} Stars</p>
+                <div className="star-rating">
+                  {[...Array(review.rating)].map((_, index) => (
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      key={index}
+                      className="star-icon"
+                    />
+                  ))}
+                </div>
                 <p>{review.reviewText}</p>
               </li>
             ))}
