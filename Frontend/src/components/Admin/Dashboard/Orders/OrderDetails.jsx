@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './OrderDetails.css'; // Ensure this CSS file exists for styling
+import './OrderDetails.css';
 
 function OrderDetails() {
   const [orders, setOrders] = useState([]);
@@ -25,7 +25,6 @@ function OrderDetails() {
         <thead>
           <tr>
             <th>Order ID</th>
-       
             <th>Image</th>
             <th>Product Name</th>
             <th>Brand</th>
@@ -35,13 +34,16 @@ function OrderDetails() {
             <th>Total Amount</th>
             <th>Status</th>
             <th>Date of Order</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Address</th>
           </tr>
         </thead>
         <tbody>
           {orders.map(order => (
             <tr key={order._id}>
               <td>{order._id}</td>
-       
               <td>
                 {order.items.map(item => (
                   <img 
@@ -70,6 +72,10 @@ function OrderDetails() {
               <td>₹ {(order.totalAmount / 100).toFixed(2)}</td>
               <td>{order.status}</td>
               <td>{new Date(order.createdAt).toLocaleString()}</td>
+              <td>{order.name}</td>
+              <td>{order.email}</td>
+              <td>{order.contact}</td>
+              <td>{order.address}</td>
             </tr>
           ))}
         </tbody>

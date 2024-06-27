@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Contexts/AuthContext"; // Import useAuth to get currentUser
+import { useAuth } from "../../Contexts/AuthContext";
 import { useCart } from "../../Contexts/CartContext";
 import "./Payment.css";
 
@@ -9,7 +9,7 @@ function Payment() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("_id");
   const { cart, clearCart } = useCart();
-  const { currentUser } = useAuth(); // Get the current user from AuthContext
+  const { currentUser } = useAuth();
   const totalAmount = location.state?.totalAmount || 0;
 
   const [formData, setFormData] = useState({
@@ -30,13 +30,12 @@ function Payment() {
     e.preventDefault();
 
     try {
-      // Call the backend to create an order
       const response = await fetch("http://localhost:3000/createOrder", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: totalAmount }), // Ensure amount is correctly formatted in paisa
+        body: JSON.stringify({ amount: totalAmount }),
       });
 
       if (!response.ok) {
@@ -45,7 +44,6 @@ function Payment() {
 
       const order = await response.json();
 
-      // Initialize Razorpay
       const options = {
         key: "rzp_test_qou4YauYTXCG9k",
         amount: order.amount,
@@ -55,9 +53,8 @@ function Payment() {
         image: "",
         order_id: order.id,
         handler: async function (response) {
-          // Handle successful payment here
-          await createOrderInBackend(order.id); // Pass order.id to backend
-          clearCart(); // Clear cart after successful payment
+          await createOrderInBackend(order.id);
+          clearCart();
           navigate(`/orders/${userId}`);
         },
         prefill: {
@@ -87,7 +84,6 @@ function Payment() {
       rzp1.open();
     } catch (error) {
       console.error("Payment failed:", error);
-      // Handle error appropriately (e.g., show error message to user)
     }
   };
 
@@ -99,10 +95,14 @@ function Payment() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: localStorage.getItem('_id'), // Use the currentUser ID from context
+          userId: localStorage.getItem('_id'),
           items: cart.map(item => ({ productId: item._id, quantity: item.quantity })),
           totalAmount,
-          orderId: orderId, // Pass the order ID from Razorpay
+          orderId: orderId,
+          name: formData.name,
+          email: formData.email,
+          contact: formData.contact,
+          address: formData.address,
         }),
       });
 
