@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useCart } from '../../Contexts/CartContext'; // Import the useCart hook
-import { toast } from 'react-toastify'; // Import toast from react-toastify
+import { useCart } from '../../Contexts/CartContext';
+import { toast } from 'react-toastify';
 import ProductCard from '../ProductCard/productCard';
 import './ProductDetailPage.css';
 
@@ -9,11 +9,13 @@ function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(''); // State for selected shoe size
-  const { addToCart } = useCart(); // Get addToCart function from context
+  const [selectedSize, setSelectedSize] = useState('');
+  const [reviews, setReviews] = useState([]); // State for reviews
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetchProductDetails();
+    fetchProductReviews(); // Fetch reviews
   }, [id]);
 
   const fetchProductDetails = () => {
@@ -37,13 +39,20 @@ function ProductDetailPage() {
       .catch(error => console.error('Error fetching similar products:', error));
   };
 
+  const fetchProductReviews = () => {
+    fetch(`http://localhost:3000/reviews/${id}`)
+      .then(response => response.json())
+      .then(data => setReviews(data))
+      .catch(error => console.error('Error fetching reviews:', error));
+  };
+
   const handleAddToCart = () => {
     if (!selectedSize) {
       toast.error('Please select a shoe size.');
       return;
     }
 
-    addToCart({ ...product, selectedSize }); // Include selectedSize in addToCart
+    addToCart({ ...product, selectedSize });
 
     toast.success(`${product.name} added to cart`);
   };
@@ -85,7 +94,6 @@ function ProductDetailPage() {
           {descriptionContent}
           <p className="product-category">Category: {product.category}</p>
 
-          {/* Select shoe size */}
           <div className="select-size">
             <label>Select Size:</label>
             <div className="size-buttons">
@@ -128,6 +136,22 @@ function ProductDetailPage() {
             />
           ))}
         </div>
+      </div>
+
+      <div className="reviews-section">
+        <h3>Customer Reviews</h3>
+        {reviews.length === 0 ? (
+          <p>No reviews yet.</p>
+        ) : (
+          <ul className="reviews-list">
+            {reviews.map(review => (
+              <li key={review._id} className="review-item">
+                <p><strong>Rating:</strong> {review.rating} Stars</p>
+                <p>{review.reviewText}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

@@ -186,4 +186,66 @@
 .size-button:hover {
   background-color: lightgray;
 }
-  
+  /* orders.css */
+.orders-page {
+  padding: 20px;
+}
+
+.order-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-product-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.order-product-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.review-section {
+  margin-top: 10px;
+}
+
+.review-section textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.review-section select {
+  margin-bottom: 10px;
+}
+
+.review-section button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* ProductDetailPage.css */
+.reviews-section {
+  margin-top: 20px;
+}
+
+.reviews-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
