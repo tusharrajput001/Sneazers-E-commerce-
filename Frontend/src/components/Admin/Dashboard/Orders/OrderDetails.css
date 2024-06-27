@@ -1,8 +1,5 @@
-
 .orderTable {
-  width: 85%;
-  padding: 20;
-  margin: auto;
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -19,4 +16,16 @@
 .orderTable td img {
   max-width: 50px;
   max-height: 50px;
+}
+
+.orderTable td button {
+  padding: 5px 10px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.orderTable td button:hover {
+  background-color: #45a049;
 }

@@ -18,9 +18,29 @@ function OrderDetails() {
     }
   };
 
+  const updateOrderStatus = async (orderId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/orders/${orderId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: 'Delivered' }),
+      });
+
+      if (response.ok) {
+        fetchOrders(); // Refresh orders after updating status
+      } else {
+        console.error('Failed to update order status');
+      }
+    } catch (error) {
+      console.error('Error updating order status:', error);
+    }
+  };
+
   return (
     <div>
-      <h2>Orders List</h2>
+      <h2 style={{margin:'20px', textAlign:'center'}}>Orders List</h2>
       <table className='orderTable'>
         <thead>
           <tr>
@@ -38,6 +58,7 @@ function OrderDetails() {
             <th>Email</th>
             <th>Contact</th>
             <th>Address</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -76,6 +97,24 @@ function OrderDetails() {
               <td>{order.email}</td>
               <td>{order.contact}</td>
               <td>{order.address}</td>
+              <td>
+                {order.status !== 'Delivered' ? (
+                  <button 
+                    onClick={() => updateOrderStatus(order._id)} 
+                    className='mark-as-delivered-btn'
+                  >
+                     Mark as Delivered
+                  </button>
+                ) : (
+                  <button 
+                    disabled 
+                    className='delivered-btn'
+                    style={{backgroundColor:'gray'}}
+                  >
+                    Delivered
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -83,5 +122,4 @@ function OrderDetails() {
     </div>
   );
 }
-
 export default OrderDetails;
