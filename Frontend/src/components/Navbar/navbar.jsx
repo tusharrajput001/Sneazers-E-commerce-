@@ -88,6 +88,11 @@ function Navbar() {
                         )}
                       </Link>
                     </li>
+                    <li className="user-logo">
+                      <Link to="/wishlist">
+                      <i class="fa-sharp fa-regular fa-heart black-icon"></i>
+                      </Link>
+                    </li>
 
                     <li className="user-logo">
                       <Link to="/account">

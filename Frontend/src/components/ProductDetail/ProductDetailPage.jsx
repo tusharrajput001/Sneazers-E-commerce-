@@ -134,11 +134,9 @@ function ProductDetailPage() {
               Add to Cart
             </button>
             <button
-              onClick={handleBuyNow}
-              className="btn buy-now"
-              disabled={!selectedSize}
+            style={{width:'60px', border:"none", backgroundColor:'transparent'}}
             >
-              Buy Now
+              <i class="fa-sharp fa-regular fa-heart fa-xl"></i>
             </button>
           </div>
         </div>

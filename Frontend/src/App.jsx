@@ -30,6 +30,7 @@ import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart/cart";
 import Payment from "./components/Payment/Payment";
 import Orders from "./components/Orders/Orders";
+import Wishlist from "./components/Wishlist/Wishlist";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -99,6 +100,7 @@ function App() {
             <Route path="/high-top" element={<HighTop products={products} />} />
             <Route path="/sports" element={<Sports products={products} />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
             <Route path="/orders/:userId" element={<ProtectedRoute><Orders/></ProtectedRoute>} /> 
             <Route
