@@ -18,14 +18,14 @@ function OrderDetails() {
     }
   };
 
-  const updateOrderStatus = async (orderId) => {
+  const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await fetch(`http://localhost:3000/orders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ status: 'Delivered' }),
+        body: JSON.stringify({ status: newStatus }),
       });
 
       if (response.ok) {
@@ -40,7 +40,7 @@ function OrderDetails() {
 
   return (
     <div>
-      <h2 style={{margin:'20px', textAlign:'center'}}>Orders List</h2>
+      <h2 style={{ margin: '20px', textAlign: 'center' }}>Orders List</h2>
       <table className='orderTable'>
         <thead>
           <tr>
@@ -98,28 +98,36 @@ function OrderDetails() {
               <td>{order.contact}</td>
               <td>{order.address}</td>
               <td>
-                {order.status !== 'Delivered' ? (
+                {order.status !== 'Delivered' && order.status !== 'Returned' && order.status !== 'Return Initiated' ? (
                   <button 
-                    onClick={() => updateOrderStatus(order._id)} 
+                    onClick={() => updateOrderStatus(order._id, 'Delivered')} 
                     className='mark-as-delivered-btn'
                   >
-                     Mark as Delivered
+                    Mark as Delivered
+                  </button>
+                ) : order.status === 'Return Initiated' ? (
+                  <button
+                    onClick={() => updateOrderStatus(order._id, 'Returned')}
+                    className='accept-return-btn'
+                  >
+                    Accept Return
                   </button>
                 ) : (
-                  <button 
-                    disabled 
+                  <button
+                    disabled
                     className='delivered-btn'
-                    style={{backgroundColor:'gray'}}
+                    style={{ backgroundColor: 'gray' }}
                   >
-                    Delivered
+                    {order.status}
                   </button>
                 )}
               </td>
             </tr>
           ))}
         </tbody>
-      </table>  
+      </table>
     </div>
   );
 }
+
 export default OrderDetails;

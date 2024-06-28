@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
-
+import 'react-toastify/dist/ReactToastify.css';
 import "./orders.css";
 
 function Orders() {
@@ -19,14 +19,13 @@ function Orders() {
           throw new Error("Failed to fetch orders");
         }
         const ordersData = await response.json();
-        // Initialize each order item with its own rating and review state
-        const ordersWithRating = ordersData.map(order => ({
+        const ordersWithRating = ordersData.map((order) => ({
           ...order,
-          items: order.items.map(item => ({
+          items: order.items.map((item) => ({
             ...item,
-            rating: 0, // Initial rating state
-            reviewText: "" // Initial review text state
-          }))
+            rating: 0,
+            reviewText: "",
+          })),
         }));
         setOrders(ordersWithRating);
         setLoading(false);
@@ -61,19 +60,18 @@ function Orders() {
       });
 
       if (response.ok) {
-        // Update the local state to reflect the submitted review
-        const updatedOrders = orders.map(order => ({
+        const updatedOrders = orders.map((order) => ({
           ...order,
-          items: order.items.map(item => {
+          items: order.items.map((item) => {
             if (item.productId === productId) {
               return {
                 ...item,
                 rating,
-                reviewText
+                reviewText,
               };
             }
             return item;
-          })
+          }),
         }));
         setOrders(updatedOrders);
         alert("Review submitted successfully!");
@@ -82,6 +80,36 @@ function Orders() {
       }
     } catch (error) {
       console.error("Error submitting review:", error);
+    }
+  };
+
+  const handleReturnRequest = async (orderId, productId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/orders/${orderId}/return`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          productId,
+        }),
+      });
+
+      if (response.ok) {
+        const updatedOrders = orders.map((order) => {
+          if (order._id === orderId) {
+            return { ...order, status: "Return Initiated" };
+          }
+          return order;
+        });
+        setOrders(updatedOrders);
+        alert("Return request submitted successfully!");
+      } else {
+        alert("Failed to submit return request");
+      }
+    } catch (error) {
+      console.error("Error submitting return request:", error);
     }
   };
 
@@ -100,16 +128,10 @@ function Orders() {
           {orders.map((order) => (
             <div key={order._id} className="order-item">
               <div className="order-header">
-                <p>
-                  <strong>Order ID:</strong> {order._id}
-                </p>
-                <p>
-                  <strong>Total Amount:</strong> ₹
-                  {(order.totalAmount / 100).toFixed(2)}
-                </p>
-                <p>
-                  <strong>Status:</strong> {order.status}
-                </p>
+                <p><strong>Order ID:</strong> {order._id}</p>
+                <p><strong>Total Amount:</strong> ₹ {(order.totalAmount / 100).toFixed(2)}</p>
+                <p><strong>Status:</strong> {order.status}</p>
+                <p><strong>Date:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
               </div>
               <ul className="order-items-list">
                 {order.items.map((item) => (
@@ -120,21 +142,11 @@ function Orders() {
                       className="order-product-image"
                     />
                     <div className="order-product-details">
-                      <p>
-                        <strong>Name:</strong> {item.productId.name}
-                      </p>
-                      <p>
-                        <strong>Brand:</strong> {item.productId.brand}
-                      </p>
-                      <p>
-                        <strong>Category:</strong> {item.productId.category}
-                      </p>
-                      <p>
-                        <strong>Quantity:</strong> {item.quantity}
-                      </p>
-                      <p>
-                        <strong>Size:</strong> {item.size}
-                      </p>
+                      <p><strong>Name:</strong> {item.productId.name}</p>
+                      <p><strong>Brand:</strong> {item.productId.brand}</p>
+                      <p><strong>Category:</strong> {item.productId.category}</p>
+                      <p><strong>Quantity:</strong> {item.quantity}</p>
+                      <p><strong>Size:</strong> {item.size}</p>
                       {order.status === "Delivered" && (
                         <div className="review-section">
                           <h4>Rate & Review Product</h4>
@@ -142,23 +154,22 @@ function Orders() {
                             value={item.reviewText}
                             onChange={(e) => {
                               const updatedReviewText = e.target.value;
-                              setOrders(prevOrders => prevOrders.map(prevOrder => {
-                                if (prevOrder._id === order._id) {
-                                  return {
-                                    ...prevOrder,
-                                    items: prevOrder.items.map(prevItem => {
-                                      if (prevItem.productId === item.productId) {
-                                        return {
-                                          ...prevItem,
-                                          reviewText: updatedReviewText
-                                        };
-                                      }
-                                      return prevItem;
-                                    })
-                                  };
-                                }
-                                return prevOrder;
-                              }));
+                              setOrders((prevOrders) =>
+                                prevOrders.map((prevOrder) => {
+                                  if (prevOrder._id === order._id) {
+                                    return {
+                                      ...prevOrder,
+                                      items: prevOrder.items.map((prevItem) => {
+                                        if (prevItem.productId === item.productId) {
+                                          return { ...prevItem, reviewText: updatedReviewText };
+                                        }
+                                        return prevItem;
+                                      }),
+                                    };
+                                  }
+                                  return prevOrder;
+                                })
+                              );
                             }}
                             placeholder="Write your review here..."
                           ></textarea>
@@ -166,14 +177,20 @@ function Orders() {
                             {[1, 2, 3, 4, 5].map((star) => (
                               <FontAwesomeIcon
                                 key={star}
-                                icon={
-                                  star <= item.rating ? solidStar : regularStar
-                                }
+                                icon={star <= item.rating ? solidStar : regularStar}
                                 className="star-icon"
-                                onClick={() => submitReview(item.productId, item.reviewText, star)}
+                                onClick={() =>
+                                  submitReview(item.productId, item.reviewText, star)
+                                }
                               />
                             ))}
                           </div>
+                          <button
+                            onClick={() => handleReturnRequest(order._id, item.productId._id)}
+                            style={{ borderRadius: "50px", padding: "5px 20px", marginTop: "20px" }}
+                          >
+                            Return
+                          </button>
                         </div>
                       )}
                     </div>

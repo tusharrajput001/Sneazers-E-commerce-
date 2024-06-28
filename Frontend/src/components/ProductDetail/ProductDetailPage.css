@@ -148,7 +148,7 @@
   font-size: 16px;
   margin-bottom: 5px;
 }
-/* ProductDetailPage.css */
+
 
 /* Size selection container */
 .select-size {
@@ -170,11 +170,11 @@
 .size-button {
   background-color: white;
   border: 1px solid #ccc;
-  padding: 10px 20px;
+  padding: 5px 12px;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
   border-radius: 5px; /* Added border radius for rounded corners */
-  font-size: 16px; /* Increased font size */
+  font-size: 15px; /* Increased font size */
 }
 
 .size-button.selected {
