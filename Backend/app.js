@@ -8,6 +8,7 @@ const productRoute = require("./routes/productRoute");
 const paymentRoute = require('./routes/paymentRoute');
 const orderRoute = require('./routes/orderRoute');
 const reviewRoute = require('./routes/reviewRoute');
+const wishlistRoute = require('./routes/wishlistRoute');
 
 const app = express();
 dotenv.config();
@@ -36,3 +37,4 @@ app.use(productRoute);
 app.use(paymentRoute);
 app.use(orderRoute);
 app.use(reviewRoute);
+app.use('/api/wishlist', wishlistRoute);

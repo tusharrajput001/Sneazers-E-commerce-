@@ -33,6 +33,12 @@ import Payment from "./components/Payment/Payment";
 import Orders from "./components/Orders/Orders";
 import Wishlist from "./components/Wishlist/Wishlist";
 
+
+
+const userId = localStorage.getItem("_id");
+
+
+
 function App() {
   const [products, setProducts] = useState([]);
 
@@ -82,7 +88,7 @@ function App() {
     <Router>
       <AuthProvider>
         <CartProvider>
-        <WishlistProvider>
+        <WishlistProvider userId={userId}>
           <Navbar />
           <Routes>
             <Route
