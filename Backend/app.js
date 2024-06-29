@@ -37,4 +37,4 @@ app.use(productRoute);
 app.use(paymentRoute);
 app.use(orderRoute);
 app.use(reviewRoute);
-app.use('/api/wishlist', wishlistRoute);
+app.use('/api/wishlist', wishlistRoute);  

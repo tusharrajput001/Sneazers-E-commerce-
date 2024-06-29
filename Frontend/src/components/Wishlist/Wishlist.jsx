@@ -4,11 +4,11 @@ import ProductCard from '../ProductCard/productCard';
 import './Wishlist.css';
 
 function Wishlist() {
-  const { wishlist, removeFromWishlist } = useWishlist();
+  const { wishlist } = useWishlist();
 
   return (
     <div className="wishlist-page">
-      <h1 style={{textAlign:'center'}}>Wishlist</h1>
+      <h1>Wishlist</h1>
       {wishlist.length === 0 ? (
         <p>No items in wishlist.</p>
       ) : (
@@ -23,7 +23,6 @@ function Wishlist() {
                 name={product.name}
                 price={product.price}
               />
-              {/* <button onClick={() => removeFromWishlist(product._id)}>Remove</button> */}
             </div>
           ))}
         </div>

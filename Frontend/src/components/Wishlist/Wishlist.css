@@ -14,4 +14,53 @@
   .wishlist-item button {
     margin-top: 10px;
   }
+  .wishlist-page {
+    padding: 20px;
+  }
+  
+  .wishlist-page h1 {
+    text-align: center;
+  }
+  
+  .wishlist-page p {
+    text-align: center;
+    font-size: 1.2em;
+  }
+  
+  .wishlist-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .wishlist-item {
+    flex: 1 1 200px;
+    max-width: 300px;
+    margin: 10px;
+  }
+  
+  .wishlist-item button {
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .wishlist-item {
+      flex: 1 1 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .wishlist-page {
+      padding: 10px;
+    }
+  
+    .wishlist-item {
+      margin: 5px;
+    }
+  
+    .wishlist-item button {
+      margin-top: 5px;
+    }
+  }
   
