@@ -8,7 +8,8 @@ import { useState, useEffect } from "react";
 
 // Context
 import { AuthProvider } from "./Contexts/AuthContext";
-import { CartProvider } from "./Contexts/CartContext"; // Ensure CartProvider is being used
+import { CartProvider } from "./Contexts/CartContext";
+import { WishlistProvider } from "./Contexts/WishlistContext";
 
 // Components Import
 import Login from "./components/Login/login";
@@ -81,6 +82,7 @@ function App() {
     <Router>
       <AuthProvider>
         <CartProvider>
+        <WishlistProvider>
           <Navbar />
           <Routes>
             <Route
@@ -125,6 +127,7 @@ function App() {
           </Routes>
           <Footer />
           <ToastContainer />
+          </WishlistProvider>
         </CartProvider>
       </AuthProvider>
     </Router>

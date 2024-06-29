@@ -1,0 +1,17 @@
+.wishlist-page {
+    padding: 20px;
+  }
+  
+  .wishlist-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .wishlist-item {
+    margin: 10px;
+  }
+  
+  .wishlist-item button {
+    margin-top: 10px;
+  }
+  

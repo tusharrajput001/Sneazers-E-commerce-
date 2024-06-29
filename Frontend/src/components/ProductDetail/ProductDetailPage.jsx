@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCart } from "../../Contexts/CartContext";
+import { useWishlist } from "../../Contexts/WishlistContext"; // Import useWishlist
 import { toast } from "react-toastify";
 import ProductCard from "../ProductCard/productCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import "./ProductDetailPage.css";
 
 function ProductDetailPage() {
@@ -12,12 +15,13 @@ function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
-  const [reviews, setReviews] = useState([]); // State for reviews
+  const [reviews, setReviews] = useState([]);
   const { addToCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist(); // Use wishlist context
 
   useEffect(() => {
     fetchProductDetails();
-    fetchProductReviews(); // Fetch reviews
+    fetchProductReviews();
   }, [id]);
 
   const fetchProductDetails = () => {
@@ -63,13 +67,18 @@ function ProductDetailPage() {
     toast.success(`${product.name} added to cart`);
   };
 
-  const handleBuyNow = () => {
-    if (!selectedSize) {
-      toast.error("Please select a shoe size.");
-      return;
+  const handleWishlistClick = () => {
+    if (isProductInWishlist(product._id)) {
+      removeFromWishlist(product._id);
+      toast.info(`${product.name} removed from wishlist`);
+    } else {
+      addToWishlist(product);
+      toast.success(`${product.name} added to wishlist`);
     }
+  };
 
-    alert(`Proceeding to buy ${product.name} in size ${selectedSize}`);
+  const isProductInWishlist = (productId) => {
+    return wishlist.some((item) => item._id === productId);
   };
 
   if (!product) return <div>Loading...</div>;
@@ -134,9 +143,13 @@ function ProductDetailPage() {
               Add to Cart
             </button>
             <button
-            style={{width:'60px', border:"none", backgroundColor:'transparent'}}
+              style={{ width: '60px', border: "none", backgroundColor: 'transparent' }}
+              onClick={handleWishlistClick}
             >
-              <i class="fa-sharp fa-regular fa-heart fa-xl"></i>
+              <FontAwesomeIcon
+                icon={isProductInWishlist(product._id) ? faHeartSolid : faHeartRegular}
+                className="heart-icon"
+              />
             </button>
           </div>
         </div>
