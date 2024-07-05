@@ -32,9 +32,6 @@ function LatestProducts({ products }) {
               </div>
             ))}
           </div>
-          {productsWithDate.length > 8 && (
-            <button onClick={() => {}}>View More</button>
-          )}
         </div>
       </section>
     );
