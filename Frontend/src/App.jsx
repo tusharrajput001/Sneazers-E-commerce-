@@ -41,6 +41,7 @@ const userId = localStorage.getItem("_id");
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     fetchProducts().then(setProducts);
@@ -50,6 +51,19 @@ function App() {
     return fetch("http://localhost:3000/products")
       .then((response) => response.json())
       .catch((error) => console.error("Error fetching products:", error));
+  };
+
+  const handleSearch = (searchText) => {
+    if (searchText.trim() === "") {
+      setFilteredProducts([]);
+    } else {
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchText.toLowerCase()) ||
+          product.brand.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
   };
 
   const addProduct = (product) => {
@@ -89,24 +103,24 @@ function App() {
       <AuthProvider>
         <CartProvider>
         <WishlistProvider userId={userId}>
-          <Navbar />
+        <Navbar handleSearch={handleSearch} />
           <Routes>
             <Route
               path="/"
               element={
                 <>
                   <Slider />
-                  <LatestProducts products={products} />
+                  <LatestProducts products={filteredProducts.length > 0 ? filteredProducts : products} />
                 </>
               }
             />
             <Route path="/register" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-            <Route path="/low-top" element={<Lowtop products={products} />} />
-            <Route path="/mid-top" element={<Midtop products={products} />} />
-            <Route path="/high-top" element={<HighTop products={products} />} />
-            <Route path="/sports" element={<Sports products={products} />} />
+            <Route path="/low-top" element={<Lowtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+            <Route path="/mid-top" element={<Midtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+            <Route path="/high-top" element={<HighTop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+            <Route path="/sports" element={<Sports products={filteredProducts.length > 0 ? filteredProducts : products} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
@@ -126,7 +140,7 @@ function App() {
             />
             <Route
               path="/allproducts"
-              element={<Allproducts products={products} />}
+              element={<Allproducts products={filteredProducts.length > 0 ? filteredProducts : products} />}
             />
             <Route path="/product/:id" element={<ProductDetailPage />} />
             <Route path="/footer" element={<Footer />} />
