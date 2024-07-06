@@ -17,7 +17,7 @@ function Navbar({ handleSearch }) {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = () => {
+  const handleLogout = () => {  
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
     window.location.reload();
@@ -35,6 +35,7 @@ function Navbar({ handleSearch }) {
     const text = e.target.value.trim();
     setSearchText(text);
     handleSearch(text);
+    navigate("/search");  
   };
 
   const handleSearchSubmit = (e) => {
