@@ -1,17 +1,16 @@
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS for toastify
+import "react-toastify/dist/ReactToastify.css"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { useState, useEffect } from "react";
 
-// Context
 import { AuthProvider } from "./Contexts/AuthContext";
 import { CartProvider } from "./Contexts/CartContext";
 import { WishlistProvider } from "./Contexts/WishlistContext";
 
-// Components Import
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Navbar from "./components/Navbar/navbar";
@@ -32,12 +31,9 @@ import Cart from "./components/Cart/cart";
 import Payment from "./components/Payment/Payment";
 import Orders from "./components/Orders/Orders";
 import Wishlist from "./components/Wishlist/Wishlist";
-
-
+import SearchResults from "./components/SearchResult/SearchResults"; // Import the SearchResults component
 
 const userId = localStorage.getItem("_id");
-
-
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -102,56 +98,57 @@ function App() {
     <Router>
       <AuthProvider>
         <CartProvider>
-        <WishlistProvider userId={userId}>
-        <Navbar handleSearch={handleSearch} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Slider />
-                  <LatestProducts products={filteredProducts.length > 0 ? filteredProducts : products} />
-                </>
-              }
-            />
-            <Route path="/register" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-            <Route path="/low-top" element={<Lowtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
-            <Route path="/mid-top" element={<Midtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
-            <Route path="/high-top" element={<HighTop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
-            <Route path="/sports" element={<Sports products={filteredProducts.length > 0 ? filteredProducts : products} />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
-            <Route path="/orders/:userId" element={<ProtectedRoute><Orders/></ProtectedRoute>} /> 
-            <Route
-              path="/dashboard/*"
-              element={
-                <AdminProtectedRoute>
-                  <Dashboard
-                    addProduct={addProduct}
-                    fetchProducts={fetchProducts}
-                    deleteProduct={deleteProduct}
-                    updateProduct={updateProduct}
-                  />
-                </AdminProtectedRoute>
-              }
-            />
-            <Route
-              path="/allproducts"
-              element={<Allproducts products={filteredProducts.length > 0 ? filteredProducts : products} />}
-            />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
-            <Route path="/footer" element={<Footer />} />
-          </Routes>
-          <Footer />
-          <ToastContainer />
+          <WishlistProvider userId={userId}>
+            <Navbar handleSearch={handleSearch} />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Slider />
+                    <LatestProducts products={filteredProducts.length > 0 ? filteredProducts : products} />
+                  </>
+                }
+              />
+              <Route path="/register" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+              <Route path="/low-top" element={<Lowtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+              <Route path="/mid-top" element={<Midtop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+              <Route path="/high-top" element={<HighTop products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+              <Route path="/sports" element={<Sports products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+              <Route path="/orders/:userId" element={<ProtectedRoute><Orders/></ProtectedRoute>} /> 
+              <Route
+                path="/dashboard/*"
+                element={
+                  <AdminProtectedRoute>
+                    <Dashboard
+                      addProduct={addProduct}
+                      fetchProducts={fetchProducts}
+                      deleteProduct={deleteProduct}
+                      updateProduct={updateProduct}
+                    />
+                  </AdminProtectedRoute>
+                }
+              />
+              <Route
+                path="/allproducts"
+                element={<Allproducts products={filteredProducts.length > 0 ? filteredProducts : products} />}
+              />
+              <Route path="/product/:id" element={<ProductDetailPage />} />
+              <Route path="/footer" element={<Footer />} />
+              <Route path="/search" element={<SearchResults products={filteredProducts} />} /> {/* Add the search route */}
+            </Routes>
+            <Footer />
+            <ToastContainer />
           </WishlistProvider>
         </CartProvider>
       </AuthProvider>
     </Router>
   );
-}     
+}
 
 export default App;

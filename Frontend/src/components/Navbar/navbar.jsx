@@ -1,3 +1,4 @@
+// src/components/Navbar/navbar.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
@@ -10,6 +11,7 @@ function Navbar({ handleSearch }) {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, userEmail } = useAuth();
   const { cart } = useCart();
+  const [searchText, setSearchText] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -30,8 +32,14 @@ function Navbar({ handleSearch }) {
   };
 
   const handleSearchInput = (e) => {
-    const searchText = e.target.value.trim();
-    handleSearch(searchText);
+    const text = e.target.value.trim();
+    setSearchText(text);
+    handleSearch(text);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate("/search", { state: { searchText } });
   };
 
   return (
@@ -69,14 +77,14 @@ function Navbar({ handleSearch }) {
       <div className="navbar-icons">
         <ul>
           <li>
-            <div className="search-bar">
+            <form onSubmit={handleSearchSubmit} className="search-bar">
               <i className="fas fa-search search-icon"></i>
               <input
                 type="text"
                 placeholder="Search..."
                 onChange={handleSearchInput}
               />
-            </div>
+            </form>
           </li>
 
           {isLoggedIn ? (
@@ -94,7 +102,6 @@ function Navbar({ handleSearch }) {
                   <li className="icon-wrapper">
                     <Link to="/wishlist">
                       <i className="fa-sharp fa-regular fa-heart black-icon"></i>
-                      {/* <span className="badge">0</span> */}
                     </Link>
                   </li>
 
