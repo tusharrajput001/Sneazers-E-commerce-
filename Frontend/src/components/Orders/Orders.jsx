@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import "./orders.css";
 
 function Orders() {
@@ -41,7 +43,7 @@ function Orders() {
 
   const submitReview = async (productId, reviewText, rating) => {
     if (reviewText.trim() === "" || rating === 0) {
-      alert("Please provide a rating and review text.");
+      toast.error("Please provide a rating and review text.");
       return;
     }
 
@@ -74,16 +76,26 @@ function Orders() {
           }),
         }));
         setOrders(updatedOrders);
-        alert("Review submitted successfully!");
+        toast.success("Review submitted successfully!");
       } else {
-        alert("Failed to submit review");
+        toast.error("Failed to submit review");
       }
     } catch (error) {
       console.error("Error submitting review:", error);
     }
   };
 
-  const handleReturnRequest = async (orderId, productId) => {
+  const handleReturnRequest = async (orderId, productId, orderDate) => {
+    const orderDateObj = new Date(orderDate);
+    const currentDate = new Date();
+    const differenceInTime = currentDate.getTime() - orderDateObj.getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+    if (differenceInDays > 7) {
+      toast.error("Cannot return orders older than 7 days.");
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:3000/orders/${orderId}/return`, {
         method: "POST",
@@ -104,9 +116,9 @@ function Orders() {
           return order;
         });
         setOrders(updatedOrders);
-        alert("Return request submitted successfully!");
+        toast.success("Return request submitted successfully!");
       } else {
-        alert("Failed to submit return request");
+        toast.error("Failed to submit return request");
       }
     } catch (error) {
       console.error("Error submitting return request:", error);
@@ -186,7 +198,7 @@ function Orders() {
                             ))}
                           </div>
                           <button
-                            onClick={() => handleReturnRequest(order._id, item.productId._id)}
+                            onClick={() => handleReturnRequest(order._id, item.productId._id, order.createdAt)}
                             style={{ borderRadius: "50px", padding: "5px 20px", marginTop: "20px" }}
                           >
                             Return
