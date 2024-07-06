@@ -8,9 +8,11 @@ function Cart() {
   const { cart, removeFromCart, updateQuantity } = useCart();
   const navigate = useNavigate();
 
+
   if (cart.length === 0) {
     return (
       <div className="cart-empty">
+        <h1 style={{ textAlign: 'center' , marginTop:'20px'}}>My Cart</h1>
         <img src={emptyCartImage} alt="Empty Cart" className="empty-cart-image" />
         <p>Your cart is empty.</p>
       </div>
@@ -40,7 +42,8 @@ function Cart() {
 
   return (
     <>
-      <h2 style={{ textAlign: 'center' }}>Your Cart</h2>
+      
+      <h1 style={{ textAlign: 'center', marginTop:'20px'}}>My Cart</h1>
       <div className="cart-page">
         {cart.length > 0 && (
           <div className="cart-items">
