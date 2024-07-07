@@ -11,7 +11,7 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     image: '',
-    image2: '', 
+    image2: '',
     brand: '',
     name: '',
     price: '',
@@ -70,9 +70,9 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>Admin Panel</h1>
 
       <div className='buttonsContainer' style={{ textAlign: 'center', padding: '20px' }}>
-        <Link to='products'><p className="button1">Products</p></Link>
-        <Link to='orders'><p className="button2">Orders</p></Link>
-        <Link to='users'><p className="button3">Users</p></Link>
+        <Link to='products' className="button1"><i className="fas fa-box"></i> Products</Link>
+        <Link to='orders' className="button2"><i className="fas fa-shopping-cart"></i> Orders</Link>
+        <Link to='users' className="button3"><i className="fas fa-users"></i> Users</Link>
       </div>
 
       {location.pathname === '/dashboard/products' && (
