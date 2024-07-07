@@ -18,6 +18,7 @@ function Payment() {
     contact: "",
     address: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -26,8 +27,18 @@ function Payment() {
     });
   };
 
+  const validateContactNumber = (contact) => {
+    const contactPattern = /^\d{10}$/;
+    return contactPattern.test(contact);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateContactNumber(formData.contact)) {
+      setError("Contact number must be a 10-digit number.");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3000/createOrder", {
@@ -148,6 +159,7 @@ function Payment() {
             required
           />
         </div>
+        {error && <p style={{color:"red"}} className="error">{error}</p>}
         <div className="form-group">
           <label>Address</label>
           <textarea

@@ -78,14 +78,14 @@ function Account() {
                     Wishlist
                   </button>
                 </li>
-                <li>
+                {/* <li>
                   <button
                     onClick={handleEditProfile}
                     className="edit-profile-btn"
                   >
                     Edit Profile
                   </button>
-                </li>
+                </li> */}
                 <li>
                   <button onClick={handleLogout} className="logout-btn">
                     Logout
