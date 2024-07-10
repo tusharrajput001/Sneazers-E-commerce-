@@ -11,7 +11,7 @@ function LatestProducts({ products }) {
     const sortedProducts = productsWithDate.sort((a, b) => new Date(b.orderAddedDate) - new Date(a.orderAddedDate));
 
     // Take the first 8 sorted products
-    const displayedProducts = sortedProducts.slice(0, 8);
+    const displayedProducts = sortedProducts.slice(0, 15);
 
     return (
       <section className="LatestProducts">

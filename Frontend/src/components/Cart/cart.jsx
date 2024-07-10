@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../Contexts/CartContext';
-import emptyCartImage from '../../../public/empty-cart.svg'; // Import your empty cart illustration
+import emptyCartImage from '../../assets/empty-cart.svg'; // Import your empty cart illustration
 import './cart.css';
 
 function Cart() {

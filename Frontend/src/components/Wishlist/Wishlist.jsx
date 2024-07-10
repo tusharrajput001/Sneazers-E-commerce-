@@ -1,7 +1,7 @@
 import React from 'react';
 import { useWishlist } from '../../Contexts/WishlistContext';
 import ProductCard from '../ProductCard/productCard';
-import EmptyWishlist from "../../../public/wishlist.svg";
+import EmptyWishlist from "../../assets/wishlist.svg";
 import './Wishlist.css';
 
 function Wishlist() {
