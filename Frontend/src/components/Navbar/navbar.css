@@ -6,7 +6,7 @@
   background-color: #eeeeee;
 }
 
-.dashboard{
+.dashboard {
   display: none;
 }
 
@@ -129,6 +129,25 @@
 @media screen and (max-width: 1000px) {
   .navbar {
     padding: 1rem;
+  }
+  .search-bar {
+    display: none;
+  }
+
+  .search-barDB {
+    margin-top: 20%;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    gap: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: white;
+  }
+
+  .search-barDB input {
+    width: 80%;
+    border: none;
   }
 
   .hamburger-menu {

@@ -151,7 +151,7 @@ function Navbar({ handleSearch }) {
         <button className="close-btn" onClick={toggleMenu}>
           &times;
         </button>
-        <form onSubmit={handleSearchSubmit} className="search-bar">
+        <form onSubmit={handleSearchSubmit} className="search-barDB">
           <i className="fas fa-search search-icon"></i>
           <input
             type="text"
