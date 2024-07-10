@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Slider.css';
 import Slider1 from "../../Images/slider1.png";
 import Slider2 from "../../Images/slider2.png";
 import Slider3 from "../../Images/Slider3.webp";
@@ -18,7 +19,7 @@ function Slider() {
 
   return (
 
-      <div className="row text-center">
+      <div className="SliderClass row text-center">
         <div className="col-12">
           <div
             id="carouselExampleControls"

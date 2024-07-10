@@ -1,4 +1,3 @@
-// src/components/Navbar/navbar.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
@@ -145,6 +144,37 @@ function Navbar({ handleSearch }) {
               </Link>
             </li>
           )}
+        </ul>
+      </div>
+
+      <div className={`dashboard ${isOpen ? "open" : ""}`}>
+        <button className="close-btn" onClick={toggleMenu}>
+          &times;
+        </button>
+        <form onSubmit={handleSearchSubmit} className="search-bar">
+          <i className="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={handleSearchInput}
+          />
+        </form>
+        <ul>
+          <li>
+            <Link to="/high-top" onClick={toggleMenu}>High-top</Link>
+          </li>
+          <li>
+            <Link to="/mid-top" onClick={toggleMenu}>Mid-top</Link>
+          </li>
+          <li>
+            <Link to="/low-top" onClick={toggleMenu}>Low-top</Link>
+          </li>
+          <li>
+            <Link to="/sports" onClick={toggleMenu}>Sports</Link>
+          </li>
+          <li>
+            <Link to="/allproducts" onClick={toggleMenu}>All Products</Link>
+          </li>
         </ul>
       </div>
     </nav>

@@ -31,7 +31,7 @@ import Cart from "./components/Cart/cart";
 import Payment from "./components/Payment/Payment";
 import Orders from "./components/Orders/Orders";
 import Wishlist from "./components/Wishlist/Wishlist";
-import SearchResults from "./components/SearchResult/SearchResults"; // Import the SearchResults component
+import SearchResults from "./components/SearchResult/SearchResults"; 
 
 const userId = localStorage.getItem("_id");
 
@@ -139,7 +139,7 @@ function App() {
                 element={<Allproducts products={filteredProducts.length > 0 ? filteredProducts : products} />}
               />
               <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path="/footer" element={<Footer />} />
+              {/* <Route path="/footer" element={<Footer />} /> */}
               <Route path="/search" element={<SearchResults products={filteredProducts} />} /> {/* Add the search route */}
             </Routes>
             <Footer />

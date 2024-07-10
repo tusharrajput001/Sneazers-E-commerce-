@@ -1,10 +1,13 @@
-/* General styles for the navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 1rem;   
+  padding: 0rem 1rem;
   background-color: #eeeeee;
+}
+
+.dashboard{
+  display: none;
 }
 
 .navbar-heading {
@@ -51,7 +54,6 @@
   cursor: pointer;
 }
 
-/* Search bar styles */
 .search-bar {
   display: flex;
   align-items: center;
@@ -70,15 +72,13 @@
 }
 
 .search-bar .search-icon {
-  margin-right: 5px;  
+  margin-right: 5px;
   color: grey;
 }
 
-/* Icons and badge styles */
 .navbar-icons .icon-wrapper {
   position: relative;
   display: inline-block;
-
 }
 
 .navbar-icons .icon-wrapper .badge {
@@ -92,25 +92,43 @@
   right: -10px;
 }
 
-/* Media Query for Small Screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1195px) {
+  .navbar {
+    justify-content: flex-start;
+  }
+
+  .navbar-heading {
+    font-size: 2.5rem;
+  }
+
+  .navbar-options li,
+  .navbar-icons li {
+    margin-right: 5px;
+  }
+
+  .navbar-options li a {
+    font-size: 1.1rem;
+    margin: 0.6vw;
+  }
+  .navbar-options {
+    display: flex;
+    justify-content: center;
+    margin-left: 25px;
+  }
+
+  .navbar-icons {
+    padding: 2px 35px;
+    position: absolute;
+    right: -20px;
+  }
+  .navbar-icons li {
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
   .navbar {
     padding: 1rem;
-  }
-
-  .navbar-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #333;
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
-  }
-
-  .navbar-options.open {
-    display: block;
   }
 
   .hamburger-menu {
@@ -122,17 +140,63 @@
     padding: 0;
   }
 
-  .navbar-options li a {
-    color: rgb(248, 245, 245);
-  }
-
   .navbar-heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-left: 20px;
   }
-}
 
-.navbar-icons .cart-icon-wrapper {
-  position: relative;
+  .navbar-options {
+    display: none;
+  }
+
+  .dashboard {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+  }
+
+  .dashboard.open {
+    display: block;
+  }
+
+  .dashboard form {
+    margin-bottom: 20px;
+  }
+
+  .dashboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .dashboard li {
+    margin: 10px 0;
+  }
+
+  .dashboard li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+  }
 }
 
 .cart-count {
