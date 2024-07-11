@@ -1,30 +1,12 @@
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center the products horizontally */
+.AllProducts {
+  margin: 3% 0;
+  height: auto;
+  padding: 0 7vw;
 }
 
-.product-card {
-  width: calc(25% - 20px); /* Adjust as needed */
-  margin-bottom: 20px;
-  box-sizing: border-box;
-}
-
-h2 {
-  font-family: "Anek Latin", sans-serif;
-}
-
-.HtopContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+.AllPageContainer {
+  width: 100%;
   max-width: 100em;
-}
-.HPageContainer {
-  width: 95%;
-  max-width: 90em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -32,42 +14,87 @@ h2 {
   align-items: center;
 }
 
-.HPageProducts {
-  margin: 3% 0;
-  height: auto;
-  padding: 0 7vw;
+.AlltopContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  max-width: 100em;
 }
 
-.products-container {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-}
-.heading-container {
+.Allheading-container {
   display: flex;
   flex-direction: column;
   width: 90%;
   margin: auto;
 }
-.heading-container div {
+
+.Allheading-container div {
   font-size: large;
   text-align: end;
 }
 
-.heading-container h1 {
+.Allheading-container h1 {
   width: 95%;
   margin: auto;
 }
 
-@media (max-width: 768px) {
-  .product-card {
-    width: calc(50% - 20px); /* Adjust as needed */
+.Allproducts-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.Allproduct-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the products horizontally */
+}
+
+.Allproduct-card {
+  width: calc(20% - 10px); /* Smaller card size, four cards in a row for larger screens */
+  margin: 8px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1488px) {
+  .Allproduct-card {
+    width: calc(25% - 10px); /* Smaller card size, three cards in a row for tablets */
   }
 }
 
-@media (max-width: 480px) {
-  .product-card {
-    width: 90%; /* Adjust as needed */
+
+
+  /* @media (max-width: 1202px) {
+    .Allproduct-card {
+      width: calc(30% - 10px); 
+    }
+  } */
+
+
+@media (max-width: 1016px) {
+  .Allproduct-card {
+    width: calc(30% - 10px); /* Smaller card size, three cards in a row for tablets */
   }
+}
+
+@media (max-width: 844px) {
+  .Allproduct-card {
+    width: calc(50% - 50px); 
+    display: flex;
+    justify-content: center;
+
+  }
+
+}
+@media (max-width: 450px) {
+  .Allproduct-card {
+    width: calc(40% - 0px); 
+    display: flex;
+    justify-content: center;
+
+  }
+
 }

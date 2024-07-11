@@ -4,19 +4,19 @@ import './allproducts.css';
 
 function Allproducts({ products }) {
   return (
-    <section className="HPageProducts">
-      <div className="HPageContainer">
-        <div className="HtopContainer">
-          <div className="heading-container">
+    <section className="AllProducts">
+      <div className="AllPageContainer">
+        <div className="AlltopContainer">
+          <div className="Allheading-container">
             <h1>
               All Products
             </h1>
           </div>
-          <div className="products-container">
+          <div className="Allproducts-container">
             {products.length > 0 ? (
-              <div className="product-list">
+              <div className="Allproduct-list">
                 {products.map((product, index) => (
-                  <div key={index} className="product-card">
+                  <div key={index} className="Allproduct-card">
                     <ProductCard
                       key={product._id}
                       id={product._id}
