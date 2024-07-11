@@ -67,13 +67,6 @@
 
 
 
-  /* @media (max-width: 1202px) {
-    .Allproduct-card {
-      width: calc(30% - 10px); 
-    }
-  } */
-
-
 @media (max-width: 1016px) {
   .Allproduct-card {
     width: calc(30% - 10px); /* Smaller card size, three cards in a row for tablets */

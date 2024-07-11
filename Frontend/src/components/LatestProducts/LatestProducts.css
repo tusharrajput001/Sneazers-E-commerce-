@@ -1,25 +1,29 @@
 .LatestProducts {
   margin-top: 2%;
 }
-
+.section-title{
+  margin-left: 7%;
+}
 .product-list {
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
 }
-
+.viewAll{
+  margin-right: 50px;
+}
 .product-card {
-width: 100%; /* Adjust as needed */
+width: 100%;
 box-sizing: border-box;
 display: flex;
 justify-content: start;
 }
 
 .product-grid {
-display: grid;
-justify-content: center;
-grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ensure a minimum width of 200px per card */
-gap: 20px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 0fr)); /* Ensure a minimum width of 200px per card */
+  /* gap: 20px; */
 }
 
 h2 {
@@ -27,12 +31,12 @@ font-family: "Anek Latin", sans-serif;
 }
 
 .HtopContainer {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-align-content: center;
-max-width: 100em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  max-width: 100em;
 }
 
 .HPageContainer {
@@ -87,6 +91,9 @@ margin: auto;
 .product-grid {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ensure a minimum width of 150px per card */
 }
+.viewAll{
+  margin-right: 0px   ;
+}
 
 .product-card {
   width: 100%; /* Adjust as needed */
@@ -95,10 +102,11 @@ margin: auto;
 
 @media (max-width: 480px) {
 .product-grid {
-  grid-template-columns: repeat(3, 1fr); /* Ensure at least 2 cards */
+  grid-template-columns: repeat(2, 1fr); /* Ensure at least 2 cards */
 }
 
 .product-card {
   width: 100%; /* Adjust as needed */
 }
+
 }

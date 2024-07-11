@@ -17,7 +17,7 @@ function LatestProducts({ products }) {
       <section className="LatestProducts">
         <div className="container">
           <h2 className="section-title">Latest Products</h2>
-          <Link style={{display:'flex', justifyContent:"end", marginRight:'20px'}} to='/allproducts'>View all</Link>
+          <Link className='viewAll' style={{display:'flex', justifyContent:"end",fontSize:'2vh',  textDecoration:'none'}} to='/allproducts'>View all</Link>
           <div className="product-grid">
             {displayedProducts.map(product => (
               <div key={product._id} className="product-card">

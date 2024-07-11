@@ -29,11 +29,10 @@
 }
 
 .low-top-list {
-  width: 90%;
+  width: 100%;
   margin: auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
 }
 
 .low-top-items {
@@ -43,20 +42,36 @@
 }
 
 .low-top-item {
-  width: calc(25% - 20px);
-  margin-bottom: 20px;
+  width: calc(20% - 10px); /* Smaller card size, four cards in a row for larger screens */
+  margin: 8px;
   box-sizing: border-box;
   padding: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1488px) {
   .low-top-item {
-    width: calc(50% - 20px);
+    width: calc(25% - 10px); /* Three cards in a row for smaller screens */
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1016px) {
   .low-top-item {
-    width: 90%;
+    width: calc(30% - 10px); /* Three cards in a row for smaller screens */
+  }
+}
+
+@media (max-width: 844px) {
+  .low-top-item {
+    width: calc(50% - 50px); /* Two cards in a row for smaller screens */
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .low-top-item {
+    width: calc(40% - 0px); /* Two cards in a row for smaller screens */
+    display: flex;
+    justify-content: center;
   }
 }
