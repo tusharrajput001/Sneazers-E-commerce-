@@ -121,7 +121,8 @@
 
 .similar-products-list {
   display: flex;
-  gap: 0px;
+  gap: 10px;
+  justify-content: center;
 }
 
 .product-card {

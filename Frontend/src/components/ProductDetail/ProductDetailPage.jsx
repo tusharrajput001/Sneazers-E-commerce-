@@ -42,7 +42,7 @@ function ProductDetailPage() {
       .then((data) => {
         const similarProducts = data.filter((product) => product._id !== id);
         const shuffled = similarProducts.sort(() => 0.5 - Math.random());
-        setSimilarProducts(shuffled.slice(0, 4));
+        setSimilarProducts(shuffled.slice(0, 5));
       })
       .catch((error) =>
         console.error("Error fetching similar products:", error)
