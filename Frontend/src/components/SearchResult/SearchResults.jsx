@@ -12,9 +12,9 @@ function SearchResults({ products }) {
         </div>
         <div className="SearchResultsProductsContainer">
           {products.length > 0 ? (
-            <div className="product-list">
+            <div className="Searchproduct-list">
               {products.map((product, index) => (
-                <div key={index} className="product-card">
+                <div key={index} className="Searchproduct-card">
                   <ProductCard
                     key={product._id}
                     id={product._id}

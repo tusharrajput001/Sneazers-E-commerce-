@@ -73,6 +73,9 @@
 }
 
 @media (max-width: 479px) {
+  .card-container {
+    max-width: 140px;
+  }
   .brand-name{
     font-size: 12px;
   }
@@ -85,3 +88,4 @@
   }
 
 }
+
