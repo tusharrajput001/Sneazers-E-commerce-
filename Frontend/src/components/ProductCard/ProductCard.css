@@ -53,13 +53,35 @@
 .price {
   font-size: 16px;
   margin-top: 5px;
-  color: #007bff; /* blue color */
 }
 
 
 @media (max-width: 745px) {
   .card-container {
     width: 180px;
+  }
+  .brand-name{
+    font-size: 14px;
+  }
+  .product-name {
+    font-size: 14px;
+  }
+  
+  .price {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 479px) {
+  .brand-name{
+    font-size: 12px;
+  }
+  .product-name {
+    font-size: 12px;
+  }
+  
+  .price {
+    font-size: 12px;
   }
 
 }
