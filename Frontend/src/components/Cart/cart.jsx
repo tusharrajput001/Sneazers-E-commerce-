@@ -54,7 +54,6 @@ function Cart() {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>My Cart</h1>
       <div className="cart-page">
         <div className="cart-items">
           {cart.map((item) => (
@@ -69,22 +68,24 @@ function Cart() {
                   <button onClick={() => handleQuantityChange(item._id, item.quantity - 1)}>-</button>
                   <span>{item.quantity}</span>
                   <button onClick={() => handleQuantityChange(item._id, item.quantity + 1)}>+</button>
+                  <div>
+                  <button onClick={() => handleRemoveFromCart(item._id)} className="btn remove-from-cart">Remove</button>
+
+                  </div>
                 </div>
-                <button onClick={() => handleRemoveFromCart(item._id)} className="btn remove-from-cart">Remove</button>
               </div>
             </div>
           ))}
         </div>
         <div className="cart-summary">
-          <div className="cart-total">
-            <h3>Total Amount: <span>₹ {totalAmount.toFixed(2)}</span></h3>
-            <h3>GST (18%): <span>₹ {gst.toFixed(2)}</span></h3>
-            <h3>Shipping Charges: <span>₹ {shippingCharges.toFixed(2)}</span></h3>
-            <h3><strong>Final Amount: <span>₹ {finalAmount.toFixed(2)}</span></strong></h3>
+          <div className="price-details">
+            <h3>PRICE DETAILS</h3>
+            <p>Price ({cart.length} item{cart.length > 1 ? 's' : ''}): <span>₹ {totalAmount.toFixed(2)}</span></p>
+            <p>GST @18% <span>₹ {gst}</span></p>
+            <p>Delivery Charges: <span>₹ {shippingCharges}</span></p>
+            <h3>Total Amount: <span>₹ {finalAmount.toFixed(2)}</span></h3>
           </div>
-          <div className="checkoutBtn">
-            <button onClick={handleCheckout}>Proceed to Buy</button>
-          </div>
+          <button onClick={handleCheckout} className="btn place-order">Place Order</button>
         </div>
       </div>
     </>
