@@ -243,3 +243,8 @@
     margin-left: 20px;
   }
 }
+@media screen and (max-width: 360px) {
+  .navbar-heading {
+    margin-left: 5px;
+  }
+}
