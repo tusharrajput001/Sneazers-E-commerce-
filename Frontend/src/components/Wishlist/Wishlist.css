@@ -70,4 +70,9 @@
   .wishlist-item button {
     margin-top: 5px;
   }
+  .empty-wishlist-image {
+    width: 15rem;
+    height: 15    rem;
+    margin-top: 100px;
+  }
 }

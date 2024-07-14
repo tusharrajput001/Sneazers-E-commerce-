@@ -237,15 +237,9 @@
 .signupBtn {
   padding: 0 0.7em;
 }
-@media screen and (max-width: 362px) {
-
-
+@media screen and (max-width: 375px) {
   .navbar-heading {
     font-size: 2rem;
     margin-left: 20px;
   }
-
-
-
-
 }

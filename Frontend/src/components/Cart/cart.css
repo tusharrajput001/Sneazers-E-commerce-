@@ -109,3 +109,14 @@
     margin-top  : 100px;
 
   }
+  
+
+@media (max-width:464px) {
+  .cart-empty img{  
+    width: 15rem;
+    height: 20rem;
+    margin-top  : 80px;
+
+  }
+  
+}
