@@ -5,7 +5,7 @@ function UserDetails() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => { 
-    fetch('http://localhost:3000/')
+    fetch('https://sneazers-e-commerce.vercel.app/')
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));

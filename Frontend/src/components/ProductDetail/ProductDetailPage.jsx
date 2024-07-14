@@ -25,7 +25,7 @@ function ProductDetailPage() {
   }, [id]);
 
   const fetchProductDetails = () => {
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://sneazers-e-commerce.vercel.app/products/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setProduct(data);
@@ -37,7 +37,7 @@ function ProductDetailPage() {
   };
 
   const fetchSimilarProducts = (category) => {
-    fetch(`http://localhost:3000/products/category/${category}`)
+    fetch(`https://sneazers-e-commerce.vercel.app/products/category/${category}`)
       .then((response) => response.json())
       .then((data) => {
         const similarProducts = data.filter((product) => product._id !== id);
@@ -50,7 +50,7 @@ function ProductDetailPage() {
   };
 
   const fetchProductReviews = () => {
-    fetch(`http://localhost:3000/reviews/${id}`)
+    fetch(`https://sneazers-e-commerce.vercel.app/reviews/${id}`)
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.error("Error fetching reviews:", error));

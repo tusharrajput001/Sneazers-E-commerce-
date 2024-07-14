@@ -41,7 +41,7 @@ function Payment() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/createOrder", {
+      const response = await fetch("https://sneazers-e-commerce.vercel.app/createOrder", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Payment() {
 
   const createOrderInBackend = async (orderId) => {
     try {
-      const response = await fetch("http://localhost:3000/orders", {
+      const response = await fetch("https://sneazers-e-commerce.vercel.app/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

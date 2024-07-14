@@ -16,7 +16,7 @@ function Orders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/orders/${userId}`);
+        const response = await fetch(`https://sneazers-e-commerce.vercel.app/orders/${userId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch orders");
         }
@@ -48,7 +48,7 @@ function Orders() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/reviews`, {
+      const response = await fetch(`https://sneazers-e-commerce.vercel.app/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ function Orders() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/orders/${orderId}/return`, {
+      const response = await fetch(`https://sneazers-e-commerce.vercel.app/orders/${orderId}/return`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

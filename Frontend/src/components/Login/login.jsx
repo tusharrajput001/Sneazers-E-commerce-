@@ -21,7 +21,7 @@
         return;
       }
       axios
-        .post("http://localhost:3000/login", { email, password })
+        .post("https://sneazers-e-commerce.vercel.app/login", { email, password })
         .then((result) => {
           console.log(result);
           if (result.data.message === "Success") {

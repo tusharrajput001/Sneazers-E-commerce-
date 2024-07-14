@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   const fetchProducts = () => {
-    return fetch("http://localhost:3000/products")
+    return fetch("https://sneazers-e-commerce.vercel.app/products")
       .then((response) => response.json())
       .catch((error) => console.error("Error fetching products:", error));
   };
@@ -63,7 +63,7 @@ function App() {
   };
 
   const addProduct = (product) => {
-    return fetch("http://localhost:3000/addProduct", {
+    return fetch("https://sneazers-e-commerce.vercel.app/addProduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function App() {
   };
 
   const deleteProduct = (productId) => {
-    return fetch(`http://localhost:3000/deleteProduct/${productId}`, {
+    return fetch(`https://sneazers-e-commerce.vercel.app/deleteProduct/${productId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -83,7 +83,7 @@ function App() {
   };
 
   const updateProduct = (productId, updatedProduct) => {
-    return fetch(`http://localhost:3000/updateProduct/${productId}`, {
+    return fetch(`https://sneazers-e-commerce.vercel.app/updateProduct/${productId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -16,7 +16,7 @@ export const WishlistProvider = ({ children, userId }) => {
 
   const fetchWishlist = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/wishlist/${userId}`);
+      const response = await axios.get(`https://sneazers-e-commerce.vercel.app/api/wishlist/${userId}`);
       setWishlist(response.data.products || []);
     } catch (err) {
       console.error('Error fetching wishlist:', err);
@@ -25,7 +25,7 @@ export const WishlistProvider = ({ children, userId }) => {
 
   const addToWishlist = async (product) => {
     try {
-      await axios.post(`http://localhost:3000/api/wishlist/${userId}`, { productId: product._id });
+      await axios.post(`https://sneazers-e-commerce.vercel.app/api/wishlist/${userId}`, { productId: product._id });
       setWishlist((prevWishlist) => [...prevWishlist, product]);
     } catch (err) {
       console.error('Error adding to wishlist:', err);
@@ -34,7 +34,7 @@ export const WishlistProvider = ({ children, userId }) => {
 
   const removeFromWishlist = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/wishlist/${userId}/${productId}`);
+      await axios.delete(`https://sneazers-e-commerce.vercel.app/api/wishlist/${userId}/${productId}`);
       setWishlist((prevWishlist) =>
         prevWishlist.filter((item) => item._id !== productId)
       );
