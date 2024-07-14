@@ -125,6 +125,44 @@ function Orders() {
     }
   };
 
+  const handleStarClick = (orderId, productId, star) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((prevOrder) => {
+        if (prevOrder._id === orderId) {
+          return {
+            ...prevOrder,
+            items: prevOrder.items.map((prevItem) => {
+              if (prevItem.productId._id === productId) {
+                return { ...prevItem, rating: star };
+              }
+              return prevItem;
+            }),
+          };
+        }
+        return prevOrder;
+      })
+    );
+  };
+
+  const handleTextareaChange = (orderId, productId, text) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((prevOrder) => {
+        if (prevOrder._id === orderId) {
+          return {
+            ...prevOrder,
+            items: prevOrder.items.map((prevItem) => {
+              if (prevItem.productId._id === productId) {
+                return { ...prevItem, reviewText: text };
+              }
+              return prevItem;
+            }),
+          };
+        }
+        return prevOrder;
+      })
+    );
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -158,31 +196,13 @@ function Orders() {
                       <p><strong>Brand:</strong> {item.productId.brand}</p>
                       <p><strong>Category:</strong> {item.productId.category}</p>
                       <p><strong>Quantity:</strong> {item.quantity}</p>
-                      <p><strong>Size:</strong> {item.size}</p>
+                      {/* <p><strong>Size:</strong> {item.size}</p> */}
                       {order.status === "Delivered" && (
                         <div className="review-section">
                           <h4>Rate & Review Product</h4>
                           <textarea
                             value={item.reviewText}
-                            onChange={(e) => {
-                              const updatedReviewText = e.target.value;
-                              setOrders((prevOrders) =>
-                                prevOrders.map((prevOrder) => {
-                                  if (prevOrder._id === order._id) {
-                                    return {
-                                      ...prevOrder,
-                                      items: prevOrder.items.map((prevItem) => {
-                                        if (prevItem.productId === item.productId) {
-                                          return { ...prevItem, reviewText: updatedReviewText };
-                                        }
-                                        return prevItem;
-                                      }),
-                                    };
-                                  }
-                                  return prevOrder;
-                                })
-                              );
-                            }}
+                            onChange={(e) => handleTextareaChange(order._id, item.productId._id, e.target.value)}
                             placeholder="Write your review here..."
                           ></textarea>
                           <div className="star-rating">
@@ -191,15 +211,17 @@ function Orders() {
                                 key={star}
                                 icon={star <= item.rating ? solidStar : regularStar}
                                 className="star-icon"
-                                onClick={() =>
-                                  submitReview(item.productId, item.reviewText, star)
-                                }
+                                onClick={() => handleStarClick(order._id, item.productId._id, star)}
                               />
                             ))}
                           </div>
                           <button
+                            onClick={() => submitReview(item.productId._id, item.reviewText, item.rating)}
+                          >
+                            Submit Review
+                          </button>
+                          <button
                             onClick={() => handleReturnRequest(order._id, item.productId._id, order.createdAt)}
-                            style={{ borderRadius: "50px", padding: "5px 20px", marginTop: "20px" }}
                           >
                             Return
                           </button>
