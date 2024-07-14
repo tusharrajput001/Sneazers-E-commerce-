@@ -105,6 +105,7 @@
   font-size: 1.8rem;
   margin-right: 5px;
   transition: transform 0.2s;
+  margin: 10px 0px;
 }
 
 .star-icon:hover {
@@ -112,17 +113,17 @@
 }
 
 .review-section button {
-  background-color: var(--primary-color);
-  color: #fff;
+  color: #000000;
   border: none;
-  padding: 10px 20px;
-  border-radius: var(--border-radius);
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 5px 10px;
+  padding: 8px;
 }
 
 .review-section button:hover {
-  background-color: darken(var(--primary-color), 10%);
+  background-color: wheat;
 } 
 
 @media (max-width: 768px) {
