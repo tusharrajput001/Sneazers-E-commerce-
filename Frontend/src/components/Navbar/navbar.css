@@ -9,7 +9,11 @@
 .dashboard {
   display: none;
 }
-
+.navbar i {
+  overflow: hidden;
+}
+/* .icon-wrapper  i, .user-logo i {
+  overflow: hidden;} */
 .navbar-heading {
   font-size: 3rem;
   font-family: "waltograph42";
@@ -36,6 +40,7 @@
 .navbar-icons li {
   display: inline-block;
   margin-right: 25px;
+  overflow: hidden;
 }
 
 .navbar-options li a {
