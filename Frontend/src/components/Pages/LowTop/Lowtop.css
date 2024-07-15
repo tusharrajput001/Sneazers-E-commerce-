@@ -1,6 +1,5 @@
 .low-top-products {
-  margin: 3% 0;
-  padding: 0 7vw;
+  margin-top: 2%;
 }
 
 .low-top-container {
@@ -39,6 +38,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .low-top-item {
@@ -46,34 +47,29 @@
   margin: 8px;
   box-sizing: border-box;
   padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 1488px) {
+@media (max-width: 1200px) {
   .low-top-item {
-    width: calc(25% - 10px); /* Three cards in a row for smaller screens */
+    width: calc(20% - 0px); /* Three cards in a row for smaller screens */
   }
 }
 
-@media (max-width: 1016px) {
+@media (max-width: 974px) {
   .low-top-item {
-    width: calc(30% - 10px); /* Three cards in a row for smaller screens */
-  }
-}
-
-@media (max-width: 844px) {
-  .low-top-item {
-    width: calc(50% - 50px); /* Two cards in a row for smaller screens */
+    width: calc(30% - 0px); /* Two cards in a row for smaller screens */
     display: flex;
     justify-content: center;
     padding: 0;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 505px) {
   .low-top-item {
-    width: calc(40% - 0px); /* Two cards in a row for smaller screens */
+    width: calc(50% - 20px);
     display: flex;
     justify-content: center;
-    padding: 0;
   }
 }

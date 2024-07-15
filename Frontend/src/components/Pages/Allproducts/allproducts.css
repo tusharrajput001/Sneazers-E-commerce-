@@ -1,16 +1,13 @@
 .AllProducts {
-  margin: 3% 0;
-  height: auto;
-  padding: 0 7vw;
+  margin-top: 2%;
 }
 
 .AllPageContainer {
-  width: 100%;
-  max-width: 100em;
+  width: 95%;
+  max-width: 90em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -19,7 +16,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-content: center;
   max-width: 100em;
 }
 
@@ -28,16 +24,15 @@
   flex-direction: column;
   width: 90%;
   margin: auto;
-}
-
-.Allheading-container div {
-  font-size: large;
-  text-align: end;
+  text-align: center;
 }
 
 .Allheading-container h1 {
+  font-family: "Anek Latin", sans-serif;
   width: 95%;
   margin: auto;
+  font-size: 2.5em;
+  color: #333;
 }
 
 .Allproducts-container {
@@ -50,44 +45,39 @@
 .Allproduct-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the products horizontally */
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .Allproduct-card {
   width: calc(20% - 10px); /* Smaller card size, four cards in a row for larger screens */
   margin: 8px;
   box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 1488px) {
+@media (max-width: 1200px) {
   .Allproduct-card {
-    width: calc(25% - 10px); /* Smaller card size, three cards in a row for tablets */
+    width: calc(20% - 0px); /* Three cards in a row for smaller screens */
   }
 }
 
-
-
-@media (max-width: 1016px) {
+@media (max-width: 974px) {
   .Allproduct-card {
-    width: calc(30% - 10px); /* Smaller card size, three cards in a row for tablets */
-  }
-}
-
-@media (max-width: 844px) {
-  .Allproduct-card {
-    width: calc(50% - 50px); 
+    width: calc(30% - 0px); /* Two cards in a row for smaller screens */
     display: flex;
     justify-content: center;
-
+    padding: 0;
   }
-
 }
-@media (max-width: 450px) {
+
+@media (max-width: 505px) {
   .Allproduct-card {
-    width: calc(40% - 0px); 
+    width: calc(50% - 20px);
     display: flex;
     justify-content: center;
-
   }
-
 }
