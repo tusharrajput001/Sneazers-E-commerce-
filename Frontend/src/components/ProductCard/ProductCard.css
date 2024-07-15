@@ -72,7 +72,7 @@
   }
 }
 
-@media (max-width: 479px) {
+/* @media (max-width: 479px) {
   .card-container {
     max-width: 140px;
   }
@@ -87,5 +87,5 @@
     font-size: 12px;
   }
 
-}
+} */
 
