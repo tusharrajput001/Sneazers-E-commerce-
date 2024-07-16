@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../../ProductCard/productCard';
+import Loader from '../../Loader/Loader'; 
 import './Midtop.css';
 
 function MidTop({ products }) {
@@ -30,7 +31,7 @@ function MidTop({ products }) {
               ))}
             </div>
           ) : (
-            <p>No mid-top products available</p>
+            <Loader/>
           )}
         </div>
       </div>

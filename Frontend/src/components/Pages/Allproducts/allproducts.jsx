@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../../ProductCard/productCard';
+import Loader from '../../Loader/Loader';
 import './allproducts.css';
 
 function Allproducts({ products }) {
@@ -30,7 +31,7 @@ function Allproducts({ products }) {
                 ))}
               </div>
             ) : (
-              <p>No products available</p>
+              <Loader/>
             )}
           </div>
         </div>

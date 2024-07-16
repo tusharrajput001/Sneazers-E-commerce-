@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../../ProductCard/productCard';
+import Loader from '../../Loader/Loader'; 
 import './Lowtop.css';
 
 function LowTop({ products }) {
@@ -30,7 +31,7 @@ function LowTop({ products }) {
               ))}
             </div>
           ) : (
-            <p>No low-top products available</p>
+            <Loader/>
           )}
         </div>
       </div>
