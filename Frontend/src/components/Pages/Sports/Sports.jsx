@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from '../../ProductCard/productCard';
 import './Sports.css';
+import Loader from '../../Loader/Loader';
 
 function Sports({ products }) {
   // Filter products by category "Sports"
@@ -31,7 +32,9 @@ function Sports({ products }) {
                 ))}
               </div>
             ) : (
-              <p>No sports products available</p>
+              <div className="loader-container">
+                <Loader />
+              </div>
             )}
           </div>
         </div>
