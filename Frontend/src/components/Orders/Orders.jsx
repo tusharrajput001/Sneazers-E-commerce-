@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import "./orders.css";
+import Loader from "../Loader/Loader";
 
 function Orders() {
   const { userId } = useParams();
@@ -164,7 +165,7 @@ function Orders() {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p><Loader/></p>;
   }
 
   return (

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import Loader from "../Loader/Loader";
 import "./ProductDetailPage.css";
 
 function ProductDetailPage() {
@@ -81,7 +82,7 @@ function ProductDetailPage() {
     return wishlist.some((item) => item._id === productId);
   };
 
-  if (!product) return <div>Loading...</div>;
+  if (!product) return <div><Loader/></div>;
 
   let descriptionContent;
   if (product.description && product.description.includes(",")) {
