@@ -53,7 +53,7 @@ function Signup() {
 
                     <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-user me-3 fa-fw"></i>
                         <div
                           data-mdb-input-init
                           className="form-outline flex-fill mb-0"
@@ -70,7 +70,7 @@ function Signup() {
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-envelope  me-3 fa-fw"></i>
                         <div
                           data-mdb-input-init
                           className="form-outline flex-fill mb-0"
@@ -87,7 +87,7 @@ function Signup() {
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-lock  me-3 fa-fw"></i>
                         <div
                           data-mdb-input-init
                           className="form-outline flex-fill mb-0"

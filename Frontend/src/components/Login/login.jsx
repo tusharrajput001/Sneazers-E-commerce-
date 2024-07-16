@@ -119,27 +119,7 @@
                   className="btn btn-primary btn-lg btn-block"
                 >
                   Sign in
-                </button>
-
-                {/* Continue with Facebook */}
-                <a
-                  className="btn btn-primary btn-lg btn-block"
-                  style={{ backgroundColor: "#3b5998" }}
-                  href="#!"
-                  role="button"
-                >
-                  <i className="fab fa-facebook-f me-2"></i>Continue with Facebook
-                </a>
-
-                {/* Continue with Twitter */}
-                <a
-                  className="btn btn-primary btn-lg btn-block"
-                  style={{ backgroundColor: " #55acee" }}
-                  href="#!"
-                  role="button"
-                >
-                  <i className="fab fa-twitter me-2"></i>Continue with Twitter
-                </a>
+                </button>   
               </form>
             </div>
           </div>
