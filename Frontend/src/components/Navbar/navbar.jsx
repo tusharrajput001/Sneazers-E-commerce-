@@ -128,7 +128,7 @@ function Navbar({ handleSearch }) {
                   <Link to="/dashboard" className="no-underline">
                     <i > Admin</i>
                   </Link>
-                  <button onClick={handleLogout}>Logout</button>
+                  <button className="LogoutText" onClick={handleLogout}>Logout</button>
                 </li>
               )}
             </>

@@ -32,6 +32,7 @@ h1 {
   font-size: 16px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  overflow: hidden;
 }
 
 .buttonsContainer .button1:hover,
@@ -148,6 +149,10 @@ table,
 th,
 td {
   border: 1px solid #ddd;
+}
+
+.actionsData{
+  border: none;
 }
 
 th,

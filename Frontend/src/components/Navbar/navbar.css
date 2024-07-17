@@ -52,7 +52,10 @@
 .black-icon {
   color: black;
 }
-
+.LogoutText:hover {
+  color: rgb(185, 41, 41);
+  border-color: rgb(209, 13, 13);
+}
 .hamburger-menu {
   display: none;
   cursor: pointer;
