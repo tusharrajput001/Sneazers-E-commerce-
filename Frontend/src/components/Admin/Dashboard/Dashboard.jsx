@@ -6,6 +6,7 @@ import './Dashboard.css';
 import ProductDetails from './Products/ProductDetails';
 import OrderDetails from './Orders/OrderDetails';
 import UserDetails from './Users/UserDetails';
+import Loader from '../../Loader/Loader'
 
 function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -20,13 +21,30 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
   });
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    fetchProducts().then(setProducts);
+    const fetchData = async () => {
+      setLoading(true);
+      await fetchProducts().then(setProducts);
+      setLoading(false);
+    };
+    fetchData();
   }, [fetchProducts]);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (loading) {
+      const timer = setTimeout(() => setLoading(false), 500); // Simulate loading time
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -145,6 +163,8 @@ function Dashboard({ addProduct, fetchProducts, deleteProduct, updateProduct }) 
           </form>
         </div>
       )}
+
+      {loading && <Loader />} {/* Display loader when loading */}
 
       <Routes>
         <Route path="products" element={<ProductDetails products={products} handleEdit={handleEdit} handleDelete={handleDelete} />} />
