@@ -1,0 +1,267 @@
+/* General styling */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Admin Panel */
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.buttonsContainer .button1,
+.buttonsContainer .button2,
+.buttonsContainer .button3 {
+  margin: 10px;
+  padding: 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.buttonsContainer .button1:hover,
+.buttonsContainer .button2:hover,
+.buttonsContainer .button3:hover {
+  background-color: #0056b3;
+}
+
+.buttonsContainer i {
+  margin-right: 10px;
+}
+
+.addProduct {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+  width: 85%;
+}
+
+.addProduct button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addProduct button:hover {
+  background-color: #218838;
+}
+
+/* Form Popup */
+.form-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.form-container {
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container input,
+.form-container textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container .btn {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.form-container .btn-update {
+  background-color: #28a745;
+  color: white;
+}
+
+.form-container .btn-update:hover {
+  background-color: #218838;
+}
+
+.form-container .cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.form-container .cancel:hover {
+  background-color: #c82333;
+}
+
+/* Products List */
+.productsList {
+  margin: 0px auto;
+  width: 70%;
+}
+
+.productsList h2 {
+  text-align: center;
+  padding: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+.actionsData {
+  border: none;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.actionsData {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.EditBtn, .DelBtn {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.EditBtn {
+  background-color: #28a745;
+}
+
+.DelBtn {
+  background-color: #dc3545;
+}
+
+.EditBtn:hover {
+  background-color: #218838;
+}
+
+.DelBtn:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .buttonsContainer {
+    flex-direction: column;
+  }
+
+  .buttonsContainer .button1,
+  .buttonsContainer .button2,
+  .buttonsContainer .button3 {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .form-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .productsList {
+    width: 90%;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 5px;
+  }
+
+  .actionsData {
+    flex-direction: column;
+  }
+
+  .EditBtn, .DelBtn {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 531px) {
+  .productsList {
+    width: 100%;
+  }
+
+  table, th, td {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 3px;
+  }
+
+  .actionsData {
+    flex-direction: column;
+  }
+
+  .EditBtn, .DelBtn {
+    margin: 3px 0;
+    padding: 3px 5px;
+  }
+}

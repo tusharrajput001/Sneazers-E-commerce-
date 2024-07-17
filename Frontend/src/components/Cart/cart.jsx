@@ -81,7 +81,7 @@ function Cart() {
           <div className="price-details">
             <h3>PRICE DETAILS</h3>
             <p>Price ({cart.length} item{cart.length > 1 ? 's' : ''}): <span>₹ {totalAmount.toFixed(2)}</span></p>
-            <p>GST @18% <span>₹ {gst}</span></p>
+            <p>GST @18% <span>₹ {gst.toFixed(2)}</span></p>
             <p>Delivery Charges: <span>₹ {shippingCharges}</span></p>
             <h3>Total Amount: <span>₹ {finalAmount.toFixed(2)}</span></h3>
           </div>

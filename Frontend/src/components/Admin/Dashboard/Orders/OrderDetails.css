@@ -1,3 +1,19 @@
+/* General styling */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 20px;
+}
+
 .orderTable {
   width: 100%;
   border-collapse: collapse;
@@ -28,4 +44,29 @@
 
 .orderTable td button:hover {
   background-color: #45a049;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .orderTable th, .orderTable td {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .orderTable td button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orderTable th, .orderTable td {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .orderTable td button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
 }
