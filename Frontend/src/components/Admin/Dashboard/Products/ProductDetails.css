@@ -84,7 +84,7 @@ h1 {
 }
 
 .form-container {
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   background-color: white;
   padding: 30px;
@@ -134,7 +134,8 @@ h1 {
 /* Products List */
 .productsList {
   margin: 0px auto;
-  width: 70%;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .productsList h2 {
@@ -145,6 +146,7 @@ h1 {
 .table-container {
   overflow-x: auto;
   margin: 20px;
+  width: 100%;
 }
 
 table {
@@ -217,51 +219,34 @@ tr:nth-child(even) {
     margin: 10px 0;
   }
 
-  .form-container {
-    width: 90%;
-    padding: 20px;
-  }
-
   .productsList {
-    width: 90%;
+    width: 95%;
   }
 
-  table, th, td {
+  table,
+  th,
+  td {
     font-size: 14px;
   }
 
   th, td {
-    padding: 5px;
-  }
-
-  .actionsData {
-    flex-direction: column;
-  }
-
-  .EditBtn, .DelBtn {
-    margin: 5px 0;
+    padding: 8px;
   }
 }
 
-@media (max-width: 531px) {
+@media (max-width: 480px) {
   .productsList {
     width: 100%;
+    padding: 5px;
   }
 
-  table, th, td {
+  table,
+  th,
+  td {
     font-size: 12px;
   }
 
   th, td {
-    padding: 3px;
-  }
-
-  .actionsData {
-    flex-direction: column;
-  }
-
-  .EditBtn, .DelBtn {
-    margin: 3px 0;
-    padding: 3px 5px;
+    padding: 6px;
   }
 }

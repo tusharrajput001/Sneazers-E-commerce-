@@ -43,6 +43,7 @@ h1 {
 
 .buttonsContainer i {
   margin-right: 10px;
+  overflow: hidden;
 }
 
 .addProduct {
