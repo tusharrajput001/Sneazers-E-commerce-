@@ -5,6 +5,7 @@ Live Demo -> https://sneazers-e-commerce-dodh.vercel.app/
 <h2>Features </h2>
 <ul>
   <li>Admin and user panel.</li>
+  <li>Complete Responsive for all devices.</li>
   <li>Complete Admin Dashboard can add , remove , Edit , View  products , Manage Orders accept order , return order process etc.</li>
   <li>In user side we have cart option ,  wishlist option, Feedback options after delivery of product and payment gateway.</li>
 </ul>
