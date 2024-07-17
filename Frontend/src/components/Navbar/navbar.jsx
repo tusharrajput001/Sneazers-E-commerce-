@@ -16,7 +16,7 @@ function Navbar({ handleSearch }) {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = () => {  
+  const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
     window.location.reload();
@@ -34,7 +34,7 @@ function Navbar({ handleSearch }) {
     const text = e.target.value.trim();
     setSearchText(text);
     handleSearch(text);
-    navigate("/search");  
+    navigate("/search");
   };
 
   const handleSearchSubmit = (e) => {
@@ -125,10 +125,8 @@ function Navbar({ handleSearch }) {
                   <Link to="/dashboard">
                     <i className="fas fa-user black-icon mr-3"></i>
                   </Link>
-                  <Link to="/dashboard">
-                    <li className="user-name">
-                      <span> Admin</span>
-                    </li>
+                  <Link to="/dashboard" className="no-underline">
+                    <i > Admin</i>
                   </Link>
                   <button onClick={handleLogout}>Logout</button>
                 </li>
@@ -161,19 +159,29 @@ function Navbar({ handleSearch }) {
         </form>
         <ul>
           <li>
-            <Link to="/high-top" onClick={toggleMenu}>High-top</Link>
+            <Link to="/high-top" onClick={toggleMenu}>
+              High-top
+            </Link>
           </li>
           <li>
-            <Link to="/mid-top" onClick={toggleMenu}>Mid-top</Link>
+            <Link to="/mid-top" onClick={toggleMenu}>
+              Mid-top
+            </Link>
           </li>
           <li>
-            <Link to="/low-top" onClick={toggleMenu}>Low-top</Link>
+            <Link to="/low-top" onClick={toggleMenu}>
+              Low-top
+            </Link>
           </li>
           <li>
-            <Link to="/sports" onClick={toggleMenu}>Sports</Link>
+            <Link to="/sports" onClick={toggleMenu}>
+              Sports
+            </Link>
           </li>
           <li>
-            <Link to="/allproducts" onClick={toggleMenu}>All Products</Link>
+            <Link to="/allproducts" onClick={toggleMenu}>
+              All Products
+            </Link>
           </li>
         </ul>
       </div>

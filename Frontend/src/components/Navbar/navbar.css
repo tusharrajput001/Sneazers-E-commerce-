@@ -12,8 +12,7 @@
 .navbar i {
   overflow: hidden;
 }
-/* .icon-wrapper  i, .user-logo i {
-  overflow: hidden;} */
+
 .navbar-heading {
   font-size: 3rem;
   font-family: "waltograph42";
@@ -58,6 +57,20 @@
   display: none;
   cursor: pointer;
 }
+
+.no-underline{
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.no-underline i {
+  font-style: normal;
+}
+
+.no-underline:hover{
+  text-decoration: none;
+}
+
 
 .search-bar {
   display: flex;
