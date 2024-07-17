@@ -16,5 +16,5 @@ Live Demo -> https://sneazers-e-commerce-dodh.vercel.app/
   <li>Now open -> http://localhost:5173/ </li>
 </ol>
 
-# <strong> TO OPEN ADMIN PANEL ->  Login with [ email : "tusharr0491@gmail.com" , password : "tusharr"] </strong>
+ TO OPEN ADMIN PANEL ->  Login with [ email : "tusharr0491@gmail.com" , password : "tusharr"] 
 
