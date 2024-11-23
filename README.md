@@ -1,5 +1,5 @@
-Created Using MERN Stack ( MONGODB, Expressjs, Reactjs, Nodejs)
-
+Created Using MERN Stack ( MongoDB, Express.js, React.js, Node.js)
+Deployed On Vercel
 Live Demo -> https://sneazers-e-commerce-dodh.vercel.app/
  
 <h2>Features </h2>
